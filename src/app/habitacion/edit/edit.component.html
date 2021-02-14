@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h3>Editar Habitacion</h3>
+        </div>
+
+        <div class="card-body">
+            <form action="">
+                <div class="form-group">
+                    <label for="">Id Habitacion:</label>
+                    <input [(ngModel)]="habitacion.idhabitacion" type="text" name="id" class="form-control" disabled>
+                </div>
+                <div class="form-group">
+                    <input [(ngModel)]="habitacion.id_tipohabitacion" type="text" name="id_tipohabitacion" class="form-control">
+                </div>
+
+                <button (click)="Guardar(habitacion)" class="btn btn-warning">Guardar</button>
+                <button (click)="Cancelar()" class="btn btn-danger">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>

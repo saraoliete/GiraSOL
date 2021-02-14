@@ -1,0 +1,30 @@
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Habitacion</h3>
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th>Id habitacion</th>
+                        <th>Tipo Habitacion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-For="let habitacion of habitacion" class="text-center">
+                        <td>{{habitacion.idhabitacion}}</td>
+                        <td>{{habitacion.id_tipohabitacion}}</td>
+                        <td>
+                            <button (click)="Editar(habitacion)"class="btn btn-warning m-1">Edit</button>
+                            <button (click)="Delete(habitacion)"class="btn btn-danger m-1">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
