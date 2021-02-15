@@ -10,16 +10,20 @@ import { Habitacion } from '../../Modelo/habitacion';
 })
 export class getPageHabitacion implements OnInit{
 
-    //habitacion:Habitacion[] | undefined;
-    constructor(/**private service:ServiceService, private router:Router*/){}
+    habitacion!:Habitacion[];
+    constructor(private service:ServiceService, private router:Router){}
 
     ngOnInit(){
-      //  this.service.getPageHabitacion().subscribe(data=>{this.habitacion=data;})
+      this.service.getPageHabitacion().subscribe(data=>{this.habitacion=data;})
 
     }
 
-    /**
-     *Editar(habitacion:Habitacion):void{
+    View(habitacion:Habitacion):void{
+      localStorage.setItem("id",habitacion.idhabitacion.toString());
+      this.router.navigate(["ViewHabitacion"]);
+    }
+
+    Editar(habitacion:Habitacion):void{
       localStorage.setItem("id",habitacion.idhabitacion.toString());
       this.router.navigate(["EditHabitacion"]);
     }
@@ -28,7 +32,6 @@ export class getPageHabitacion implements OnInit{
       
       this.service.deleteHabitacion(habitacion).subscribe(data=>{this.habitacion=this.habitacion?.filter(h=>h!==habitacion);
       alert("Habitacion eliminada correctamente"); })
-      this.router.navigate(["DeleteHabitacion"]);
+      this.router.navigate(["getPageHabitacion"]);
     }
-    */
 }

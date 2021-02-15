@@ -1,0 +1,49 @@
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Usuario</h3>
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th>Id Usuario</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Tipo de Usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>DNI</th>
+                        <th>Edad</th>
+                        <th>Sexo</th>
+                        <th>Email</th>
+                        <th>Localidad</th>
+                        <th>Telefono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuario" class="text-center">
+                        <td>{{usuario.idusuario}}</td>
+                        <td>{{usuario.nombreusuario}}</td>
+                        <td>{{usuario.tipousuario}}</td>
+                        <td>{{usuario.nombre}}</td>
+                        <td>{{usuario.apellidos}}</td>
+                        <td>{{usuario.dni}}</td>
+                        <td>{{usuario.edad}}</td>
+                        <td>{{usuario.sexo}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>{{usuario.localidad}}</td>
+                        <td>{{usuario.telefono}}</td>
+                        <td>
+                            <button (click)="View(usuario)"class="btn btn-info m-1">Ver</button>
+                            <button (click)="Editar(usuario)"class="btn btn-warning m-1">Edit</button>
+                            <button (click)="Delete(usuario)"class="btn btn-danger m-1">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

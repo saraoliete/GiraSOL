@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Habitacion } from './Modelo/habitacion';
 
 
 @Component({
@@ -21,23 +20,8 @@ export class AppComponent {
       this.router.navigate(["CreateUsuario"]);
     }
 
-    Habitacion(){      
-      this.router.navigate(["getPageHabitacion"]);
-
-    }
-
-    Pension(){
-      this.router.navigate(["getPagePension"]);
-
-    }
-
-    Usuario(){
-      this.router.navigate(["getPageUsuario"]);
-    }
-
-    Reserva(){
-      this.router.navigate(["getPageReserva"]);
+    Habitacion(){
+      this.router.navigate(["getPageHabitacion"])
     }
     
-  
 }

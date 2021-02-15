@@ -1,7 +1,12 @@
+//create user va a servir para registrarse
+//por lo tanto cuando el usuario pinche sobre el boton registrarse le mandara a traves del routing para 
+//crear el usuario
+
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Habitacion } from "src/app/Modelo/habitacion";
 import { ServiceService } from "src/app/Service/service.service";
-import { Habitacion } from '../../Modelo/habitacion';
 
 @Component({
   selector: "app-CreateHabitacion",
@@ -10,15 +15,24 @@ import { Habitacion } from '../../Modelo/habitacion';
 })
 export class CreateHabitacion implements OnInit{
 
-    habitacion:Habitacion[] | undefined;
-    constructor(private service:ServiceService, private router:Router){}
+    formCreateHabitacion!: FormGroup;
+    habitacion:Habitacion=new Habitacion();
 
-    ngOnInit(){}
+    constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder) {
 
-    CrearHabitacion(habitacion:Habitacion){
-        this.service.createHabitacion(habitacion).subscribe(data=>{
-            alert("Habitacion creada con exito.");
-            this.router.navigate(["CreateHabitacion"]);
-        })
+      this.formCreateHabitacion = this.fomrBuilder.group({
+        id_tipohabitacion:[]
+      })
+
     }
+
+    ngOnInit(){  }
+
+  createHabitacion() {
+    
+        let parameter = JSON.stringify(this.formCreateHabitacion.value);
+        this.service.createHabitacion(parameter).subscribe(data=>{this.habitacion=data;
+        alert("Se ha creado con exito");
+        this.router.navigate(["getPageHabitacion"]);})
+  }
 }

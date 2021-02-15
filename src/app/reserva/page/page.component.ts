@@ -4,11 +4,11 @@ import { ServiceService } from "src/app/Service/service.service";
 import { Reserva } from '../../Modelo/reserva';
 
 @Component({
-  selector: "app-ViewReserva",
-  templateUrl: "./view.component.html",
-  styleUrls: ["./view.component.scss"]
+  selector: "app-getPageReserva",
+  templateUrl: "./page.component.html",
+  styleUrls: ["./page.component.scss"]
 })
-export class ViewReserva implements OnInit{
+export class getPageReserva implements OnInit{
 
     reserva:Reserva[] | undefined;
     constructor(private service:ServiceService, private router:Router){}

@@ -10,18 +10,21 @@
         <a class="nav-link" (click)="Habitacion()">Habitaciones</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" (click)="Pension()">Pensiones</a>
+        <a class="nav-link" href="./pension/page/page.component.html">Pensiones</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" (click)="Usuario()">Usuarios</a>
+        <a class="nav-link" href="./usuario/page/page.component.html">Usuarios</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" (click)="Reserva()">Reservas</a>
+        <a class="nav-link" href="./reserva/page/page.component.html">Reservas</a>
+      </li>
+      <li class="nav-item active float-right">
+        <a class="nav-link" href="./usuario/view/view.component.html" ng-if="usuario.data.token!=null">Mi nombre de usuario</a>
       </li>
     </ul>
 
-    <div (click)="Login()" class="btn btn-success m-1">Sign in</div>
-    <div (click)="Register()" class="btn btn-danger m-1">Sign up</div>
+    <div (click)="Login()" ng-if="usuario.data.token==null"  class="btn btn-success m-1">Sign in</div>
+    <div (click)="Register()" ng-if="usuario.data.token==null" class="btn btn-danger m-1">Sign up</div>
   </div>
 </nav>
 

@@ -1,0 +1,26 @@
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Pension:</h3>
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+                <tr class="text-center">
+                    <td>Id tipousuario:</td>
+                    <td>{{tipousuario.id_tipousuario}}</td>                        
+                </tr>
+                <tr class="text-center">
+                    <td>Nombre del tipo:</td>
+                    <td>{{tipousuario.nombre}}</td>                        
+                </tr>
+                <tr>
+                    <td><button (click)="EditPension(pension)" class="btn">Editar Informacion</button></td>
+                    <!-- Boton volver -->
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

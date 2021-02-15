@@ -15,10 +15,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-For="let habitacion of habitacion" class="text-center">
+                    <tr *ngFor="let habitacion of habitacion" class="text-center">
                         <td>{{habitacion.idhabitacion}}</td>
                         <td>{{habitacion.id_tipohabitacion}}</td>
                         <td>
+                            <button (click)="View(habitacion)"class="btn btn-info m-1">Ver</button>
                             <button (click)="Editar(habitacion)"class="btn btn-warning m-1">Edit</button>
                             <button (click)="Delete(habitacion)"class="btn btn-danger m-1">Delete</button>
                         </td>

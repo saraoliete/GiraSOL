@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Login } from "../Modelo/login";
 import { Usuario } from "../Modelo/usuario";
 import { ServiceService } from "../Service/service.service";
 
@@ -11,18 +11,36 @@ import { ServiceService } from "../Service/service.service";
 })
 export class LoginComponent{
 
-    usuario:Usuario = new Usuario();
+    formLogin!: FormGroup;
 
-  constructor(private service:ServiceService, private router:Router){}
+  constructor(private service: ServiceService, private router:Router, private formBuilder:FormBuilder) {
+
+    this.formLogin = this.formBuilder.group({
+      nombreusuario:[],
+      password:[]
+
+    })
+
+    this.Login();
+
+  }
 
   Login(){
-    const user = {nombreusuario: this.usuario.nombreusuario, password: this.usuario.password, token:this.usuario.token};
-    this.service.login(user).subscribe(
-    data=>{this.service.setToken(data.token);
-      this.router.navigate(["/"]);
+    let parameter = JSON.stringify(this.formLogin.value);
+    this.service.login(parameter).subscribe(
+    data=>{
+       this.service.setToken(data.token);      
+       this.router.navigate(["home"]);
     },
     error => {
       console.log(error);
     });
+  }
+
+  Logout(){
+    this.service.logout();
+    alert("Has cerrado sesion correctamente");
+    this.router.navigate(["home"]);
+
   }
 }

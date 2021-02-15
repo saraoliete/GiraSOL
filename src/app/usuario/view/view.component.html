@@ -1,0 +1,58 @@
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Tu información personal:</h3>
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+                <tr class="text-center">
+                    <td>Nombre de usuario</td>
+                    <td>{{usuario.nombreusuario}}</td>                        
+                </tr>
+                <tr class="text-center">
+                    <td>Tipo usuario</td>
+                    <td>{{usuario.tipousuario}}</td>                        
+                </tr>
+                <tr class="text-center">
+                    <td>Nombre</td>
+                    <td>{{usuario.nombre}}</td>                        
+                </tr>
+                <tr class="text-center">
+                    <td>Apellidos</td>
+                    <td>{{usuario.apellidos}}</td>                        
+                </tr>
+                <tr class="text-center">
+                    <td>DNI</td>
+                    <td>{{usuario.dni}}</td>                        
+                </tr>
+                <tr class="text-center">
+                    <td>Genero</td>
+                    <td>{{usuario.sexo}}</td>                        
+                </tr>
+                <tr class="text-center">
+                    <td>Email</td>
+                    <td>{{usuario.email}}</td>                        
+                </tr>
+                <tr class="text-center">
+                    <td>Localidad</td>
+                    <td>{{usuario.localidad}}</td>                        
+                </tr>
+                <tr class="text-center">
+                    <td>Telefono</td>
+                    <td>{{usuario.telefono}}</td>                        
+                </tr>
+                <tr class="text-center">
+                    <td>Telefono</td>
+                    <td>{{usuario.telefono}}</td>                        
+                </tr>
+                <tr>
+                    <td><button (click)="EditUsuario(usuario)" class="btn">Editar Informacion</button></td>
+                    <td><button (click)="Logout(usuario)" class="btn">Cerrar Sesion</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,22 +1,23 @@
-<div class="container">
+<div class="container col-md-6">
+
     <div class="card">
-        <div class="card-header">
-            <h3>Editar Habitacion</h3>
+      <div class="card-header">
+        <h3>Editar Habitacion:</h3>
+      </div>
+      <div class="card-body">
+  
+        <form [formGroup]="formEditHabitacion" class="form" (ngSubmit)="EditHabitacion()">
+          <div class="form-group">
+            <h1>Habitacion</h1>
+  
+            <label for="id_tipohabitacion">Tipo de habitacion:</label>
+            <input type="id_tipohabitacion" formControlName="id_tipohabitacion" name="id_tipohabitacion"
+              placeholder="Tipo habitacion" required="required"/>
+  
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
         </div>
-
-        <div class="card-body">
-            <form action="">
-                <div class="form-group">
-                    <label for="">Id Habitacion:</label>
-                    <input [(ngModel)]="habitacion.idhabitacion" type="text" name="id" class="form-control" disabled>
-                </div>
-                <div class="form-group">
-                    <input [(ngModel)]="habitacion.id_tipohabitacion" type="text" name="id_tipohabitacion" class="form-control">
-                </div>
-
-                <button (click)="Guardar(habitacion)" class="btn btn-warning">Guardar</button>
-                <button (click)="Cancelar()" class="btn btn-danger">Cancelar</button>
-            </form>
-        </div>
+      </form>
     </div>
-</div>
+  </div>
+    
+  </div>

@@ -1,0 +1,35 @@
+<div class="container col-md-6">
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Editar Tipo Habitacion:</h3>
+      </div>
+      <div class="card-body">
+  
+        <form [formGroup]="formEditHabitacion" class="form" (ngSubmit)="EditHabitacion()">
+          <div class="form-group">
+            <h1>Tipo de Habitacion</h1>
+  
+            <label for="nombre">Nombre:</label>
+            <input type="nombre" formControlName="nombre" name="nombre"
+              placeholder="nombre" required="required"/>
+
+            <label for="numero_camas">Numero de camas:</label>
+            <input type="numero_camas" formControlName="numero_camas" name="numero_camas"
+              placeholder="numero_camas" required="required"/>
+
+              <label for="descripcion">Descripcion:</label>
+            <input type="descripcion" formControlName="descripcion" name="descripcion"
+              placeholder="descripcion" required="required"/>
+
+            <label for="precio">Precio:</label>
+            <input type="precio" formControlName="precio" name="precio"
+              placeholder="precio" required="required"/>
+  
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+    
+  </div>

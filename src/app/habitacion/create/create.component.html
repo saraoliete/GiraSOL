@@ -1,0 +1,23 @@
+<div class="container col-md-6">
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Crear Habitacion:</h3>
+    </div>
+    <div class="card-body">
+
+      <form [formGroup]="formCreateHabitacion" class="form" (ngSubmit)="createHabitacion()">
+        <div class="form-group">
+          <h1>Habitacion</h1>
+
+          <label for="id_tipohabitacion">Tipo de habitacion:</label>
+          <input type="id_tipohabitacion" formControlName="id_tipohabitacion" name="id_tipohabitacion"
+            placeholder="Tipo habitacion" required="required"/>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+  
+</div>

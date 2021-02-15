@@ -1,0 +1,31 @@
+<div class="container col-md-6">
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Editar Pension:</h3>
+      </div>
+      <div class="card-body">
+  
+        <form [formGroup]="formEditPension" class="form" (ngSubmit)="EditPension()">
+          <div class="form-group">
+            <h1>Pension</h1>
+  
+            <label for="tipo">Tipo de pension:</label>
+            <input type="tipo" formControlName="tipo" name="tipo"
+              placeholder="Tipo" required="required"/>
+
+            <label for="descripcion">Descripcion:</label>
+            <input type="descripcion" formControlName="descripcion" name="descripcion"
+              placeholder="descripcion" required="required"/>
+
+            <label for="precio">Precio:</label>
+            <input type="precio" formControlName="precio" name="precio"
+              placeholder="precio" required="required"/>
+  
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+    
+  </div>

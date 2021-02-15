@@ -10,20 +10,21 @@ import { Habitacion } from '../../Modelo/habitacion';
 })
 export class ViewHabitacion implements OnInit{
 
-    //habitacion:Habitacion = new Habitacion();
-    constructor(/**private service:ServiceService, private router:Router*/){}
+    habitacion:Habitacion = new Habitacion();
+    constructor(private service:ServiceService, private router:Router){}
 
     ngOnInit(){
-        //this.View();
-        
+      this.View();
+     }
 
-    }
-
-    /**
-     *View(habitacion:Habitacion):void{
-      let id = localStorage.getItem("id");
+    View(){
+      let id:Number = this.habitacion.idhabitacion;
+      localStorage.getItem("id");
       this.service.getHabitacion(+id).subscribe(data=>{ this.habitacion=data;})
     }
-    
-    */
+
+    EditHabitacion(habitacion:Habitacion):void{
+      localStorage.setItem("id",habitacion.idhabitacion.toString());
+      this.router.navigate(["EditHabitacion"]);
+    }
 }

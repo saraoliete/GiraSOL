@@ -1,0 +1,37 @@
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Pension</h3>
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th>Id Tipo de Habitacion</th>
+                        <th>Nombre del tipo</th>
+                        <th>Numero de camas</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tipohabitacion of tipohabitacion" class="text-center">
+                        <td>{{tipohabitacion.id_tipohabitacion}}</td>
+                        <td>{{tipohabitacion.nombre}}</td>
+                        <td>{{tipohabitacion.numero_camas}}</td>
+                        <td>{{tipohabitacion.descripcion}}</td>
+                        <td>{{tipohabitacion.precio}}</td>
+                        <td>
+                            <button (click)="View(tipohabitacion)"class="btn btn-info m-1">Ver</button>
+                            <button (click)="Editar(tipohabitacion)"class="btn btn-warning m-1">Edit</button>
+                            <button (click)="Delete(tipohabitacion)"class="btn btn-danger m-1">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

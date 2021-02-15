@@ -1,6 +1,6 @@
 export class Usuario {
 
-    idusuario:bigint | undefined;
+    idusuario!:Number;
     nombreusuario:string | undefined;
     password:string | undefined;
     tipousuario:bigint | undefined;
@@ -8,10 +8,11 @@ export class Usuario {
     apellidos:string | undefined;
     dni:string | undefined;
     edad:number | undefined;
+    sexo: CharacterData | undefined;
     email:string | undefined;
     localidad:string | undefined;
     telefono:number | undefined;
-    token:string | undefined;
+    token!:string;
     validado:boolean | undefined;
     activo:boolean | undefined;
 

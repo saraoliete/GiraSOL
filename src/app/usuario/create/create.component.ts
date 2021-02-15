@@ -2,31 +2,52 @@
 //por lo tanto cuando el usuario pinche sobre el boton registrarse le mandara a traves del routing para 
 //crear el usuario
 
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Usuario } from "src/app/Modelo/usuario";
 import { ServiceService } from "src/app/Service/service.service";
 
 @Component({
-  selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.css"]
+  selector: "app-create",
+  templateUrl: "./create.component.html",
+  styleUrls: ["./create.component.scss"]
 })
-export class CreateUsuario {
+export class CreateUsuario implements OnInit{
 
-    usuario:Usuario = new Usuario();
-    
-    constructor(public service: ServiceService, public router:Router) {}
+    formCreateUser!: FormGroup;
+
+    constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder) {
+
+      this.formCreateUser = this.fomrBuilder.group({
+        tipousuario:[],
+        nombreusuario:[],
+        password:[],
+        nombre:[],
+        apellidos:[],
+        dni:[],
+        edad:[],
+        email:[],
+        localidad:[],
+        telefono:[],
+        validado:[],
+        activo:[]
+
+
+
+      })
+
+    }
+
+    ngOnInit(){  }
 
   register() {
-    const user = { idusuario: this.usuario.idusuario, nombreusuario:this.usuario.nombreusuario,
-    password:this.usuario.password, tipousuario:this.usuario.tipousuario, nombre:this.usuario.nombre, apellidos:this.usuario.apellidos,
-    dni:this.usuario.dni, edad:this.usuario.edad, email:this.usuario.email, localidad:this.usuario.localidad, telefono: this.usuario.telefono,
-    token:this.usuario.token, validado:this.usuario.validado, activo:this.usuario.activo};
-    this.service.createUser(user).subscribe(
+    
+    let parameter = JSON.stringify(this.formCreateUser.value);
+    this.service.createUser(parameter).subscribe(
     data => { 
         this.service.setToken(data.token);
-        this.router.navigate(["login"]);
+        this.router.navigate(["home"]);
     },
     error => {
           console.log(error);

@@ -3,26 +3,19 @@
     <div class="card">
 
         <div class="card-header">
-            <h3>Habitacion</h3>
+            <h3>Tu información personal:</h3>
         </div>
 
         <div class="card-body">
             <table class="table">
-                <thead>
-                    <tr class="text-center">
-                        <th>Id habitacion</th>
-                        <td>{{habitacion.idhabitacion}}</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="text-center">
-                        <td>Tipo habitacion</td>
-                        <td>{{habitacion.id_tipohabitacion}}</td>
-                        <td>
-                            <button (click)="Vover()"class="btn btn-warning m-1">Volver</button>
-                        </td>
-                    </tr>
-                </tbody>
+                <tr class="text-center">
+                    <td>Tipo de habitación:</td>
+                    <td>{{habitacion.id_tipohabitacion}}</td>                        
+                </tr>
+                <tr>
+                    <td><button (click)="EditHabitacion(habitacion)" class="btn">Editar Informacion</button></td>
+                    <!-- Boton de volver -->
+                </tr>
             </table>
         </div>
     </div>
