@@ -1,41 +1,49 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="#">GiraSOL</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<div class="header fixed-top">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" (click)="Habitacion()">Habitaciones</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="./pension/page/page.component.html">Pensiones</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="./usuario/page/page.component.html">Usuarios</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="./reserva/page/page.component.html">Reservas</a>
-      </li>
-      <li class="nav-item active float-right">
-        <a class="nav-link" href="./usuario/view/view.component.html" ng-if="usuario.data.token!=null">Mi nombre de usuario</a>
-      </li>
+  <nav class="menu">
+
+    <label for="menu-toggle">
+ 
+       <div class="botonMenu">
+ 
+          <span></span>
+ 
+          <span></span>
+ 
+          <span></span>
+ 
+       </div>
+ 
+    </label>
+
+    <input type="checkbox" id="menu-toggle" [(ngModel)]="isMasterSel" />
+
+    <ul id="trickMenu">
+ 
+       <li><a (click)="Habitacion();checkUncheck();"> HABITACIONES </a></li>
+ 
+       <li><a (click)="Pension();checkUncheck();"> PENSIONES </a></li>
+ 
+       <li><a (click)="Reservas();checkUncheck();"> RESERVAS </a></li>
+
+       <li><a (click)="Usuarios();checkUncheck();"> USUARIOS </a></li>
+ 
     </ul>
-
-    <div (click)="Login()" ng-if="usuario.data.token==null"  class="btn btn-success m-1">Sign in</div>
-    <div (click)="Register()" ng-if="usuario.data.token==null" class="btn btn-danger m-1">Sign up</div>
+ 
+    
+  </nav>
+  
+  <div class="botones fixed-top">
+    <div (click)="Login()" class="btn sesion m-1">INICIAR SESIÓN</div>
+    <div class="separador"></div>
+    <div (click)="Register()" class="btn registrarse m-1">REGISTRARSE</div>
   </div>
-</nav>
-
-<div class="container">
-
-  <img src="./assets/logo.png" alt="logo" class="logo">
-
 </div>
+  
+<router-outlet></router-outlet>
 
-<div class="text-center p-3 fixed-bottom" style="background-color: rgba(0, 0, 0, 0.2)">
+
+<div class="text-center p-3 fixed-bottom bg-light">
   © 2020 Copyright:
   <a class="text-dark" href="https://mdbootstrap.com/">GiraSOL.com</a>
 </div>
-  <router-outlet></router-outlet>

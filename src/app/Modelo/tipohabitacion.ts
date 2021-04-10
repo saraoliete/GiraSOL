@@ -1,6 +1,6 @@
 export class Tipohabitacion{
 
-    id_tipohabitacion!:number;
+    id!:Number;
     nombre:String | undefined;
     numero_camas:number | undefined;
     descripcion:string | undefined;

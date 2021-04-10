@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule} from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from "./login/login.component";
@@ -15,7 +16,14 @@ import { getPageReserva } from "./reserva/page/page.component";
 import {HttpClientModule} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import { ServiceService } from './Service/service.service';
-
+import { EditPension } from './pension/edit/edit.component';
+import { getPagePension } from './pension/page/page.component';
+import { ViewPension } from './pension/view/view.component';
+import { ViewTipohabitacion } from './tipohabitacion/view/view.component';
+import { EditTipohabitacion } from './tipohabitacion/edit/edit.component';
+import { CreatePension } from './pension/create/create.component';
+import { ViewTipousuario } from './tipousuario/view/view.component';
+import { Login } from './Modelo/login';
 @NgModule({
   declarations: [
     AppComponent, 
@@ -27,16 +35,24 @@ import { ServiceService } from './Service/service.service';
     EditHabitacion,
     CreateHabitacion,
     CreateReserva,
-    getPageReserva
+    getPageReserva,
+    EditPension,
+    getPagePension,
+    ViewPension,
+    ViewTipohabitacion,
+    EditTipohabitacion,
+    ViewTipousuario,
+    CreatePension
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
-    FormsModule,
+    AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
+
   ],
-  providers: [ServiceService, CookieService],
+  providers: [ServiceService, CookieService, Login],
   bootstrap: [AppComponent]
 })
 

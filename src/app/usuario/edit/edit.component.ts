@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/Modelo/usuario';
 import { ServiceService } from 'src/app/Service/service.service';
@@ -14,23 +14,24 @@ export class EditUsuario implements OnInit{
 
     usuario:Usuario=new Usuario();
     formEditUsuario!:FormGroup;
-    constructor(private service:ServiceService, private router:Router, private formBuilder:FormBuilder){}
+    constructor(private service:ServiceService, private router:Router, private formBuilder:FormBuilder){
 
-    ngOnInit(){
+      this.formEditUsuario = this.formBuilder.group({
+        nombre:["", Validators.compose([Validators.minLength(2), Validators.maxLength(15), Validators.pattern("^[A-Z]{1}[a-z]*?(\s[A-Z]{1}[a-z]*?)*$")])],
+        apellidos:["", Validators.compose([Validators.minLength(2), Validators.maxLength(15), Validators.pattern("^[A-Z]{1}[a-z]*?(\s[A-Z]{1}[a-z]*?)*$")])],
+        dni:["", Validators.compose([Validators.pattern("^[0-9]{8}[A-Z]{1}$")])],
+        sexo:["", Validators.required],
+        email:["", Validators.compose([Validators.pattern("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")])],
+        localidad:["", Validators.required],
+        telefono:["", Validators.required],
+        edad:["", Validators.required],
+        nombreusuario:["", Validators.required],
+        password:["", Validators.required]
+  
+      })
+    }
 
-        this.formEditUsuario = this.formBuilder.group({
-            nombre:[],
-            apellidos:[],
-            dni:[],
-            sexo:[],
-            email:[],
-            localidad:[],
-            telefono:[],
-            edad:[],
-            nombreusuario:[],
-            password:[]
-      
-          })
+    ngOnInit(){       
 
         this.EditUsuario();
     }
@@ -48,4 +49,8 @@ export class EditUsuario implements OnInit{
         this.router.navigate(["getPageUsuario"]);})
 
     }
+
+    Volver(){        
+        this.router.navigate(["getPageUsuario"]);
+      }
 }

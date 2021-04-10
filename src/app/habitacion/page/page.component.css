@@ -1,0 +1,58 @@
+.container {
+  width: 100%;
+  height: 485px;
+  text-align: center;
+  margin: 3% auto;
+  overflow: scroll;
+  z-index: 0;
+  text-transform: uppercase;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.container .btn-light {
+  width: 30px;
+  height: 30px;
+  padding: 0%;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+.container .btn-light:hover {
+  cursor: pointer;
+}
+
+.container .titulo {
+  font-size: 50px;
+  font-weight: bolder;
+  color: white;
+}
+
+.container .card {
+  width: 100%;
+  height: 300px;
+  font-weight: bolder;
+  -webkit-box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
+  margin-bottom: 50px;
+}
+
+.container .card .card-header {
+  border-radius: 5px;
+  height: 50px;
+}
+
+.container .card .card-body {
+  vertical-align: middle;
+}
+
+.container .card .card-body table thead th {
+  vertical-align: middle;
+}
+
+.container .card .card-body table tbody tr {
+  vertical-align: middle;
+}
+/*# sourceMappingURL=page.component.css.map */

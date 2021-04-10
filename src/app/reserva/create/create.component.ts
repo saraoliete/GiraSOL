@@ -1,7 +1,12 @@
+//create user va a servir para registrarse
+//por lo tanto cuando el usuario pinche sobre el boton registrarse le mandara a traves del routing para 
+//crear el usuario
+
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Usuario } from "src/app/Modelo/usuario";
 import { ServiceService } from "src/app/Service/service.service";
-import { Reserva } from '../../Modelo/reserva';
 
 @Component({
   selector: "app-CreateReserva",
@@ -10,15 +15,37 @@ import { Reserva } from '../../Modelo/reserva';
 })
 export class CreateReserva implements OnInit{
 
-    reserva:Reserva[] | undefined;
-    constructor(private service:ServiceService, private router:Router){}
+    formCreateReserva!: FormGroup;
 
-    ngOnInit(){}
+    constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder) {
 
-    CrearReserva(reserva:Reserva){
-        this.service.createReserva(reserva).subscribe(data=>{
-            alert("Reserva creada con exito.");
-            this.router.navigate(["crear"]);
-        })
+      this.formCreateReserva = this.fomrBuilder.group({
+        usuario:[],
+        pension:[],
+        habitacion:[],
+        cama_supletoria:[],
+        fecha_llegada:[],
+        fecha_final:[],
+        precio_final:[]
+
+      })
+
     }
+
+    ngOnInit(){  }
+
+  CrearReserva() {
+    let parameter = JSON.stringify(this.formCreateReserva.value);
+    this.service.createReserva(parameter).subscribe(
+    data => { 
+        this.router.navigate(["home"]);
+    },
+    error => {
+          console.log(error);
+    });
+  }
+
+  Volver(){        
+    this.router.navigate(["home"]);
+  }
 }

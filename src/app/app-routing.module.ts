@@ -13,17 +13,18 @@ import { getPageReserva } from './reserva/page/page.component';
 import { EditPension } from './pension/edit/edit.component';
 import { getPagePension } from './pension/page/page.component';
 import { ViewPension } from './pension/view/view.component';
+import { CreatePension } from './pension/create/create.component';
 import { EditUsuario } from './usuario/edit/edit.component';
 import { EditTipohabitacion } from './tipohabitacion/edit/edit.component';
 import { getPageTipohabitacion } from './tipohabitacion/page/page.component';
 
 const routes: Routes = [
   { path: "home", component: AppComponent, pathMatch: "full"},
-  { path: "login", component: LoginComponent, pathMatch: "full" },
   { path: "CreateUsuario", component: CreateUsuario, pathMatch: "full" },
   { path: "ViewUsuario", component: ViewUsuario, pathMatch: "full" },
   { path: "EditUsuario", component: EditUsuario, pathMatch: "full" },
   { path: "CreateHabitacion", component: CreateHabitacion, pathMatch: "full" },
+  { path: "CreatePension", component: CreatePension, pathMatch: "full" },
   { path: "getPageHabitacion", component: getPageHabitacion, pathMatch: "full" },
   { path: "ViewHabitacion", component: ViewHabitacion, pathMatch: "full" },
   { path: "EditHabitacion", component: EditHabitacion, pathMatch: "full" },

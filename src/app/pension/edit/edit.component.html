@@ -1,31 +1,48 @@
-<div class="container col-md-6">
-
-    <div class="card">
-      <div class="card-header">
-        <h3>Editar Pension:</h3>
-      </div>
-      <div class="card-body">
+<div class="container col-md-4">
   
-        <form [formGroup]="formEditPension" class="form" (ngSubmit)="EditPension()">
-          <div class="form-group">
-            <h1>Pension</h1>
-  
-            <label for="tipo">Tipo de pension:</label>
-            <input type="tipo" formControlName="tipo" name="tipo"
-              placeholder="Tipo" required="required"/>
+  <h3 class="float-left titulo">Editar Pension:</h3>
 
-            <label for="descripcion">Descripcion:</label>
-            <input type="descripcion" formControlName="descripcion" name="descripcion"
-              placeholder="descripcion" required="required"/>
-
-            <label for="precio">Precio:</label>
-            <input type="precio" formControlName="precio" name="precio"
-              placeholder="precio" required="required"/>
-  
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-        </div>
-      </form>
+  <div class="card form-card">
+    <div class="card-header form-header">
+      
     </div>
+    <div class="card-body form-body">
+
+      <form [formGroup]="formEditPension" class="form">
+        <div class="form-group">
+
+          <label for="tipo" class="ml-4 mr-2 mt-1">Tipo de pension:</label>
+          <input type="tipo" class="form-control-sm col-3 ml-3 mr-5" formControlName="tipo" name="tipo" [(ngModel)]="pension.tipo"
+            placeholder="Tipo" required="required"/>
+
+          </div>
+
+          <div class="form-group">
+
+          <label for="descripcion" class="ml-4 mr-2 mt-1">Descripcion:</label>
+          <input type="descripcion" class="form-control-sm col-4 ml-5 mr-5" formControlName="descripcion" name="descripcion" [(ngModel)]="pension.descripcion"
+            placeholder="descripcion" required="required"/>
+
+          </div>
+
+          <div class="form-group">
+
+          <label for="precio" class="ml-4 mr-5 mt-1">Precio:</label>
+          <input type="precio" class="form-control-sm col-3 ml-5 mr-1" formControlName="precio" name="precio" [(ngModel)]="pension.precio"
+            placeholder="precio" required="required"/> €
+
+          </div>
+        </form>
+      </div>
+      
+      <div class="card-footer form-footer">
+        
+        <button (click)="activarComponente()" class="btn guardar float-right m-1"><i class="fas fa-save"></i></button>
+        <button (click)="Volver()" class="btn volver float-right m-1"><i class="fas fa-arrow-alt-left"></i></button>
+
   </div>
-    
-  </div>
+
+  
+</div>
+  
+</div>

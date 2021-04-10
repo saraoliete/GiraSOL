@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Habitacion } from '../Modelo/habitacion';
 import { Reserva } from '../Modelo/reserva';
-//import { LogoutComponent } from '../logout/logout.component';
 import { Usuario } from '../Modelo/usuario';
 import { CookieService } from 'ngx-cookie-service';
 import { Pension } from '../Modelo/pension';
 import { Tipousuario } from '../Modelo/tipousuario';
 import { Tipohabitacion } from '../Modelo/tipohabitacion';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Login } from '../Modelo/login';
 
 @Injectable({
 
@@ -18,116 +20,158 @@ export class ServiceService {
 
     constructor(private http:HttpClient, private cookies:CookieService){}
 
-    UrlHabitacion='http://localhost:8082/habitacion/';
-    UrlTipohabitacion='http://localhost:8082/tipohabitacion/';
-    UrlReserva='http://localhost:8082/reserva/';
-    UrlPension='http://localhost:8082/pension/';
-    UrlSession='http://localhost:8082/session/';
-    UrlUsuario='http://localhost:8082/usuario/';
-    UrlTipousuario='http://localhost:8082/tipousuario/';
+    Url='http://localhost:8082/';
 
-    //Login, Logout, Register
-    login(usuario: string){
-        return this.http.post<Usuario>(this.UrlSession, usuario);
+    //Login. check
+    login(usuario: String){
+        
+        return this.http.post<Usuario>(this.Url + "session/", usuario,{
+            headers: new HttpHeaders({
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        })
+        });
     }
 
-    logout(){
-        this.cookies.delete("token");
+    checkUsuario():Observable<any>{
+        return this.http.get<Usuario>(this.Url + "session/", {
+            
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json'
+            }),
+            observe: 'response',
+            responseType: 'json',
+            withCredentials: true
+          }).pipe(
+            catchError(err=>{
+              console.log('ha ocurrido un error', err);
+              return throwError(err);
+      
+            })
+          );
     }
 
+    
     //servicio de cookies
-    setToken(token:string){
-        this.cookies.set("token",token);
+    setToken(token: string){
+        this.cookies.set("token", token);
     }
-
+    
     getToken(){
         return this.cookies.get("token");
     }
-
+    
+    logout(){
+        this.cookies.delete("token");
+    }
     
     //Usuario
     getUsuario(id:Number){
-        return this.http.get<Usuario>(this.UrlUsuario + id);
+        return this.http.get<Usuario>(this.Url + "usuario/" + id);
     }
     
     createUser(usuario: string){
-        return this.http.post<Usuario>(this.UrlUsuario, usuario);
+        return this.http.post<Usuario>(this.Url + "usuario/", usuario);
     }
 
     updateUsuario(usuario:String){
-        return this.http.put<Usuario>(this.UrlUsuario + usuario, usuario);
+        return this.http.put<Usuario>(this.Url + "usuario/" + usuario, usuario);
+    }
+
+    deleteUser(usuario:Usuario){
+        return this.http.delete<Usuario>(this.Url + "usuario/" + usuario.idusuario);
     }
 
     getPageUsuario(){
-        return this.http.get<Usuario[]>(this.UrlUsuario + "page");
+        return this.http.get<Usuario[]>(this.Url + "usuario/" + "page");
     }
 
     //Tipousuario
 
     getTipousuario(id:Number){
-        return this.http.get<Tipousuario>(this.UrlTipousuario + id);
+        return this.http.get<Tipousuario>(this.Url + "tipousuario/" + id);
     }
 
     getPageTipousuario(){
-            return this.http.get<Tipousuario[]>(this.UrlTipousuario + "page");
-        }
+            return this.http.get<Tipousuario[]>(this.Url + "tipousuario/" + "page");
+    }
 
     //Habitacion
-    getHabitacion(id:Number){
-        return this.http.get<Habitacion>(this.UrlHabitacion + id);
+    getHabitacion(id:String | null): Observable<Habitacion>{
+        return this.http.get<Habitacion>(this.Url + "habitacion/" + id);
     }
 
-    createHabitacion(habitacion:string){
-        return this.http.post<Habitacion>(this.UrlHabitacion,habitacion);
+    createHabitacion(habitacion:Habitacion): Observable<Habitacion>{
+        return this.http.post<Habitacion>(this.Url + "habitacion/",habitacion);
     }
 
-    updateHabitacion(habitacion:String){
-        return this.http.put<Habitacion>(this.UrlHabitacion + habitacion, habitacion);
+    updateHabitacion(habitacion:Habitacion){
+        return this.http.put<Habitacion>(this.Url + "habitacion/" + habitacion.id, habitacion);
     }
 
     deleteHabitacion(habitacion:Habitacion){
-        return this.http.delete<Habitacion>(this.UrlHabitacion + habitacion.idhabitacion);
+        return this.http.delete<Habitacion>(this.Url + "habitacion/" + habitacion.id);
     }
 
-    getPageHabitacion(){
-        return this.http.get<Habitacion[]>(this.UrlHabitacion + "page");
+    getPageHabitacion(page: number, size: number, order: string, asc: boolean): Observable<any>{
+        return this.http.get<any>(this.Url + "habitacion/" + "page?" + `page=${page}&size=${size}&order=${order}&asc=${asc}`);
     }
 
     //tipohabitacion
 
     getTipohabitacion(id:Number){
-        return this.http.get<Tipohabitacion>(this.UrlTipohabitacion + id);
+        return this.http.get<Tipohabitacion>(this.Url + "tipohabitacion/" + id);
+    }
+
+    getAllTipohabitacion(){
+        return this.http.get<Tipohabitacion[]>(this.Url + "tipohabitacion/" + "all");
     }
 
     updateTipohabitacion(tipohabitacion:String){
-            return this.http.put<Tipohabitacion>(this.UrlTipohabitacion + tipohabitacion, tipohabitacion);
+            return this.http.put<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion, tipohabitacion);
     }
 
     getPageTipohabitacion(){
-            return this.http.get<Tipohabitacion[]>(this.UrlTipohabitacion + "page");
+            return this.http.get<Tipohabitacion[]>(this.Url + "tipohabitacion/" + "page");
     }
 
     //Pension
-    getPension(id:Number){
-        return this.http.get<Pension>(this.UrlPension + id);
+    getPension(id:String | null): Observable<Pension>{
+        return this.http.get<Pension>(this.Url + "pension/" + id);
     }
 
-    updatePension(pension:String){
-        return this.http.put<Pension>(this.UrlPension + pension, pension);
+    createPension(pension:Pension): Observable<Pension>{
+        return this.http.post<Pension>(this.Url + "pension/", pension);
     }
 
-    getPagePension(){
-        return this.http.get<Pension[]>(this.UrlPension + "page");
+    updatePension(pension:Pension){
+        return this.http.put<Pension>(this.Url + "pension/" + pension.id, pension);
+    }
+
+    deletePension(pension:Pension){
+        return this.http.delete<Pension>(this.Url + "pension/" + pension.id);
+    }
+
+    getPagePension(page: number, size: number, order: string, asc: boolean): Observable<any>{
+        return this.http.get<any>(this.Url + "pension/" + "page?" + `page=${page}&size=${size}&order=${order}&asc=${asc}`);
     }
 
     
     //Reserva
-    getReserva(){
-        return this.http.get<Reserva[]>(this.UrlReserva);
+    getReserva(id:Number){
+        return this.http.get<Reserva>(this.Url + "reserva/" + id);
     }
 
-    createReserva(reserva:Reserva){
-        return this.http.post<Reserva>(this.UrlReserva, reserva);
+    createReserva(reserva:String){
+        return this.http.post<Reserva>(this.Url + "reserva/", reserva);
+    }
+
+    deleteReserva(reserva:Reserva){
+        return this.http.delete<Reserva>(this.Url + "reserva/" + reserva.idreserva);
+    }
+
+    getPageReserva(){
+        return this.http.get<Reserva[]>(this.Url + "reserva/" + "page");
     }
 
 }

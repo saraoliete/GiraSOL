@@ -18,13 +18,17 @@ export class ViewTipohabitacion implements OnInit{
      }
 
     View(){
-      let id:Number = this.tipohabitacion.id_tipohabitacion;
+      let id:Number = this.tipohabitacion.id;
       localStorage.getItem("id");
       this.service.getTipohabitacion(+id).subscribe(data=>{ this.tipohabitacion=data;})
     }
 
     EditTipohabitacion(tipohabitacion:Tipohabitacion):void{
-      localStorage.setItem("id",tipohabitacion.id_tipohabitacion.toString());
+      localStorage.setItem("id",tipohabitacion.id.toString());
       this.router.navigate(["EditTipohabitacion"]);
+    }
+
+    Volver(){        
+      this.router.navigate(["getPageTipohabitacion"]);
     }
 }

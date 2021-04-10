@@ -1,0 +1,57 @@
+<div class="container col-md-6">
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Reservar:</h3>
+        <button (click)="Volver()" class="btn btn-danger">Volver</button>
+      </div>
+      <div class="card-body">
+  
+        <form [formGroup]="formCreateReserva" class="form" (ngSubmit)="CrearReserva()">
+          <div class="form-group">  
+          
+           <!-- nombre -->
+          <label for="usuario">DNI:</label>
+          <input type="usuario" formControlName="usuario" name="usuario" id="usuario" 
+          placeholder="Introduzca su dni aquí" required="required"/><br>
+    
+          <!-- apellidos -->
+          Pension:
+          <select name="select">
+            <option value="tipo"></option>
+          </select>
+    
+          <!-- dni -->
+          Habitacion:
+          <select name="select">
+            <option value="tipohabitacion"></option>
+          </select>
+    
+          <!-- genero -->
+          <label for="cama_supletoria">Cama supletoria<input type="checkbox" formControlName="cama_supletoria" id="cama_supletoria" value="1"> </label><br>
+    
+          <!-- email -->
+          <label for="fecha_llegada">Fecha llegada:</label>
+          <input
+            type="text" formControlName="fecha_llegada" name="fecha_llegada"
+            id="fecha_llegada" placeholder="Cuando quieres llegar?" required="required"/><br>
+    
+          <!-- localidad -->
+          <label for="fecha_fin">Fecha final</label>
+          <input type="text" formControlName="fecha_fin" name="fecha_fin"
+            id="fecha_fin" placeholder="Cuando te quieres ir?" required="required"/><br>
+    
+          <!-- ttelefono -->
+          <label for="precio_final">Precio final</label>
+          <input type="text" formControlName="precio_final" name="precio_final"
+            id="precio_final" placeholder="Lo que te va a costar" required="required"/><br>
+          
+          <button type="submit" class="btn btn-primary">Reservar</button>
+  
+        </div>
+        </form>
+  
+      </div>
+    </div>
+      
+    </div>

@@ -1,6 +1,6 @@
 export class Pension{
 
-    idpension!:Number;
+    id!:Number;
     tipo:string | undefined;
     descripcion:string | undefined;
     precio:DoubleRange | undefined;

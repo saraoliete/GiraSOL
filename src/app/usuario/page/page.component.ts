@@ -27,4 +27,14 @@ export class getPageUsuario implements OnInit{
       localStorage.setItem("id",usuario.idusuario.toString());
       this.router.navigate(["EditUsuario"]);
     }
+
+    Delete(usuario:Usuario):void{
+      this.service.deleteUser(usuario).subscribe(data=>{this.usuario=this.usuario?.filter(u=>u!==usuario);
+        alert("Usuario eliminado correctamente"); })
+        this.router.navigate(["getPageUsuario"]);
+    }
+
+    Volver(){        
+      this.router.navigate(["home"]);
+    }
 }

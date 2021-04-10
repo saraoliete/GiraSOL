@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { Login } from './Modelo/login';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,14 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'girasol';
+  isMasterSel:boolean;
 
-  constructor(private router:Router){}
+  constructor(private router:Router, public login:Login, public activatedRoute:ActivatedRoute){ 
+    this.isMasterSel = false;
+  }
 
     Login(){    
-       this.router.navigate(["login"]);
+       this.router.navigate(["Login"]);
     }
     
     Register(){      
@@ -22,6 +25,26 @@ export class AppComponent {
 
     Habitacion(){
       this.router.navigate(["getPageHabitacion"])
+    }
+
+    Pension(){
+      this.router.navigate(["getPagePension"])
+    }
+
+    Usuarios(){
+      this.router.navigate(["getPageUsuario"])
+    }
+
+    Reservas(){
+      this.router.navigate(["getPageReserva"])
+    }
+
+    Usuario(){
+      this.router.navigate(["ViewUsuario"])
+    }
+
+    checkUncheck(){
+      this.isMasterSel = !this.isMasterSel;
     }
     
 }

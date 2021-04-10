@@ -4,7 +4,7 @@ import { ServiceService } from "src/app/Service/service.service";
 import { Pension } from '../../Modelo/pension';
 
 @Component({
-  selector: "app-ViewPension",
+  selector: "ViewPension",
   templateUrl: "./view.component.html",
   styleUrls: ["./view.component.scss"]
 })
@@ -14,17 +14,16 @@ export class ViewPension implements OnInit{
     constructor(private service:ServiceService, private router:Router){}
 
     ngOnInit(){
-      this.View();
+      let id= localStorage.getItem("id");
+      this.service.getPension(id).subscribe(data=>{ this.pension=data;});
      }
 
-    View(){
-      let id:Number = this.pension.idpension;
-      localStorage.getItem("id");
-      this.service.getPension(+id).subscribe(data=>{ this.pension=data;})
+    EditPension(pension:Pension):void{
+      localStorage.setItem("id",pension.id.toString());
+      this.router.navigate(["EditPension"]);
     }
 
-    EditPension(pension:Pension):void{
-      localStorage.setItem("id",pension.idpension.toString());
-      this.router.navigate(["EditPension"]);
+    Volver(){        
+      this.router.navigate(["getPagePension"]);
     }
 }

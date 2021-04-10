@@ -1,9 +1,6 @@
-import { LoginComponent } from "../login/login.component";
+import { Tipohabitacion } from "./tipohabitacion";
 
 export class Habitacion{
-
-    idhabitacion!:Number;
-    id_tipohabitacion!:Number;
- 
-    
+    id!:Number;
+    tipohabitacion:Tipohabitacion = new Tipohabitacion();
 }

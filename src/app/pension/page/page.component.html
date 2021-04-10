@@ -1,35 +1,60 @@
-<div class="container">
+<div class="container col-md-7">
 
-    <div class="card">
+    <h3 class="float-left titulo">PENSIONES</h3>
+    <button (click)="Volver()" class="btn exit m-1 float-right"><i class="fas fa-times"></i></button>
+    <button (click)="Create()" class="btn create m-1 float-right"><i class="fas fa-plus"></i></button>
+
+    <div class="paginacion">
+        <button class="btn btn-light" (click)="setOrder('id')">ID</button>
+        <button class="btn btn-light" (click)="setOrder('tipohabitacion.nombre')">Nombre</button>
+        <button class="btn btn-light" (click)="setOrder('tipohabitacion.precio')">Precio</button>
+        <button class="btn btn-light" (click)="sort()"><i class="fas fa-sort"></i>Sort</button>
+    </div>
+
+    <div class="card" *ngFor="let pension of pension">
+        
 
         <div class="card-header">
-            <h3>Pension</h3>
         </div>
 
         <div class="card-body">
             <table class="table">
                 <thead>
                     <tr class="text-center">
-                        <th>Id Pension</th>
-                        <th>Tipo de Pension</th>
-                        <th>Descripcion</th>
-                        <th>Precio</th>
+                        <th>PENSIÓN</th>
+                        <th>TIPO DE PENSIÓN</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th>PRECIO</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let pension of pension" class="text-center">
-                        <td>{{pension.idpension}}</td>
+                    <tr class="text-center">
+                        <td>{{pension.id}}</td>
                         <td>{{pension.tipo}}</td>
                         <td>{{pension.descripcion}}</td>
                         <td>{{pension.precio}}</td>
-                        <td>
-                            <button (click)="View(pension)"class="btn btn-info m-1">Ver</button>
-                            <button (click)="Editar(pension)"class="btn btn-warning m-1">Edit</button>
-                            <button (click)="Delete(pension)"class="btn btn-danger m-1">Delete</button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+
+        <div class="card-footer">
+
+            <button (click)="View(pension)"class="btn view m-1"><i class="fas fa-eye"></i></button>
+            <button (click)="Editar(pension)"class="btn edit m-1"><i class="fas fa-edit"></i></button>
+            <button (click)="Delete(pension)" class="btn m-1 delete1"><i class="fas fa-trash-alt"></i></button>
+
+        </div>
+    </div>
+
+    <div class="float-right">
+        <button class="btn btn-light" (click)="rewind()"><i class="fas fa-angle-double-left fa-2x"></i></button>
+
+        <span *ngFor="let p of totalPages; let i = index" class="bg-light">
+            <a style="cursor: pointer;" (click)="setPage(i)" [ngClass]="{'text-primary': i === page }">{{ i+1 }}&nbsp;&nbsp;&nbsp;</a>
+        </span>
+
+        <button class="btn btn-light" (click)="forward()"><i class="fas fa-angle-double-right fa-2x"></i></button>
     </div>
 </div>

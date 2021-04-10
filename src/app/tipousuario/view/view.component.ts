@@ -23,5 +23,7 @@ export class ViewTipousuario implements OnInit{
       this.service.getTipousuario(+id).subscribe(data=>{ this.tipousuario=data;})
     }
 
-    //funcion volver
+    Volver(){        
+      this.router.navigate(["getPageTipousuario"]);
+    }
 }

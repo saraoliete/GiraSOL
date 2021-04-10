@@ -1,9 +1,11 @@
+import { Tipousuario } from "./tipousuario";
+
 export class Usuario {
 
     idusuario!:Number;
     nombreusuario:string | undefined;
     password:string | undefined;
-    tipousuario:bigint | undefined;
+    tipousuario!:Tipousuario;
     nombre:string | undefined;
     apellidos:string | undefined;
     dni:string | undefined;

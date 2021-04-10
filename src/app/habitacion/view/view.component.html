@@ -1,22 +1,28 @@
-<div class="container">
+<div class="container col-md-7">
+    
+    <h3 class="titulo">HABITACIÓN {{habitacion.tipohabitacion.nombre}}</h3>
 
     <div class="card">
 
         <div class="card-header">
-            <h3>Tu información personal:</h3>
         </div>
 
         <div class="card-body">
             <table class="table">
-                <tr class="text-center">
-                    <td>Tipo de habitación:</td>
-                    <td>{{habitacion.id_tipohabitacion}}</td>                        
+               <tr class="text-left">  
+                    <th>TIPO DE HABITACIÓN</th> 
+                    <td>{{habitacion.tipohabitacion.nombre}}</td>                       
                 </tr>
-                <tr>
-                    <td><button (click)="EditHabitacion(habitacion)" class="btn">Editar Informacion</button></td>
-                    <!-- Boton de volver -->
+                <tr class="text-left">  
+                    <th>DESCRIPCIÓN</th> 
+                    <td>{{habitacion.tipohabitacion.descripcion}}</td>                       
                 </tr>
             </table>
         </div>
+        <div class="card-footer">
+            <button (click)="Volver()" class="btn btn-danger float-right m-1"><i class="fas fa-arrow-alt-left"></i></button>
+            <button (click)="EditHabitacion(habitacion)" class="btn btn-warning float-right m-1"><i class="fas fa-edit"></i></button>
+        </div>
     </div>
+    
 </div>

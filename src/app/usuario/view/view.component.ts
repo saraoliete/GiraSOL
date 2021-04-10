@@ -26,11 +26,15 @@ export class ViewUsuario implements OnInit{
 
     EditUsuario(usuario:Usuario){        
       localStorage.setItem("id",usuario.idusuario.toString());
-      this.router.navigate(["EditarUsuario"]);
+      this.router.navigate(["EditUsuario"]);
     }
 
     Logout(usuario:Usuario){        
       localStorage.setItem("id",usuario.idusuario.toString());
       this.router.navigate(["login"]);
+    }
+
+    Volver(){        
+      this.router.navigate(["getPageUsuario"]);
     }
 }

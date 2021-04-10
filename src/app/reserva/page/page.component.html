@@ -1,0 +1,40 @@
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3 class="float-left" >RESERVA</h3>
+            <button (click)="Volver()" class="btn btn-light float-right">x</button>
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th>USUARIO</th>
+                        <th>PENSIÓN</th>
+                        <th>HABITACIÓN</th>
+                        <th>CAMA SUPLETORIA</th>
+                        <th>FECHA LLEGADA</th>
+                        <th>FECHA FINAL</th>
+                        <th>PRECIO FINAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reserva of reserva" class="text-center">
+                        <td>{{reserva.usuario.nombre}}, {{reserva.usuario.apellidos}}</td>
+                        <td>{{reserva.pension.tipo}}</td>
+                        <td>{{reserva.habitacion.tipohabitacion.nombre}}</td>
+                        <td>{{reserva.cama_supletoria}}</td>
+                        <td>{{reserva.fecha_llegada}}</td>
+                        <td>{{reserva.fecha_final}}</td>
+                        <td>{{reserva.precio_final}}</td>
+                        <td>
+                            <button (click)="Delete(reserva)"class="btn btn-danger m-1">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

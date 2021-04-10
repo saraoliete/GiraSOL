@@ -1,8 +1,9 @@
-<div class="container col-md-6">
+<div class="container col-md-8">
 
   <div class="card">
     <div class="card-header">
-      <h3>Registrarse:</h3>
+      <h3 class="float-left">REGISTRARSE</h3>
+      <button (click)="Volver()" class="btn btn-light float-right">x</button>
     </div>
     <div class="card-body">
 
@@ -10,83 +11,80 @@
         <div class="form-group">  
         
           <!-- tipo usuario -->
-        <input
-          type="tipousuario" formControlName="tipousuario" name="tipousuario"
-          placeholder="Cliente" ng-disabled/><br>
-          
-        <fieldset>
-          <legend>Datos personales:</legend>
+        <fieldset class="ml-2">
+          <legend>DATOS PERSONALES</legend>
   
         <!-- nombre -->
-        <label for="nombre">Nombre:</label>
-        <input type="nombre" formControlName="nombre" name="nombre" id="nombre" 
-        placeholder="Introduzca su nombre aquí" required="required"/><br>
+        <label class="ml-5 mr-3" for="nombre">NOMBRE</label>
+          <input type="nombre" formControlName="nombre" name="nombre" id="nombre" class="form-control-sm col-3 ml-4 mr-5" required="required"/>
+        
   
         <!-- apellidos -->
-        <label for="apellidos">Apellidos:</label>
-        <input type="apellidos" formControlName="apellidos" name="apellidos"
-          id="apellidos" placeholder="Ahora sus apellidos" required="required"/><br>
+        <label class="ml-5 mr-3" for="apellidos">APELLIDOS</label>
+          <input type="apellidos" formControlName="apellidos" name="apellidos"
+            id="apellidos" class=" form-control-sm col-3 ml-4" required="required"/>
+
+        <br>
   
         <!-- dni -->
-        <label for="dni">DNI:</label>
-        <input type="dni" formControlName="dni" name="dni"
-          id="dni" placeholder="Luego un DNI" required="required"/><br>
+        <label class="ml-5 mr-5 mt-3" for="dni">DNI</label>
+          <input type="dni" formControlName="dni" name="dni"
+            id="dni" class="form-control-sm col-3 ml-4" required="required"/>
   
         <!-- genero -->
-        <label for="male">Masculino</label>
-        <input type="radio" formControlName="sexo" name="sexo"
-          value="M" id="male" required="required"/>
+        <label class="ml-5" for="male">HOMBRE</label>
+          <input type="radio" formControlName="sexo" name="sexo"
+            value="M" class="ml-3"  id="male" required="required"/>
+  
+          <label class="ml-4" for="female">MUJER</label>
+          <input type="radio" formControlName="sexo" name="sexo"
+            value="F" class="ml-3"  id="female" required="required"/>
 
-        <label for="female">Femenino</label>
-        <input type="radio" formControlName="sexo" name="sexo"
-          value="F" id="female" required="required"/><br>
+          <!-- edad -->
+            <label class="ml-5 mr-2" for="edad">EDAD</label>
+            <input type="text" formControlName="edad" name="edad"
+              id="edad" class="form-control-sm col-1 ml-2"  required="required"/>
   
         <!-- email -->
-        <label for="email">Email:</label>
-        <input
-          type="email" formControlName="email" name="email"
-          id="email" placeholder="Introduzca su email" required="required"/><br>
+        <label class="ml-5 mr-5 mt-3" for="email">EMAIL</label>
+          <input
+            type="email" formControlName="email" name="email"
+            id="email" class="form-control-sm col-4 ml-3" required="required"/>
   
+          <!-- ttelefono -->
+            <label class="ml-4 mr-4" for="telefono">TELEFONO</label>
+            <input type="text" formControlName="telefono" name="telefono"
+              id="telefono" class="form-control-sm col-3 ml-4" required="required"/>
+
+            
         <!-- localidad -->
-        <label for="localidad">Localidad</label>
-        <input type="text" formControlName="localidad" name="localidad"
-          id="localidad" placeholder="De donde eres?" required="required"/><br>
-  
-        <!-- ttelefono -->
-        <label for="telefono">Telefono</label>
-        <input type="text" formControlName="telefono" name="telefono"
-          id="telefono" placeholder="Un número de contacto..." required="required"/><br>
-  
-        <!-- edad -->
-        <label for="edad">Edad</label>
-        <input type="text" formControlName="edad" name="edad"
-          id="edad" placeholder="Tu edad" required="required"/><br>
+          <label class="ml-5 mr-3 mt-3" for="localidad">LOCALIDAD</label>
+          <input type="text" formControlName="localidad" name="localidad"
+            id="localidad" class="form-control-sm col-3 ml-2 mr-5" required="required"/>
+
+        <!-- nacionalidad -->
+          <label class="ml-5 mr-1" for="nacionalidad">NACIONALIDAD</label>
+          <input type="text" formControlName="nacionalidad" name="nacionalidad"
+            id="nacionalidad" class="form-control-sm col-3 ml-2" required="required"/>
   
       </fieldset>
   
-      <fieldset>
-          <legend>Usuario:</legend>
+      <fieldset class="ml-2 mt-4">
+          <legend>USUARIO</legend>
   
-          <label for="nombreusuario">Nombre usuario</label>
-          <input type="text" formControlName="nombreusuario" name="nombreusuario"
-          id="nombreusuario" placeholder="nombreusuario" required="required"/><br>
+            <label class="ml-5 mr-1" for="nombreusuario">NOMBRE DE USUARIO</label>
+            <input type="text" formControlName="nombreusuario" name="nombreusuario"
+            id="nombreusuario" class="form-control-sm col-3 ml-1" required="required"/> 
+
+            <br>
   
-        <label for="password">Password</label>
-        <input type="text" formControlName="password" name="password"
-          id="passowrd" placeholder="password" required="required"/><br>
-  
-      </fieldset>
-  
-      <fieldset>
-          <legend>Estado de la cuenta:</legend>
-  
-        <label for="validado">Validado<input type="checkbox" formControlName="validado" id="validado" value="1"> </label><br>
-  
-        <label for="activo">Activo<input type="checkbox" formControlName="activo" id="activo" value="1"> </label><br>
+            <label class="ml-5 mr-5 mt-3" for="password">CONTRASEÑA</label>
+            <input type="text" formControlName="password" name="password"
+              id="passowrd" class="form-control-sm col-3 ml-3" required="required"/>
   
       </fieldset>
         
-        <button type="submit" class="btn btn-primary">Registrarse</button>
+        <button type="submit" class="btn btn-primary float-right">FINALIZAR</button>
 
       </div>
       </form>

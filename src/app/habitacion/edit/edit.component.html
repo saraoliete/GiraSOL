@@ -1,23 +1,39 @@
-<div class="container col-md-6">
+<div class="container col-md-5">
 
-    <div class="card">
-      <div class="card-header">
-        <h3>Editar Habitacion:</h3>
+  <h3 class="titulo">Editar Habitacion</h3>
+
+    <div class="card form-card">
+      <div class="card-header form-header">
       </div>
-      <div class="card-body">
+      <div class="card-body form-body">
   
-        <form [formGroup]="formEditHabitacion" class="form" (ngSubmit)="EditHabitacion()">
-          <div class="form-group">
-            <h1>Habitacion</h1>
-  
-            <label for="id_tipohabitacion">Tipo de habitacion:</label>
-            <input type="id_tipohabitacion" formControlName="id_tipohabitacion" name="id_tipohabitacion"
-              placeholder="Tipo habitacion" required="required"/>
-  
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-        </div>
-      </form>
-    </div>
-  </div>
+          <form [formGroup]="formEditHabitacion" class="form">
+
+            <div class="form-group text-justify">
+
+              <label for="id" class="m-1 ml-5">Id habitación</label>
+              <input type="text" class="form-control-sm ml-5 col-3" formControlName="id" readonly="readonly" value="{{this.habitacion.id}}" placeholder="{{this.habitacion.id}}">
+            </div>
+
+            <div class="form-group text-justify">
     
+              <label for="tipohabitacion" class="m-1 ml-5">Tipo de habitacion</label>
+              <select name="miselect" formControlName="tipohabitacion" class="form-control-sm ml-1">
+                  <option value="{{item.id}}" *ngFor="let item of lista">{{item.nombre}}</option>
+                  </select>
+
+          </div>
+        </form>
+
+    </div>
+
+    <div class="card-footer form-footer">
+      <button (click)="activarComponente()" class="btn btn-primary float-right m-1 guardar"><i class="fas fa-save"></i></button>
+      <button (click)="Volver()" class="btn btn-danger float-right m-1 volver"><i class="fas fa-arrow-alt-left"></i></button>
+    </div>
+
+    
+  </div>
+
+     
   </div>

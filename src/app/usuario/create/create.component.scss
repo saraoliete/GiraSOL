@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+.container{
+
+    font-family: 'Indie Flower', cursive;
+    
+    .card{
+        width: 100%;
+        height: 480px;
+        margin: 70px auto;
+        font-weight: bolder;
+        box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
+
+        .card-header{
+
+            color: white;
+            border-radius: 5px;
+            height: 50px;
+            background-image: url(../../../assets/fondo5.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position-y: -400px;
+
+            .btn-light{
+
+                width: 30px;
+                height: 30px;
+                padding: 0%;
+                margin-top: -13px;
+                margin-right: -21px;
+                border-radius: 5px;
+            }
+        
+        
+            }
+
+        .card-body{
+
+            .btn-primary{
+
+                width: 140px;
+                height: 30px;
+                padding: 0%;
+                margin-top: -40px;
+                margin-right: 30px;
+            }
+        }
+
+        
+    }
+
+    
+        
+        
+        
+
+}

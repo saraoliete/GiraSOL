@@ -1,24 +1,165 @@
-.navbar{
-    position: absolute;
-    z-index: 1;
-}
+.header{
 
-.container{
+    .menu{
 
-    position: relative;
-    width: 100%;
-    height: 512px;
-    text-align: center;
-    z-index: 0;
+     font-weight: bolder;
 
-    .logo{
+     .botonMenu{
 
-        margin: 80px auto;
-        height: 40%;
+           margin-top: 10%;
+           margin-left: 10%;
+           display: block;
+           width: 60px;
+           height: 60px;
+           padding: 10px;
+           border-radius: 100%;
+           background: gold;
+           color: white;
+           cursor: pointer;
+           position: relative;
+
+           span{
+
+             display: block;
+             width: 40px;
+             height: 4px;
+             background: white;
+             margin-top: 7px;
+
+           }
+       }
+
+       label{
+         cursor: pointer;
+         
+
+       }
+
+       #menu-toggle{
+         display: none;
+
+         &:checked + #trickMenu{
+           display: block;
+           
+         }
+
+       }
+
+       #trickMenu{
+
+         display: none;
+         width: 245px;
+         margin-top: -50px;
+         margin-left: -38.6px;
+         text-align: right;
+         color: transparent;
+         background: transparent;
+         padding: 0.2em 0.2em 0.2em 2.5em;
+         
+
+         li{
+   
+               padding: 1.5em 1.5em 1.5em 4em;
+               background-color: #fff;
+               
+               &:first-child{
+
+                 border-radius: 0 10px 0 0;
+
+               }
+
+               &:last-child{                 
+                 
+                 border-radius: 0 0 10px 0;
+               }
+
+ 
+               &:hover{
+                 
+                 background-color: gold;
+                 border-radius: 0 10px 10px 0px;
+                 margin-left: 35px;
+                 width: 245px;
+                 transition-duration: 500ms;
+                 transition-property: border-radius, margin-left, width;
+                 cursor: pointer;
+                 
+               }
+   
+               a{
+   
+                 display: block;         
+                 padding: 0.5em 0em 0.1em 0em;
+                 color: black;                
+     
+               }
+   
+             }
+         
+
+          
+
+       }
+
+    }
+
+    .botones{
+
+      display: flex;
+      margin-left: 1015px;
+
+     .sesion, .registrarse{
+
+      width: 130px;
+      font-size: 15px;
+      border-radius: 5%;
+    }
+
+    .sesion{
+
+      background-color: green;
+      color: white;
+
+      &:hover{
+
+        background-color: lightgreen;
+        cursor: pointer;
+        transition-property: background-color;
+        transition-duration: 0.3s;
+      }
+    }
+
+    .registrarse{
+
+      background-color: blue;
+      color: white;
+
+      &:hover{
+
+        background-color: lightsteelblue;
+        cursor: pointer;
+        transition-property: background-color;
+        transition-duration: 0.3s;
+      }
+    }
+
+    .separador{
+
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 5px;
+      width: 1px;
+      height: 34px;
+      background-color: black;
+    }
+
     }
 }
 
-.navbar{
-    position: absolute;
-    z-index: 1;
-}
+
+ .fixed-bottom{
+     position: absolute;
+     font-weight: bolder;
+     opacity: 0.3;
+     z-index: 1;
+ }

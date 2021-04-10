@@ -1,2 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+body {
+  font-family: 'Indie Flower', cursive;
+  background-image: url(./assets/fondo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: 0.5px;
+  background-position-y: -80px;
+}
 /*# sourceMappingURL=styles.css.map */

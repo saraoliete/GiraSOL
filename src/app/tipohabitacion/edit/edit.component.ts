@@ -14,10 +14,7 @@ export class EditTipohabitacion implements OnInit{
 
     tipohabitacion:Tipohabitacion=new Tipohabitacion();
     formEditTipohabitacion!:FormGroup;
-    constructor(private service:ServiceService, private router:Router, private formBuilder:FormBuilder){}
-
-    ngOnInit(){
-
+    constructor(private service:ServiceService, private router:Router, private formBuilder:FormBuilder){
         this.formEditTipohabitacion = this.formBuilder.group({
             nombre:[],
             numero_camas:[],
@@ -25,12 +22,15 @@ export class EditTipohabitacion implements OnInit{
             precio:[]
       
           })
+    }
+
+    ngOnInit(){       
 
         this.EditTipohabitacion();
     }
 
     EditTipohabitacion(){
-        let id: Number = this.tipohabitacion.id_tipohabitacion!;
+        let id: Number = this.tipohabitacion.id!;
         localStorage.getItem("id");
         this.service.getTipohabitacion(+id).subscribe(data=>{ this.tipohabitacion=data;})
       }
@@ -41,5 +41,9 @@ export class EditTipohabitacion implements OnInit{
         alert("Se ha guardado con exito");
         this.router.navigate(["getPageTipohabitacion"]);})
 
+    }
+
+    Volver(){        
+        this.router.navigate(["getPageTipohabitacion"]);
     }
 }

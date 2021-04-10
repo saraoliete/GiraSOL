@@ -1,9 +1,13 @@
+import { Habitacion } from "./habitacion";
+import { Pension } from "./pension";
+import { Usuario } from "./usuario";
+
 export class Reserva{
 
-    idreserva:bigint | undefined;
-    id_usuario:bigint | undefined;
-    id_pension:bigint | undefined;
-    id_habitacion:bigint | undefined;
+    idreserva!:number;
+    usuario!:Usuario;
+    pension!:Pension;
+    habitacion!:Habitacion;
     cama_supletoria:boolean | undefined;
 
     //falta arreglar fechas
@@ -11,4 +15,6 @@ export class Reserva{
     fecha_final:String | undefined;
 
     precio_final:DoubleRange | undefined;
+
+
 }

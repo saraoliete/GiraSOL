@@ -1,23 +1,91 @@
-.navbar {
-  position: absolute;
-  z-index: 1;
+.header .menu {
+  font-weight: bolder;
 }
 
-.container {
+.header .menu .botonMenu {
+  margin-top: 10%;
+  margin-left: 10%;
+  display: block;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  border-radius: 100%;
+  background: gold;
+  color: white;
+  cursor: pointer;
   position: relative;
-  width: 100%;
-  height: 512px;
-  text-align: center;
-  z-index: 0;
 }
 
-.container .logo {
-  margin: 80px auto;
-  height: 40%;
+.header .menu .botonMenu span {
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: white;
+  margin-top: 7px;
 }
 
-.navbar {
+.header .menu label {
+  cursor: pointer;
+}
+
+.header .menu #menu-toggle {
+  display: none;
+}
+
+.header .menu #menu-toggle:checked + #trickMenu {
+  display: block;
+}
+
+.header .menu #trickMenu {
+  display: none;
+  width: 245px;
+  margin-top: -50px;
+  margin-left: -38.6px;
+  text-align: right;
+  color: transparent;
+  background: transparent;
+  padding: 0.2em 0.2em 0.2em 2.5em;
+}
+
+.header .menu #trickMenu li {
+  padding: 1.5em 1.5em 1.5em 4em;
+  background-color: #fff;
+}
+
+.header .menu #trickMenu li:first-child {
+  border-radius: 0 10px 0 0;
+}
+
+.header .menu #trickMenu li:last-child {
+  border-radius: 0 0 10px 0;
+}
+
+.header .menu #trickMenu li:hover {
+  background-color: gold;
+  border-radius: 0 10px 10px 0px;
+  margin-left: 35px;
+  width: 245px;
+  -webkit-transition-duration: 500ms;
+          transition-duration: 500ms;
+  -webkit-transition-property: border-radius, margin-left, width;
+  transition-property: border-radius, margin-left, width;
+  cursor: pointer;
+}
+
+.header .menu #trickMenu li a {
+  display: block;
+  padding: 0.5em 0em 0.1em 0em;
+  color: black;
+}
+
+.header .botones {
+  margin-left: 1015px;
+}
+
+.fixed-bottom {
   position: absolute;
+  font-weight: bolder;
+  opacity: 0.3;
   z-index: 1;
 }
 /*# sourceMappingURL=app.component.css.map */

@@ -19,12 +19,12 @@ export class getPageTipohabitacion implements OnInit{
     }
 
     View(tipohabitacion:Tipohabitacion):void{
-      localStorage.setItem("id",tipohabitacion.id_tipohabitacion.toString());
+      localStorage.setItem("id",tipohabitacion.id.toString());
       this.router.navigate(["ViewTipohabitacion"]);
     }
 
     Editar(tipohabitacion:Tipohabitacion):void{
-      localStorage.setItem("id",tipohabitacion.id_tipohabitacion.toString());
+      localStorage.setItem("id",tipohabitacion.id.toString());
       this.router.navigate(["EditTipohabitacion"]);
     }
 }

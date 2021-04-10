@@ -2,23 +2,23 @@
 
   <div class="card">
     <div class="card-header">
-      <h3>Iniciar Sesion:</h3>
+      <h3 class="float-left">INICIAR SESIÓN</h3>
+      <button (click)="Volver()" class="btn btn-light float-right">x</button>
     </div>
     <div class="card-body">
 
       <form [formGroup]="formLogin" class="form" (ngSubmit)="Login()">
         <div class="form-group">
-          <h1>Login</h1>
 
-          <label for="nombreusuario">Nombre usuario</label>
-          <input type="nombreusuario" formControlName="nombreusuario" name="nombreusuario"
-            placeholder="Nombre Usuario" required="required"/>
+          <label class="ml-5 mr-3 mt-4" for="nombreusuario">NOMBRE DE USUARIO</label>
+          <input type="nombreusuario" formControlName="nombreusuario" name="nombreusuario" class="col-5 m-4"
+            id="nombreusuario" class="form-control-sm col-4 ml-4 mr-5" required="required"/><br>
 
-          <label for="password">Password</label>
-          <input type="password" formControlName="password" name="password"
-          placeholder="Password" required="required" />
+          <label class="ml-5 mr-5 mt-4" for="password">CONTRASEÑA</label>
+          <input type="password" formControlName="password" name="password" class="col-5"
+          id="password" class="form-control-sm col-4 ml-5" required="required" /><br>
 
-        <button type="submit" class="btn btn-primary">Log in</button>
+        <button type="submit" class="btn btn-primary mt-4 float-right">ACCEDER</button>
       </div>
     </form>
   </div>

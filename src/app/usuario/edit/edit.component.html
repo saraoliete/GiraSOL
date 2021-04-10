@@ -1,8 +1,9 @@
-<div class="container col-md-6">
+<!--<div class="container col-md-6">
 
   <div class="card">
     <div class="card-header">
       <h3>Editar Usuario:</h3>
+      <button (click)="Volver()" class="btn btn-danger">Volver</button>
     </div>
     <div class="card-body">
 
@@ -12,50 +13,72 @@
           <fieldset>
           <legend>Datos personales:</legend>
   
-        <!-- nombre -->
-        <label for="nombre">Nombre:</label>
-        <input type="nombre" formControlName="nombre" name="nombre" id="nombre" 
-        placeholder="Introduzca su nombre aquí" required="required"/><br>
-  
-        <!-- apellidos -->
+         nombre -
+        <div>
+        <label for="nombre">Nombre:</label>        
+        <input type="nombre" formControlName="nombre" name="nombre" id="nombre" class="form-control"
+        minlength="2" maxlength="15" pattern="^[A-Z]{1}[a-z]*?(\s[A-Z]{1}[a-z]*?)*$" placeholder="Puedes poner segundo nombre"/><br>
+        </div>
+        <div *ngIf="formEditUsuario.get('nombre')?.errors $$ formEditUsuario.get('nombre')?.dirty">
+          <p *ngIf="formEditUsuario.get('nombre')?.hasError('minlength')">Mínimo 2 caracteres</p>
+          <p *ngIf="formEditUsuario.get('nombre')?.hasError('maxlength')">Máximo 25 caracteres</p>
+          <p *ngIf="formEditUsuario.get('nombre')?.hasError('pattern')">Introduzca una o dos cadenas de caracteres, con la primera letra en mayuscula</p>
+
+        </div>
+
+        <div>
+        -- apellidos --
         <label for="apellidos">Apellidos:</label>
-        <input type="apellidos" formControlName="apellidos" name="apellidos"
-          id="apellidos" placeholder="Ahora sus apellidos" required="required"/><br>
+        <input type="apellidos" formControlName="apellidos" name="apellidos" class="form-control"
+        minlength="2" maxlength="25" pattern="^[A-Z]{1}[a-z]*?(\s[A-Z]{1}[a-z]*?)*$" id="apellidos" placeholder="Ahora sus apellidos"/><br>
+        </div>
+        <div  *ngIf="formEditUsuario.get('apellidos')?.errors $$ formEditUsuario.get('apellidos')?.dirty">
+          <p *ngIf="formEditUsuario.get('apellidos')?.hasError('minlength')">Mínimo 2 caracteres</p>
+          <p *ngIf="formEditUsuario.get('apellidos')?.hasError('maxlength')">Máximo 25 caracteres</p>
+          <p *ngIf="formEditUsuario.get('apellidos')?.hasError('pattern')">Introduzca una o dos cadenas de caracteres, con la primera <em>letra en mayúscula</em></p>
+        </div>
   
-        <!-- dni -->
+        -- dni --
         <label for="dni">DNI:</label>
-        <input type="dni" formControlName="dni" name="dni"
-          id="dni" placeholder="Luego un DNI" required="required"/><br>
+        <input type="dni" formControlName="dni" name="dni" pattern="^[0-9]{8}[A-Z]{1}$"
+          id="dni" placeholder="Letra en mayúscula"/><br>
+        <div  *ngIf="formEditUsuario.get('dni')?.errors $$ formEditUsuario.get('dni')?.dirty">
+          <p *ngIf="formEditUsuario.get('dni')?.hasError('pattern')">Introduzca un <em>DNI</em> válido</p>
+        </div>
   
-        <!-- genero -->
+        -- genero --
         <label for="male">Masculino</label>
         <input type="radio" formControlName="sexo" name="sexo"
-          value="M" id="male" required="required"/>
+          value="M" id="male"/>
 
         <label for="female">Femenino</label>
         <input type="radio" formControlName="sexo" name="sexo"
-          value="F" id="female" required="required"/><br>
+          value="F" id="female"/><br>
   
-        <!-- email -->
+        - email --
         <label for="email">Email:</label>
         <input
-          type="email" formControlName="email" name="email"
-          id="email" placeholder="Introduzca su email" required="required"/><br>
+          type="email" formControlName="email" name="email" 
+          pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+          id="email" placeholder="Introduzca su email"/><br>
+        <div  *ngIf="formEditUsuario.get('email')?.errors $$ formEditUsuario.get('email')?.dirty">
+          <p *ngIf="formEditUsuario.get('email')?.hasError('pattern')">Introduzca un <em>email</em> válido</p>
+        </div>
   
-        <!-- localidad -->
+        - localidad --
         <label for="localidad">Localidad</label>
-        <input type="text" formControlName="localidad" name="localidad"
-          id="localidad" placeholder="De donde eres?" required="required"/><br>
+        <input type="text" formControlName="localidad" name="localidad" pattern="[A-Z]{1}[a-z]*?"
+          id="localidad" placeholder="De donde eres?"/><br>
   
-        <!-- ttelefono -->
+        -- ttelefono --
         <label for="telefono">Telefono</label>
         <input type="text" formControlName="telefono" name="telefono"
-          id="telefono" placeholder="Un número de contacto..." required="required"/><br>
+          id="telefono" placeholder="Un número de contacto..."/><br>
   
-        <!-- edad -->
+        -- edad --
         <label for="edad">Edad</label>
         <input type="text" formControlName="edad" name="edad"
-          id="edad" placeholder="Tu edad" required="required"/><br>
+          id="edad" placeholder="Tu edad"/><br>
   
       </fieldset>
   
@@ -64,11 +87,11 @@
   
           <label for="nombreusuario">Nombre usuario</label>
           <input type="text" formControlName="nombreusuario" name="nombreusuario"
-          id="nombreusuario" placeholder="nombreusuario" required="required"/><br>
+          id="nombreusuario" placeholder="nombreusuario"/><br>
   
         <label for="password">Password</label>
         <input type="text" formControlName="password" name="password"
-          id="passowrd" placeholder="password" required="required"/><br>
+          id="passowrd" placeholder="password"/><br>
   
       </fieldset>
         
@@ -81,3 +104,4 @@
   </div>
     
   </div>
+-->

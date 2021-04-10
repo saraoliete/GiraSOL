@@ -26,6 +26,7 @@ export class CreateUsuario implements OnInit{
         nombre:[],
         apellidos:[],
         dni:[],
+        sexo:[],
         edad:[],
         email:[],
         localidad:[],
@@ -46,11 +47,14 @@ export class CreateUsuario implements OnInit{
     let parameter = JSON.stringify(this.formCreateUser.value);
     this.service.createUser(parameter).subscribe(
     data => { 
-        this.service.setToken(data.token);
         this.router.navigate(["home"]);
     },
     error => {
           console.log(error);
     });
+  }
+
+  Volver(){        
+    this.router.navigate(["home"]);
   }
 }

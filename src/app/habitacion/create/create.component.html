@@ -1,20 +1,21 @@
 <div class="container col-md-6">
 
-  <div class="card">
-    <div class="card-header">
-      <h3>Crear Habitacion:</h3>
+  <div class="card form-card">
+    <div class="card-header form-header">
+      <h3 class="float-left">CREAR HABITACIÓN</h3>
+      <button (click)="Volver()" class="btn btn-light float-right">x</button>
     </div>
-    <div class="card-body">
+    <div class="card-body form-body">
 
-      <form [formGroup]="formCreateHabitacion" class="form" (ngSubmit)="createHabitacion()">
-        <div class="form-group">
-          <h1>Habitacion</h1>
+      <form [formGroup]="formCreateHabitacion" class="form">
+        <div class="form-group text-justify">
 
-          <label for="id_tipohabitacion">Tipo de habitacion:</label>
-          <input type="id_tipohabitacion" formControlName="id_tipohabitacion" name="id_tipohabitacion"
-            placeholder="Tipo habitacion" required="required"/>
+          <label for="tipohabitacion" class="m-1 ml-5">Tipo de habitacion</label>
+          <select name="miselect" formControlName="tipohabitacion" class="form-control-sm ml-1" >
+            <option value="{{item.id}}" *ngFor="let item of lista">{{item.nombre}}</option>
+          </select>
 
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button (click)="createHabitacion()" type="btn btn-primary" class="btn btn-primary float-right m-1">GUARDAR</button>
       </div>
     </form>
   </div>
