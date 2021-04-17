@@ -37,7 +37,7 @@ export class EditUsuario implements OnInit{
     }
 
     EditUsuario(){
-        let id: Number = this.usuario.idusuario!;
+        let id: Number = this.usuario.id!;
         localStorage.getItem("id");
         this.service.getUsuario(+id).subscribe(data=>{ this.usuario=data;})
       }

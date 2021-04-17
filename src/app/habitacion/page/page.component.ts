@@ -96,6 +96,11 @@ export class getPageHabitacion implements OnInit{
       this.router.navigate(["ViewHabitacion"]);
     }
 
+    UpdateFile(){
+
+      this.router.navigate(["UpdateFile"]);
+    }
+
     Delete(habitacion:Habitacion){
 
       swal.fire({

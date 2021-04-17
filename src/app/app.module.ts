@@ -24,6 +24,8 @@ import { EditTipohabitacion } from './tipohabitacion/edit/edit.component';
 import { CreatePension } from './pension/create/create.component';
 import { ViewTipousuario } from './tipousuario/view/view.component';
 import { Login } from './Modelo/login';
+import { UpdateFile } from './file/update/update.component';
+
 @NgModule({
   declarations: [
     AppComponent, 
@@ -42,7 +44,8 @@ import { Login } from './Modelo/login';
     ViewTipohabitacion,
     EditTipohabitacion,
     ViewTipousuario,
-    CreatePension
+    CreatePension,
+    UpdateFile
   ],
   imports: [
     BrowserModule,

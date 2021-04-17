@@ -2,7 +2,7 @@ import { Tipousuario } from "./tipousuario";
 
 export class Usuario {
 
-    idusuario!:Number;
+    id!:Number;
     nombreusuario:string | undefined;
     password:string | undefined;
     tipousuario!:Tipousuario;

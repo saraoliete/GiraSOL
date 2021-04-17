@@ -17,6 +17,7 @@ import { CreatePension } from './pension/create/create.component';
 import { EditUsuario } from './usuario/edit/edit.component';
 import { EditTipohabitacion } from './tipohabitacion/edit/edit.component';
 import { getPageTipohabitacion } from './tipohabitacion/page/page.component';
+import {UpdateFile} from './file/update/update.component';
 
 const routes: Routes = [
   { path: "home", component: AppComponent, pathMatch: "full"},
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: "ViewPension", component: ViewPension, pathMatch: "full" },
   { path: "EditTipohabitacion", component: EditTipohabitacion, pathMatch: "full" },
   { path: "getPageTipohabitacion", component: getPageTipohabitacion, pathMatch: "full" },
-  { path: "ViewTipohabitacion", component: EditTipohabitacion, pathMatch: "full" }
+  { path: "ViewTipohabitacion", component: EditTipohabitacion, pathMatch: "full" },
+  { path: "UpdateFile", component: UpdateFile, pathMatch: "full" }
   
 ];
 

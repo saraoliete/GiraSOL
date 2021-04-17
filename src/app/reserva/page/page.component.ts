@@ -21,9 +21,8 @@ export class getPageReserva implements OnInit{
 
     }
 
-    CrearReserva(reserva:Reserva):void{
-      localStorage.setItem("id",reserva.idreserva.toString());
-      this.router.navigate(["EditUsuario"]);
+    CrearReserva():void{
+      this.router.navigate(["CreateReserva"]);
     }
 
     Delete(reserva:Reserva):void{

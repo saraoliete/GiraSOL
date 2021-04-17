@@ -19,18 +19,18 @@ export class ViewUsuario implements OnInit{
     }
 
       View(){        
-      let id = this.usuario.idusuario!;
+      let id = this.usuario.id!;
       localStorage.getItem("id");
       this.service.getUsuario(+id).subscribe(data=>{ this.usuario=data;})
     }
 
     EditUsuario(usuario:Usuario){        
-      localStorage.setItem("id",usuario.idusuario.toString());
+      localStorage.setItem("id",usuario.id.toString());
       this.router.navigate(["EditUsuario"]);
     }
 
     Logout(usuario:Usuario){        
-      localStorage.setItem("id",usuario.idusuario.toString());
+      localStorage.setItem("id",usuario.id.toString());
       this.router.navigate(["login"]);
     }
 

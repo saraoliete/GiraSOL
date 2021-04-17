@@ -1,52 +1,82 @@
-<div class="container col-md-6">
+<div class="container col-md-7">
+
+  <div class="title-header">
+
+    <h3 class="float-left titulo">Reservar</h3>
+    <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-arrow-left"></i></button>
+  </div>
 
     <div class="card">
       <div class="card-header">
-        <h3>Reservar:</h3>
-        <button (click)="Volver()" class="btn btn-danger">Volver</button>
       </div>
       <div class="card-body">
   
-        <form [formGroup]="formCreateReserva" class="form" (ngSubmit)="CrearReserva()">
+        <form [formGroup]="formCreateReserva" class="form">
           <div class="form-group">  
           
            <!-- nombre -->
-          <label for="usuario">DNI:</label>
-          <input type="usuario" formControlName="usuario" name="usuario" id="usuario" 
-          placeholder="Introduzca su dni aquí" required="required"/><br>
+          <label for="usuario" class="ml-5 mr-4">Usuario:</label>
+          <input class="form-control-sm ml-4 mr-5 col-3" type="usuario" formControlName="usuario" name="usuario" id="usuario" 
+           required="required"/><br>
+
+          </div>
     
-          <!-- apellidos -->
-          Pension:
-          <select name="select">
-            <option value="tipo"></option>
-          </select>
+          <div class="form-group">
+
+            <!-- apellidos -->
+            <label for="pension" class="ml-5 mr-4">Pension:</label>
+            <select name="pension" class="form-control-sm ml-4 mr-1 col-2" formControlName="pension">
+              <option value="{{item.id}}" *ngFor="let item of pensiones">{{item.tipo}}</option>
+            </select>
+
+          </div>
     
-          <!-- dni -->
-          Habitacion:
-          <select name="select">
-            <option value="tipohabitacion"></option>
-          </select>
+          <br>
+
+          <div class="form-group" style="margin-top: -25px;">
+
+            <!-- habitacion -->
+            <label for="habitacion" class="ml-5 mr-2">Habitacion:</label>
+            <select name="habitacion" class="form-control-sm ml-4 mr-5 col-2" formControlName="habitacion">
+              <option value="{{item.id}}" *ngFor="let item of habitaciones">{{item.nombre}}</option>
+            </select>
+
+
+            <!-- genero -->
+            <label for="cama_supletoria" class="ml-5 mr-1">Cama supletoria<input type="checkbox" class="ml-2 mr-5" formControlName="cama_supletoria" id="cama_supletoria" value="1"> </label><br>
+
+          </div>
     
-          <!-- genero -->
-          <label for="cama_supletoria">Cama supletoria<input type="checkbox" formControlName="cama_supletoria" id="cama_supletoria" value="1"> </label><br>
-    
-          <!-- email -->
-          <label for="fecha_llegada">Fecha llegada:</label>
-          <input
-            type="text" formControlName="fecha_llegada" name="fecha_llegada"
-            id="fecha_llegada" placeholder="Cuando quieres llegar?" required="required"/><br>
-    
-          <!-- localidad -->
-          <label for="fecha_fin">Fecha final</label>
-          <input type="text" formControlName="fecha_fin" name="fecha_fin"
-            id="fecha_fin" placeholder="Cuando te quieres ir?" required="required"/><br>
-    
-          <!-- ttelefono -->
-          <label for="precio_final">Precio final</label>
-          <input type="text" formControlName="precio_final" name="precio_final"
-            id="precio_final" placeholder="Lo que te va a costar" required="required"/><br>
+          <div class="form-group">
+
+            <!-- email -->
+            <label for="fecha_llegada" class="ml-5 mr-1">Fecha llegada:</label>
+            <input
+              type="text" formControlName="fecha_llegada" name="fecha_llegada" class="form-control-sm ml-2 mr-2"
+              id="fecha_llegada" placeholder="Cuando quieres llegar?" required="required"/>
+
           
-          <button type="submit" class="btn btn-primary">Reservar</button>
+
+            <!-- localidad -->
+            <label for="fecha_final" class="ml-5 mr-1">Fecha final</label>
+            <input type="text" formControlName="fecha_final" name="fecha_final" class="form-control-sm ml-2 mr-2"
+              id="fecha_final" placeholder="Cuando te quieres ir?" required="required"/><br>
+
+          </div>
+    
+
+          <div class="form-group">
+
+          <!-- ttelefono -->
+          <div class="precio_final_container float-right precio_final">
+
+            <label for="precio_final" class="ml-5 mr-2 mt-3">Precio final</label>
+            <input type="text" formControlName="precio_final" name="precio_final" class="form-control-sm ml-2 mr-1 col-4"
+              id="precio_final" placeholder="coste total" required="required"/><br>
+
+          </div>
+          
+          <button (click)="CrearReserva()" class="btn btn-primary reservar">Reservar</button>
   
         </div>
         </form>

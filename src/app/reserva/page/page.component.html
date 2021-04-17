@@ -1,10 +1,15 @@
-<div class="container">
+<div class="container col-md-7">
 
-    <div class="card">
+    <div class="title-header">
+        <h3 class="float-left titulo">RESERVAR</h3>
+        <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-times"></i></button>
+        <button (click)="CrearReserva()" class="btn create float-right m-1"><i class="fas fa-plus"></i></button>
+    </div>
+    
+    <div class="card" *ngFor="let reserva of reserva">
+
 
         <div class="card-header">
-            <h3 class="float-left" >RESERVA</h3>
-            <button (click)="Volver()" class="btn btn-light float-right">x</button>
         </div>
 
         <div class="card-body">
@@ -21,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let reserva of reserva" class="text-center">
+                    <tr class="text-center">
                         <td>{{reserva.usuario.nombre}}, {{reserva.usuario.apellidos}}</td>
                         <td>{{reserva.pension.tipo}}</td>
                         <td>{{reserva.habitacion.tipohabitacion.nombre}}</td>
