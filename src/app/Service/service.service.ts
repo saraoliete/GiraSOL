@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Habitacion } from '../Modelo/habitacion';
 import { Reserva } from '../Modelo/reserva';
 import { Usuario } from '../Modelo/usuario';
@@ -9,6 +9,7 @@ import { Tipousuario } from '../Modelo/tipousuario';
 import { Tipohabitacion } from '../Modelo/tipohabitacion';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import {FileImg} from 'src/app/Modelo/file';
 import { Login } from '../Modelo/login';
 
 @Injectable({
@@ -64,6 +65,23 @@ export class ServiceService {
     logout(){
         this.cookies.delete("token");
     }
+
+    //servicio de imagenes
+
+    uploadImagenes(file:File): Observable<HttpEvent<any>>{
+
+        const formData: FormData = new FormData();
+
+        formData.append('file', file);
+
+        const req = new HttpRequest('POST', this.Url + "/file/upload", formData, {
+            reportProgress: true,
+            responseType: 'json'
+          });
+      
+          return this.http.request(req);
+             
+    }
     
     //Usuario
     getUsuario(id:Number){
@@ -79,7 +97,7 @@ export class ServiceService {
     }
 
     deleteUser(usuario:Usuario){
-        return this.http.delete<Usuario>(this.Url + "usuario/" + usuario.idusuario);
+        return this.http.delete<Usuario>(this.Url + "usuario/" + usuario.id);
     }
 
     getPageUsuario(){
@@ -140,6 +158,10 @@ export class ServiceService {
         return this.http.get<Pension>(this.Url + "pension/" + id);
     }
 
+    getAllPension(){
+        return this.http.get<Pension[]>(this.Url + "pension/" + "all");
+    }
+
     createPension(pension:Pension): Observable<Pension>{
         return this.http.post<Pension>(this.Url + "pension/", pension);
     }
@@ -162,7 +184,7 @@ export class ServiceService {
         return this.http.get<Reserva>(this.Url + "reserva/" + id);
     }
 
-    createReserva(reserva:String){
+    createReserva(reserva:Reserva){
         return this.http.post<Reserva>(this.Url + "reserva/", reserva);
     }
 
