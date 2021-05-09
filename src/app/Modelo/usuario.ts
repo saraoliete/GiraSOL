@@ -5,7 +5,7 @@ export class Usuario {
     id!:Number;
     nombreusuario:string | undefined;
     password:string | undefined;
-    tipousuario!:Tipousuario;
+    tipousuario:Tipousuario = new Tipousuario();
     nombre:string | undefined;
     apellidos:string | undefined;
     dni:string | undefined;
@@ -13,6 +13,7 @@ export class Usuario {
     sexo: CharacterData | undefined;
     email:string | undefined;
     localidad:string | undefined;
+    nacionalidad:string | undefined;
     telefono:number | undefined;
     token!:string;
     validado:boolean | undefined;

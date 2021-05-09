@@ -5,6 +5,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
+import { empty } from "rxjs";
 import { Habitacion } from "src/app/Modelo/habitacion";
 import { Pension } from "src/app/Modelo/pension";
 import { Reserva } from "src/app/Modelo/reserva";
@@ -25,6 +26,11 @@ export class CreateReserva implements OnInit{
     reserva:Reserva=new Reserva();
     pensiones!: Array<Pension>;
     habitaciones!: Array<Tipohabitacion>;
+
+    PrecioTotal!:number;
+    PrecioHabitacion!:number;
+    PrecioPension!:number;
+    Days!:number;
 
     constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder) {
 
@@ -58,7 +64,10 @@ export class CreateReserva implements OnInit{
         this.reserva.cama_supletoria = this.formCreateReserva.get('cama_supletoria')?.value;
         this.reserva.fecha_llegada = new Date(this.formCreateReserva.get('fecha_llegada')?.value);
         this.reserva.fecha_final = new Date(this.formCreateReserva.get('fecha_final')?.value);
-        this.reserva.precio_final = this.formCreateReserva.get('precio_final')?.value;
+
+        
+
+        this.reserva.precio_final = this.Calculadora();
 
 
      
@@ -80,6 +89,42 @@ export class CreateReserva implements OnInit{
     
   }
 
+  Calculadora():number{
+
+    let PrecioTotalVoid:number = this.PrecioTotal;
+
+  if(this.formCreateReserva.get('fecha_llegada')?.value != undefined && 
+  this.formCreateReserva.get('fecha_final')?.value != undefined && 
+  this.formCreateReserva.get('pension')?.value != undefined && 
+  this.formCreateReserva.get('habitacion')?.value != undefined){
+   
+   this.Days = new Date(this.formCreateReserva.get('fecha_final')?.value).getDay() - new Date(this.formCreateReserva.get('fecha_llegada')?.value).getDay();
+   
+    for( let item of this.pensiones){
+      
+      this.PrecioPension = item.precio;
+      
+     }
+
+     for(let item of this.habitaciones){
+   
+      this.PrecioHabitacion = item.precio;
+   
+     }
+
+     PrecioTotalVoid = (this.PrecioHabitacion + this.PrecioPension)*this.Days;
+     
+    }
+    
+    console.log("Días: " + this.Days);
+    console.log("Precio pension: " + this.PrecioPension);
+    console.log("Precio habitacion: " + this.PrecioHabitacion);
+    console.log("Precio total: " + PrecioTotalVoid);
+    return PrecioTotalVoid;
+  
+  }
+
+  
   Volver(){        
     this.router.navigate(["getPageReserva"]);
   }

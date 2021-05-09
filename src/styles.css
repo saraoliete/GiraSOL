@@ -8,4 +8,8 @@ body {
   background-position-x: 0.5px;
   background-position-y: -80px;
 }
+
+body .swal2-container {
+  z-index: 99999;
+}
 /*# sourceMappingURL=styles.css.map */

@@ -4,5 +4,5 @@ export class Tipohabitacion{
     nombre:String | undefined;
     numero_camas:number | undefined;
     descripcion:string | undefined;
-    precio:DoubleRange | undefined;
+    precio!:number;
 }

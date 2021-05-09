@@ -24,7 +24,12 @@ import { EditTipohabitacion } from './tipohabitacion/edit/edit.component';
 import { CreatePension } from './pension/create/create.component';
 import { ViewTipousuario } from './tipousuario/view/view.component';
 import { Login } from './Modelo/login';
-import { UpdateFile } from './file/update/update.component';
+import { UploadFile } from './file/upload/upload.component';
+import { EditReserva } from './reserva/edit/edit.component';
+import { ViewReserva } from './reserva/view/view.component';
+import { DatePipe } from '@angular/common';
+import { EditUsuario } from './usuario/edit/edit.component';
+import { getPageUsuario } from './usuario/page/page.component';
 
 @NgModule({
   declarations: [
@@ -32,11 +37,15 @@ import { UpdateFile } from './file/update/update.component';
     LoginComponent, 
     CreateUsuario, 
     ViewUsuario,
+    EditUsuario,
+    getPageUsuario,
     getPageHabitacion,
     ViewHabitacion,
     EditHabitacion,
     CreateHabitacion,
     CreateReserva,
+    EditReserva,
+    ViewReserva,
     getPageReserva,
     EditPension,
     getPagePension,
@@ -45,7 +54,7 @@ import { UpdateFile } from './file/update/update.component';
     EditTipohabitacion,
     ViewTipousuario,
     CreatePension,
-    UpdateFile
+    UploadFile
   ],
   imports: [
     BrowserModule,
@@ -55,7 +64,7 @@ import { UpdateFile } from './file/update/update.component';
     FormsModule
 
   ],
-  providers: [ServiceService, CookieService, Login],
+  providers: [ServiceService, CookieService, Login, DatePipe],
   bootstrap: [AppComponent]
 })
 

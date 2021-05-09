@@ -79,7 +79,53 @@
 }
 
 .header .botones {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   margin-left: 1015px;
+}
+
+.header .botones .sesion, .header .botones .registrarse {
+  width: 130px;
+  font-size: 15px;
+  border-radius: 5%;
+}
+
+.header .botones .sesion {
+  background-color: green;
+  color: white;
+}
+
+.header .botones .sesion:hover {
+  background-color: lightgreen;
+  cursor: pointer;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.header .botones .registrarse {
+  background-color: blue;
+  color: white;
+}
+
+.header .botones .registrarse:hover {
+  background-color: lightsteelblue;
+  cursor: pointer;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.header .botones .separador {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 5px;
+  width: 1px;
+  height: 34px;
+  background-color: black;
 }
 
 .fixed-bottom {

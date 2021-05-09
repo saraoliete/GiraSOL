@@ -1,12 +1,29 @@
-<div class="container col-md-7">
+<div class="container col-md-9">
 
     <div class="title-header">
         <h3 class="float-left titulo">RESERVAR</h3>
         <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-times"></i></button>
         <button (click)="CrearReserva()" class="btn create float-right m-1"><i class="fas fa-plus"></i></button>
     </div>
+
+
+    <div class="paginacion">
+        <table>
+            <tr>
+                <td (click)="setOrder('id')">ID</td>
+                <td (click)="setOrder('usuario.nombre')">Nombre</td>
+                <td (click)="setOrder('usuario.apellidos')">Apellidos</td>
+                <td (click)="setOrder('pension.tipo')">Pensión</td>
+                <td (click)="setOrder('habitacion.tipohabitacion.nombre')">Habitación</td>
+                <td (click)="setOrder('fecha_llegada')">Fecha llegada</td>
+                <td (click)="setOrder('fecha_final')">Fecha final</td>
+                <td (click)="setOrder('precio_final')">Precio</td>
+                <td (click)="sort()"><i class="fas fa-sort"></i></td>
+            </tr>
+        </table>
+    </div>
     
-    <div class="card" *ngFor="let reserva of reserva">
+    <div class="card m-1 mt-5" *ngFor="let reserva of reservas">
 
 
         <div class="card-header">
@@ -16,6 +33,7 @@
             <table class="table">
                 <thead>
                     <tr class="text-center">
+                        <th>ID</th>
                         <th>USUARIO</th>
                         <th>PENSIÓN</th>
                         <th>HABITACIÓN</th>
@@ -27,6 +45,7 @@
                 </thead>
                 <tbody>
                     <tr class="text-center">
+                        <td>{{reserva.id}}</td>
                         <td>{{reserva.usuario.nombre}}, {{reserva.usuario.apellidos}}</td>
                         <td>{{reserva.pension.tipo}}</td>
                         <td>{{reserva.habitacion.tipohabitacion.nombre}}</td>
@@ -34,12 +53,27 @@
                         <td>{{reserva.fecha_llegada}}</td>
                         <td>{{reserva.fecha_final}}</td>
                         <td>{{reserva.precio_final}}</td>
-                        <td>
-                            <button (click)="Delete(reserva)"class="btn btn-danger m-1">Delete</button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="card-footer">
+
+            <button (click)="View(reserva)"class="btn view m-1"><i class="fas fa-eye"></i></button>
+            <button (click)="Editar(reserva)"class="btn edit m-1"><i class="fas fa-edit"></i></button>
+            <button (click)="Delete(reserva)"class="btn delete1 m-1"><i class="fas fa-trash-alt"></i></button>
+
+        </div>
     </div>
+
+    <div class="float-right paginar m-1 mt-5">
+        <button class="btn btn-sm rewind" (click)="rewind()"><i class="fas fa-angle-double-left fa-2x"></i></button>
+
+        <span *ngFor="let p of totalPages; let i = index">
+            <a style="cursor: pointer;" (click)="setPage(i)" [ngClass]="{'text-primary': i === page }">{{ i+1 }}&nbsp;&nbsp;&nbsp;</a>
+        </span>
+
+        <button class="btn btn-sm forward" (click)="forward()"><i class="fas fa-angle-double-right fa-2x"></i></button>
+    </div>
+
 </div>

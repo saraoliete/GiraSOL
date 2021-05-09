@@ -17,12 +17,16 @@ import { CreatePension } from './pension/create/create.component';
 import { EditUsuario } from './usuario/edit/edit.component';
 import { EditTipohabitacion } from './tipohabitacion/edit/edit.component';
 import { getPageTipohabitacion } from './tipohabitacion/page/page.component';
-import {UpdateFile} from './file/update/update.component';
+import {UploadFile} from './file/upload/upload.component';
+import { EditReserva } from './reserva/edit/edit.component';
+import { ViewReserva } from './reserva/view/view.component';
+import { getPageUsuario } from './usuario/page/page.component';
 
 const routes: Routes = [
   { path: "home", component: AppComponent, pathMatch: "full"},
   { path: "CreateUsuario", component: CreateUsuario, pathMatch: "full" },
   { path: "ViewUsuario", component: ViewUsuario, pathMatch: "full" },
+  {path: "getPageUsuario", component: getPageUsuario, pathMatch:"full"},
   { path: "EditUsuario", component: EditUsuario, pathMatch: "full" },
   { path: "CreateHabitacion", component: CreateHabitacion, pathMatch: "full" },
   { path: "CreatePension", component: CreatePension, pathMatch: "full" },
@@ -30,6 +34,8 @@ const routes: Routes = [
   { path: "ViewHabitacion", component: ViewHabitacion, pathMatch: "full" },
   { path: "EditHabitacion", component: EditHabitacion, pathMatch: "full" },
   { path: "CreateReserva", component: CreateReserva, pathMatch: "full" },
+  { path: "EditReserva", component: EditReserva, pathMatch: "full" },
+  { path: "ViewReserva", component: ViewReserva, pathMatch: "full" },
   { path: "getPageReserva", component: getPageReserva, pathMatch: "full" },
   { path: "EditPension", component: EditPension, pathMatch: "full" },
   { path: "getPagePension", component: getPagePension, pathMatch: "full" },
@@ -37,7 +43,7 @@ const routes: Routes = [
   { path: "EditTipohabitacion", component: EditTipohabitacion, pathMatch: "full" },
   { path: "getPageTipohabitacion", component: getPageTipohabitacion, pathMatch: "full" },
   { path: "ViewTipohabitacion", component: EditTipohabitacion, pathMatch: "full" },
-  { path: "UpdateFile", component: UpdateFile, pathMatch: "full" }
+  { path: "UploadFile", component: UploadFile, pathMatch: "full" }
   
 ];
 

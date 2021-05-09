@@ -96,9 +96,17 @@ export class getPageHabitacion implements OnInit{
       this.router.navigate(["ViewHabitacion"]);
     }
 
-    UpdateFile(){
+    UploadFile(){
 
-      this.router.navigate(["UpdateFile"]);
+      this.router.navigate(["UploadFile"]);
+    }
+
+    Galeria(){
+      
+    }
+
+    SelectFile(habitacion:Habitacion){
+      
     }
 
     Delete(habitacion:Habitacion){

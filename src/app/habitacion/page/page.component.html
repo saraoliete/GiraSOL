@@ -3,7 +3,8 @@
     <div class="title-header">
 
         <h3 class="float-left titulo">HABITACIONES</h3>
-        <button (click)="UpdateFile()" class="btn btn-sm btn-success m-1">subir archivos</button>
+        <button (click)="UploadFile()" class="btn btn-sm btn-success m-1">subir archivos</button>
+        <button (click)="Galeria()" class="btn btn-sm btn-success m-1">Galería de imágenes</button>
         
         <button (click)="Volver()" class="btn exit m-1 float-right"><i class="fas fa-times"></i></button>
         <button (click)="Create()" class="btn create m-1 float-right"><i class="fas fa-plus"></i></button>
@@ -27,7 +28,7 @@
 
         <div class="card-header">
             
-            <h3>Aquí irá una imagen</h3>
+            <button (click)="SelectFile(habitacion)" class="btn btn-sm btn-success m-1">seleccionar archivos</button>
         </div>
 
         <div class="card-body">

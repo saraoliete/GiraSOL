@@ -1,10 +1,33 @@
-<div class="container">
+<div class="container col-md-11">
 
-    <div class="card">
+    <div class="title-header">
+        <h3 class="float-left titulo">USUARIOS</h3>
+        <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-times"></i></button>
+    </div>
+
+
+    <div class="paginacion">
+        <table>
+            <tr>
+                <td (click)="setOrder('id')">ID</td>
+                <td (click)="setOrder('nombreusuario')">nombreusuario</td>
+                <td (click)="setOrder('tipousuario')">tipousuario</td>
+                <td (click)="setOrder('nombre')">nombre</td>
+                <td (click)="setOrder('apellidos')">apellidos</td>
+                <td (click)="setOrder('dni')">dni</td>
+                <td (click)="setOrder('sexo')">sexo</td>
+                <td (click)="setOrder('email')">email</td>
+                <td (click)="setOrder('localidad')">localidad</td>
+                <td (click)="setOrder('nacionalidad')">nacionalidad</td>
+                <td (click)="setOrder('telefono')">telefono</td>
+                <td (click)="sort()"><i class="fas fa-sort"></i></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card m-1 mt-5" *ngFor="let usuario of usuario">
 
         <div class="card-header">
-            <h3>Usuario</h3>
-            <button (click)="Volver()" class="btn btn-danger">Volver</button>
         </div>
 
         <div class="card-body">
@@ -21,14 +44,15 @@
                         <th>Sexo</th>
                         <th>Email</th>
                         <th>Localidad</th>
+                        <th>Nacionalidad</th>
                         <th>Telefono</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let usuario of usuario" class="text-center">
-                        <td>{{usuario.idusuario}}</td>
+                    <tr>
+                        <td>{{usuario.id}}</td>
                         <td>{{usuario.nombreusuario}}</td>
-                        <td>{{usuario.tipousuario}}</td>
+                        <td>{{usuario.tipousuario.nombre}}</td>
                         <td>{{usuario.nombre}}</td>
                         <td>{{usuario.apellidos}}</td>
                         <td>{{usuario.dni}}</td>
@@ -36,15 +60,30 @@
                         <td>{{usuario.sexo}}</td>
                         <td>{{usuario.email}}</td>
                         <td>{{usuario.localidad}}</td>
+                        <td>{{usuario.nacionalidad}}</td>
                         <td>{{usuario.telefono}}</td>
-                        <td>
-                            <button (click)="View(usuario)"class="btn btn-info m-1">Ver</button>
-                            <button (click)="Editar(usuario)"class="btn btn-warning m-1">Edit</button>
-                            <button (click)="Delete(usuario)"class="btn btn-danger m-1">Delete</button>
-                        </td>
+                        
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="card-footer">
+
+            <button (click)="View(usuario)"class="btn view m-1"><i class="fas fa-eye"></i></button>
+            <button (click)="Editar(usuario)"class="btn edit m-1"><i class="fas fa-edit"></i></button>
+            <button (click)="Delete(usuario)"class="btn delete1 m-1"><i class="fas fa-trash-alt"></i></button>
+                        
+        </div>
     </div>
+
+    <div class="float-right paginar m-1 mt-5">
+        <button class="btn btn-sm rewind" (click)="rewind()"><i class="fas fa-angle-double-left fa-2x"></i></button>
+
+        <span *ngFor="let p of totalPages; let i = index">
+            <a style="cursor: pointer;" (click)="setPage(i)" [ngClass]="{'text-primary': i === page }">{{ i+1 }}&nbsp;&nbsp;&nbsp;</a>
+        </span>
+
+        <button class="btn btn-sm forward" (click)="forward()"><i class="fas fa-angle-double-right fa-2x"></i></button>
+    </div>
+
 </div>

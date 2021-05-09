@@ -1,8 +1,55 @@
 .container {
+  z-index: 99999;
   width: 100%;
-  height: 512px;
+  height: 485px;
   text-align: center;
-  z-index: 0;
+  margin: 3% auto;
+  overflow: scroll;
+  text-transform: uppercase;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.container .titulo {
+  font-size: 50px;
+  font-weight: bolder;
+  color: white;
+}
+
+.container .create {
+  width: 30px;
+  height: 30px;
+  padding: 0.1em;
+  margin-top: 15px;
+  border: 3px solid black;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+.container .create:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.container .exit {
+  width: 30px;
+  height: 30px;
+  padding: 0.1em;
+  margin-top: 15px;
+  border: 3px solid indianred;
+  background-color: white;
+  color: indianred;
+  font-weight: bold;
+}
+
+.container .exit:hover {
+  background-color: indianred;
+  color: white;
+  cursor: pointer;
 }
 
 .container .card {
@@ -20,15 +67,53 @@
   background-image: url(../../../assets/fondo5.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-y: -500px;
+  background-position-y: -300px;
 }
 
-.container .card .card-header .btn-light {
+.container .card .card-footer .view, .container .card .card-footer .edit, .container .card .card-footer .delete1 {
   width: 30px;
   height: 30px;
-  padding: 0%;
-  margin-top: -13px;
-  margin-right: -21px;
-  border-radius: 5px;
+  padding: 0.1em;
+  margin-top: 0px;
+  border-width: 3px;
+  border-style: solid;
+}
+
+.container .card .card-footer .view {
+  border-color: #5DADE2;
+  background-color: white;
+  color: #5DADE2;
+}
+
+.container .card .card-footer .view:hover {
+  border-color: #5DADE2;
+  background-color: #5DADE2;
+  color: white;
+  cursor: pointer;
+}
+
+.container .card .card-footer .edit {
+  border-color: #ffc229;
+  background-color: white;
+  color: #ffc229;
+}
+
+.container .card .card-footer .edit:hover {
+  border-color: #ffc229;
+  background-color: #ffc229;
+  color: white;
+  cursor: pointer;
+}
+
+.container .card .card-footer .delete1 {
+  border-color: IndianRed;
+  background-color: white;
+  color: IndianRed;
+}
+
+.container .card .card-footer .delete1:hover {
+  background-color: IndianRed;
+  color: white;
+  cursor: pointer;
 }
 /*# sourceMappingURL=page.component.css.map */

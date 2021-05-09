@@ -11,15 +11,38 @@
   display: none;
 }
 
-.container .btn-danger, .container .btn-primary {
+.container .guardar, .container .volver {
   width: 30px;
-  height: 30px;
-  padding: 0%;
+  height: 28px;
+  padding: 0.1em 0em 0.1em 0em;
   margin-top: 0px;
-  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
 }
 
-.container .btn-danger:hover, .container .btn-primary:hover {
+.container .guardar {
+  border-color: #5DADE2;
+  background-color: white;
+  color: #5DADE2;
+}
+
+.container .guardar:hover {
+  border-color: #5DADE2;
+  background-color: #5DADE2;
+  color: white;
+  cursor: pointer;
+}
+
+.container .volver {
+  border-color: IndianRed;
+  background-color: white;
+  color: IndianRed;
+}
+
+.container .volver:hover {
+  border-color: IndianRed;
+  background-color: IndianRed;
+  color: white;
   cursor: pointer;
 }
 
@@ -29,21 +52,83 @@
   color: white;
 }
 
-.container .card {
+.container .form-card {
   width: 100%;
   height: 250px;
   font-weight: bolder;
   -webkit-box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
-  margin-bottom: 50px;
 }
 
-.container .card .card-header {
+.container .form-card .form-header {
   border-radius: 5px;
   height: 50px;
 }
 
-.container .card .card-body {
+.container .form-card .form-body {
   vertical-align: middle;
+}
+
+.container .alert-message {
+  width: 100%;
+  height: 200px;
+  font-weight: bolder;
+  -webkit-box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffc229;
+  margin-top: -227px;
+  margin-left: 58px;
+  z-index: 1;
+}
+
+.container .alert-message .alert-header {
+  text-align: center;
+  height: 50px;
+  border: 2px solid #ffc229;
+}
+
+.container .alert-message .alert-body {
+  vertical-align: middle;
+  text-align: center;
+  border: 2px solid #ffc229;
+}
+
+.container .alert-message .alert-footer {
+  border: 2px solid #ffc229;
+}
+
+.container .aceptar, .container .cancelar {
+  width: 83px;
+  height: 23px;
+  padding: 0%;
+  margin-top: 0px;
+  border-width: 2px;
+  border-style: solid;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.container .aceptar {
+  border-color: #5DADE2;
+  background-color: white;
+  color: #5DADE2;
+}
+
+.container .aceptar:hover {
+  background-color: #5DADE2;
+  color: white;
+  cursor: pointer;
+}
+
+.container .cancelar {
+  border-color: IndianRed;
+  background-color: white;
+  color: IndianRed;
+}
+
+.container .cancelar:hover {
+  background-color: IndianRed;
+  color: white;
+  cursor: pointer;
 }
 /*# sourceMappingURL=edit.component.css.map */

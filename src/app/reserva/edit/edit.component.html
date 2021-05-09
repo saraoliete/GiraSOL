@@ -1,0 +1,86 @@
+<div class="container col-md-7">
+
+  <div class="title-header">
+
+    <h3 class="float-left titulo">Reservar</h3>
+    <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-arrow-left"></i></button>
+  </div>
+
+    <div class="card">
+      <div class="card-header">
+      </div>
+      <div class="card-body">
+  
+        <form [formGroup]="formEditReserva" class="form">
+
+
+          <!-- reserva -->
+          <div class="form-group text-justify">
+            <label for="id" class="ml-5">Id reserva</label>
+            <input type="text" class="form-control-sm ml-5 col-1" formControlName="id" name="id" readonly="readonly" value="{{this.reserva.id}}" placeholder="{{this.reserva.id}}">
+          </div>
+
+          <!-- usuario -->
+          <div class="form-group">  
+            <label for="usuario" class="ml-5 mr-5">Usuario</label>
+            <input class="form-control-sm ml-4 mr-5 col-1" type="usuario" formControlName="usuario" name="usuario" id="usuario" value="{{this.reserva.usuario.id}}"
+            required="required"/><br>
+          </div>
+    
+          <!-- pension -->
+          <div class="form-group">
+            <label for="pension" class="ml-5 mr-5">Pension</label>
+            <select name="pension" class="form-control-sm ml-4 col-2" formControlName="pension">
+              <option value="{{item.id}}" *ngFor="let item of pensiones">{{item.tipo}} - {{item.precio}}€</option>
+            </select>
+          </div>
+    
+          <br>
+
+          <!-- habitacion -->
+          <div class="form-group" style="margin-top: -25px;">
+            <label for="habitacion" class="ml-5 mr-5">Habitacion</label>
+            <select name="habitacion" class="form-control-sm ml-4 col-3" formControlName="habitacion">
+              <option value="{{item.id}}" *ngFor="let item of habitaciones">{{item.nombre}} - {{item.precio}}€</option>
+            </select>
+
+
+            <!-- cama_supletoria -->
+            <label for="cama_supletoria" class="ml-5">Cama supletoria<input type="checkbox" class="ml-2 mr-2" formControlName="cama_supletoria" id="cama_supletoria" value="{{this.reserva.cama_supletoria}}"> </label><br>
+          </div>
+    
+          <!-- llegada -->
+          <div class="form-group">
+            <label for="fecha_llegada" class="ml-5 mr-4">Fecha llegada</label>
+            <input
+              type="text" formControlName="fecha_llegada" name="fecha_llegada" class="form-control-sm ml-1 mr-2"
+              id="fecha_llegada" value="{{this.reserva.fecha_llegada}}" required="required"/>
+
+          
+
+            <!-- vuelta -->
+            <label for="fecha_final" class="ml-5 mr-4">Fecha final</label>
+            <input type="text" formControlName="fecha_final" name="fecha_final" class="form-control-sm ml-1"
+              id="fecha_final" value="{{this.reserva.fecha_final}}" required="required"/><br>
+          </div>
+    
+
+          <!-- precio_final -->
+          <div class="form-group">
+            <div class="precio_final_container float-right precio_final">
+
+              <label for="precio_final" class="ml-5 mr-2 mt-3">Precio final</label>
+              <input type="text" formControlName="precio_final" name="precio_final" class="form-control-sm ml-2 mr-1 col-4"
+                id="precio_final" value="{{this.reserva.precio_final}}" required="required"/><br>
+
+            </div>
+          
+          <button (click)="activarComponente()" class="btn btn-primary reservar">Reservar</button>
+  
+        </div>
+        </form>
+  
+      </div>
+    </div>
+      
+    </div>

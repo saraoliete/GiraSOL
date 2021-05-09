@@ -5,7 +5,7 @@
   z-index: 0;
 }
 
-.container .card {
+.container .form-card {
   width: 100%;
   margin: 78px auto;
   font-weight: bolder;
@@ -13,7 +13,7 @@
           box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
 }
 
-.container .card .card-header {
+.container .form-card .form-header {
   color: white;
   border-radius: 5px;
   height: 50px;
@@ -23,7 +23,7 @@
   background-position-y: -290px;
 }
 
-.container .card .card-header .btn-light {
+.container .form-card .form-header .btn-light {
   width: 30px;
   height: 30px;
   padding: 0%;
@@ -32,11 +32,59 @@
   border-radius: 5px;
 }
 
-.container .card .card-header .btn-warning {
+.container .form-card .form-header .btn-warning {
   width: 30px;
   height: 30px;
   padding: 0%;
   margin-top: -13px;
   border-radius: 5px;
+}
+
+.container .form-card .success-message {
+  width: 100%;
+  height: 200px;
+  font-weight: bolder;
+  -webkit-box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffc229;
+  margin-top: -227px;
+  margin-left: 58px;
+  z-index: 1;
+}
+
+.container .form-card .success-message .success-header {
+  text-align: center;
+  height: 50px;
+  border: 2px solid #ffc229;
+}
+
+.container .form-card .success-message .success-body {
+  vertical-align: middle;
+  text-align: center;
+  border: 2px solid #ffc229;
+}
+
+.container .form-card .success-message .success-footer {
+  border: 2px solid #ffc229;
+}
+
+.container .form-card .aceptar {
+  width: 83px;
+  height: 23px;
+  padding: 0%;
+  margin-top: 0px;
+  border-width: 2px;
+  border-style: solid;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-color: #5DADE2;
+  background-color: white;
+  color: #5DADE2;
+}
+
+.container .form-card .aceptar:hover {
+  background-color: #5DADE2;
+  color: white;
+  cursor: pointer;
 }
 /*# sourceMappingURL=create.component.css.map */

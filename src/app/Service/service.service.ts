@@ -74,7 +74,7 @@ export class ServiceService {
 
         formData.append('file', file);
 
-        const req = new HttpRequest('POST', this.Url + "/file/upload", formData, {
+        const req = new HttpRequest('POST', this.Url + "file/upload", formData, {
             reportProgress: true,
             responseType: 'json'
           });
@@ -84,24 +84,24 @@ export class ServiceService {
     }
     
     //Usuario
-    getUsuario(id:Number){
+    getUsuario(id:String | null):Observable<Usuario>{
         return this.http.get<Usuario>(this.Url + "usuario/" + id);
     }
     
-    createUser(usuario: string){
+    createUser(usuario: Usuario){
         return this.http.post<Usuario>(this.Url + "usuario/", usuario);
     }
 
-    updateUsuario(usuario:String){
-        return this.http.put<Usuario>(this.Url + "usuario/" + usuario, usuario);
+    updateUsuario(usuario:Usuario){
+        return this.http.put<Usuario>(this.Url + "usuario/" + usuario.id, usuario);
     }
 
     deleteUser(usuario:Usuario){
         return this.http.delete<Usuario>(this.Url + "usuario/" + usuario.id);
     }
 
-    getPageUsuario(){
-        return this.http.get<Usuario[]>(this.Url + "usuario/" + "page");
+    getPageUsuario(page: number, size: number, order: string, asc: boolean): Observable<any>{
+        return this.http.get<any>(this.Url + "usuario/" + "page?" + `page=${page}&size=${size}&order=${order}&asc=${asc}`);
     }
 
     //Tipousuario
@@ -180,20 +180,24 @@ export class ServiceService {
 
     
     //Reserva
-    getReserva(id:Number){
+    getReserva(id:String | null): Observable<Reserva>{
         return this.http.get<Reserva>(this.Url + "reserva/" + id);
     }
 
-    createReserva(reserva:Reserva){
+    createReserva(reserva:Reserva): Observable<Reserva>{
         return this.http.post<Reserva>(this.Url + "reserva/", reserva);
     }
 
-    deleteReserva(reserva:Reserva){
-        return this.http.delete<Reserva>(this.Url + "reserva/" + reserva.idreserva);
+    updateReserva(reserva:Reserva){
+        return this.http.put<Reserva>(this.Url + "reserva/" + reserva.id, reserva);
     }
 
-    getPageReserva(){
-        return this.http.get<Reserva[]>(this.Url + "reserva/" + "page");
+    deleteReserva(reserva:Reserva){
+        return this.http.delete<Reserva>(this.Url + "reserva/" + reserva.id);
+    }
+
+    getPageReserva(page: number, size: number, order: string, asc: boolean):Observable<any>{
+        return this.http.get<any>(this.Url + "reserva/" + "page?" + `page=${page}&size=${size}&order=${order}&asc=${asc}`);
     }
 
 }

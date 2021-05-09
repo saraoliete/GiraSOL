@@ -1,59 +1,69 @@
-<div class="container">
+<div class="container col-md-11">
+
+    <div class="title-header">
+        <h3 class="float-left titulo">Tu información personal</h3>
+        <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-arrow-left"></i></button>
+    </div>
 
     <div class="card">
 
         <div class="card-header">
-            <h3>Tu información personal:</h3>
+
+            <h3 class="float-left">@{{this.usuario.nombreusuario}}</h3>
+            <button (click)="Logout(usuario)" class="btn delete1 float-right">Cerrar sesión</button>
+
         </div>
 
         <div class="card-body">
             <table class="table">
                 <tr class="text-center">
                     <td>Nombre de usuario</td>
-                    <td>{{usuario.nombreusuario}}</td>                        
-                </tr>
-                <tr class="text-center">
-                    <td>Tipo usuario</td>
-                    <td>{{usuario.tipousuario}}</td>                        
-                </tr>
-                <tr class="text-center">
-                    <td>Nombre</td>
-                    <td>{{usuario.nombre}}</td>                        
-                </tr>
-                <tr class="text-center">
-                    <td>Apellidos</td>
-                    <td>{{usuario.apellidos}}</td>                        
-                </tr>
-                <tr class="text-center">
-                    <td>DNI</td>
-                    <td>{{usuario.dni}}</td>                        
-                </tr>
-                <tr class="text-center">
-                    <td>Genero</td>
-                    <td>{{usuario.sexo}}</td>                        
-                </tr>
-                <tr class="text-center">
-                    <td>Email</td>
-                    <td>{{usuario.email}}</td>                        
-                </tr>
-                <tr class="text-center">
-                    <td>Localidad</td>
-                    <td>{{usuario.localidad}}</td>                        
-                </tr>
-                <tr class="text-center">
-                    <td>Telefono</td>
-                    <td>{{usuario.telefono}}</td>                        
-                </tr>
-                <tr class="text-center">
-                    <td>Telefono</td>
-                    <td>{{usuario.telefono}}</td>                        
+                    <td>{{usuario.nombreusuario}}</td>             
                 </tr>
                 <tr>
-                    <td><button (click)="EditUsuario(usuario)" class="btn">Editar Informacion</button></td>
-                    <td><button (click)="Volver()" class="btn">Volver</button></td>
-                    <td><button (click)="Logout(usuario)" class="btn">Cerrar Sesion</button></td>
+
+                    <td>Tipo usuario</td>
+                    <td>{{usuario.tipousuario.nombre}}</td>     
+                </tr>
+                <tr>
+                    <td>Nombre</td>
+                    <td>{{usuario.nombre}}</td>   
+                </tr>
+                <tr>
+                    <td>Apellidos</td>
+                    <td>{{usuario.apellidos}}</td>  
+                </tr>
+                <tr>
+                    <td>DNI</td>
+                    <td>{{usuario.dni}}</td>  
+                </tr>
+                <tr>
+                    <td>Genero</td>
+                    <td>{{usuario.sexo}}</td>  
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{usuario.email}}</td>  
+                </tr>
+                <tr>
+                    <td>Localidad</td>
+                    <td>{{usuario.localidad}}</td>   
+                </tr>
+                <tr>
+                    <td>Nacionalidad</td>
+                    <td>{{usuario.nacionalidad}}</td>
+                </tr>
+                <tr>
+                    <td>Telefono</td>
+                    <td>{{usuario.telefono}}</td>
                 </tr>
             </table>
+        </div>
+        
+        <div class="card-footer">
+                <button (click)="EditUsuario(usuario)" class="btn edit m-1"><i class="fas fa-edit"></i></button>
+                <button (click)="Delete(usuario)" class="btn delete1 m-1"><i class="fas fa-trash-alt"></i></button>
+
         </div>
     </div>
 </div>
