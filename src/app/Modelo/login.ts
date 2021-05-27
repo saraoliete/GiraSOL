@@ -1,5 +1,5 @@
 export class Login{
 
-    nombreusuario?:string;
+    nombreusuario!:string;
     password:string | undefined;
 }

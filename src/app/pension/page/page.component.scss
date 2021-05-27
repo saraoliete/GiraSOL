@@ -1,23 +1,46 @@
+.title-header{
+
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+
+    .titulo{
+
+        position: absolute;
+        top: 5%;
+        padding: 0.1em 0.5em;
+        font-size: 50px; 
+        background: linear-gradient(45deg, #d7a499, #f4c9b9);
+        font-weight: bolder;
+        color: white;
+        z-index: 9999;
+        
+    }
+
+}
+
 .container{
 
-    z-index: 99999;
+    z-index: 999;
     width: 100%;
-    height: 485px;
+    height: 555px;
     text-align: center;
+    top: 30px;
     margin: 3% auto;
     overflow: scroll;
     text-transform: uppercase;
+    background-color: #e2f1f1;
     &::-webkit-scrollbar{
         display: none;
     }
 
-    .titulo{
+    .botones{
 
-        font-size: 50px; 
-        font-weight: bolder;
-        color: white;
-        
-    }
+        margin-bottom: 74px;
+        z-index: 99;
 
     .create{
 
@@ -26,40 +49,86 @@
         padding: 0.1em;
         margin-top: 15px;
         
-        border: 3px solid black;
+        border: 3px solid #66403b;
         background-color: white;
-        color: black;
+        color: #66403b;
         font-weight: bold;
 
         &:hover{
 
-            background-color: black;
+            background-color: #66403b;
             color: white;
             cursor: pointer;
         }
-
     }
+}
 
-    .exit{
+.paginacion{
 
-        width: 30px;
-        height: 30px;
-        padding: 0.1em;
-        margin-top: 15px;
+    width: 100%;
+    height: 55px;
+    margin-left: 6.4px;
+    margin-bottom: -38px;
+    font-weight: 300;
+    
+    table{
         
-        border: 3px solid indianred;
-        background-color: white;
-        color: indianred;
-        font-weight: bold;
+        display: flex;
+        height: 31px;
+        justify-content: center;
+        border-collapse: separate;
+        font-weight: 600;
 
-        &:hover{
+        tr td{
 
-            background-color: indianred;
-            color: white;
             cursor: pointer;
+            background-color: #eec1b2d1;
+            color: #434750 ;
+            width: 180px;
+            height: 31px;
+
+            &:hover{
+
+                
+            }
+
         }
 
     }
+
+}
+
+.paginar{
+
+    width: 100%;
+    padding: 0.5em;
+
+    i{
+        font-size: 20px;
+    }
+
+    a{
+        
+        font-size: 15.6px;
+    }
+        
+    i, a{
+        padding: 0.4em;
+        background-color: #eec1b2d1;
+        color: #434750;
+    }
+
+    .rewind{
+
+        margin-right: -7px;
+    }
+
+    .forward{
+
+        margin-left: -7px;
+    }
+
+}
 
     .card{
 

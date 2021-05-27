@@ -3,7 +3,7 @@ import { Tipousuario } from "./tipousuario";
 export class Usuario {
 
     id!:Number;
-    nombreusuario:string | undefined;
+    nombreusuario!:string;
     password:string | undefined;
     tipousuario:Tipousuario = new Tipousuario();
     nombre:string | undefined;

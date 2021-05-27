@@ -1,165 +1,177 @@
 .header{
 
-    .menu{
+  width: 100%;
+  z-index: 9999;
 
-     font-weight: bolder;
 
-     .botonMenu{
+  .home{
 
-           margin-top: 10%;
-           margin-left: 10%;
-           display: block;
-           width: 60px;
-           height: 60px;
-           padding: 10px;
-           border-radius: 100%;
-           background: gold;
-           color: white;
-           cursor: pointer;
-           position: relative;
+    position: absolute;
+    width: 20%;
+    left: 1%;
+    margin-top: 1%;
 
-           span{
+    img{
 
-             display: block;
-             width: 40px;
-             height: 4px;
-             background: white;
-             margin-top: 7px;
+      width: 50%;
+      -webkit-animation:spin 31s linear infinite;
+      -moz-animation:spin 31s linear infinite;
+      animation:spin 31s linear infinite;
+    }
 
-           }
-       }
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
-       label{
-         cursor: pointer;
-         
+  }
 
-       }
+  .sesion{
 
-       #menu-toggle{
-         display: none;
+    position: absolute;
+    right: 5%;
+    top: 10px;
+    color: #66403b;
 
-         &:checked + #trickMenu{
-           display: block;
-           
-         }
+    .perfil{
 
-       }
+      background: radial-gradient(#e8edec, #83a0a9);
+      border-radius: 8px;
+      padding: 0.3em 0.7em;
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
 
-       #trickMenu{
+  
+    .main_menu{
 
-         display: none;
-         width: 245px;
-         margin-top: -50px;
-         margin-left: -38.6px;
-         text-align: right;
-         color: transparent;
-         background: transparent;
-         padding: 0.2em 0.2em 0.2em 2.5em;
-         
+    position: absolute;
+    left: 83%;
+    width: 20%;
 
-         li{
-   
-               padding: 1.5em 1.5em 1.5em 4em;
-               background-color: #fff;
-               
-               &:first-child{
+      .menu{
 
-                 border-radius: 0 10px 0 0;
+        width: 100%;
 
-               }
+        label{
 
-               &:last-child{                 
-                 
-                 border-radius: 0 0 10px 0;
-               }
+          position: absolute;
+          right: 0%;
+          top: 2%;
+          width: 50%;
+          height: 46px;
+          display: flex;
+          justify-content: center;
+        
+            .botonMenu{
 
- 
-               &:hover{
-                 
-                 background-color: gold;
-                 border-radius: 0 10px 10px 0px;
-                 margin-left: 35px;
-                 width: 245px;
-                 transition-duration: 500ms;
-                 transition-property: border-radius, margin-left, width;
-                 cursor: pointer;
-                 
-               }
-   
-               a{
-   
-                 display: block;         
-                 padding: 0.5em 0em 0.1em 0em;
-                 color: black;                
-     
-               }
-   
-             }
-         
+              z-index: 9999;
+      
+                  span{
+      
+                    display: block;
+                    width: 40px;
+                    height: 4px;
+                    background: #66403b;
+                    margin-top: 7px;
+                    transition: all 500ms ease-in-out;
+      
+                  }
+                }
+              }
 
+
+          #menu-toggle{
+            display: none;
+
+            &:checked + .menu_content{
+            
+            right: 0px;
+            transition: 0.5s ease-in-out;
+              
+            }
+          }
+
+          .menu_content{
+
+          position: absolute;
+          background: #ffff;
+          right: -100%;
+          transition: 0.3s;
+          width: 100%;
+          height: 100vh;
+          top: 8%;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          justify-content: center;
+          transition: 0.5s ease-in-out;
           
 
-       }
+          #trickMenu{
 
-    }
+            list-style: none;
+            padding: 0;
 
-    .botones{
+            .iniciar_sesion{
 
-      display: flex;
-      margin-left: 1015px;
+              background-color: #007bff40;
 
-     .sesion, .registrarse{
+              &:hover{
+                
+                background-color: #007bff80!important;
+                transition: background-color 0.3s ease-in-out;
+                
+              }
+            }
 
-      width: 130px;
-      font-size: 15px;
-      border-radius: 5%;
-    }
+            .registro{
 
-    .sesion{
+              background-color: #f7b8a0c9;
 
-      background-color: green;
-      color: white;
+              &:hover{
+                
+                background-color: #f7b8a0!important;
+                transition: background-color 0.3s ease-in-out;
+                
+              }
+            }
 
-      &:hover{
+            li{
+      
+              padding: 12% 15%;
+              border-bottom: 1px solid #6d403e;
 
-        background-color: lightgreen;
-        cursor: pointer;
-        transition-property: background-color;
-        transition-duration: 0.3s;
+
+              &:hover{
+                
+                background-color: #6d403e7a;
+                transition: background-color 0.3s ease-in-out;
+                cursor: pointer;
+                
+              }
+
+              a{
+
+                display: block;
+                font-weight: 600;         
+                padding: 0.5em 0em 0.1em 0em;
+                color: black;                
+
+              }
+
+              
+            }
+          } 
+        }
       }
     }
-
-    .registrarse{
-
-      background-color: blue;
-      color: white;
-
-      &:hover{
-
-        background-color: lightsteelblue;
-        cursor: pointer;
-        transition-property: background-color;
-        transition-duration: 0.3s;
-      }
-    }
-
-    .separador{
-
-      margin-left: 0px;
-      margin-right: 0px;
-      margin-top: 5px;
-      width: 1px;
-      height: 34px;
-      background-color: black;
-    }
-
-    }
-}
+  }
 
 
  .fixed-bottom{
      position: absolute;
      font-weight: bolder;
      opacity: 0.3;
-     z-index: 1;
+     z-index: 999;
  }

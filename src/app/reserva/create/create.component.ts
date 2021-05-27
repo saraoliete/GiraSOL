@@ -13,6 +13,7 @@ import { Tipohabitacion } from "src/app/Modelo/tipohabitacion";
 import { Usuario } from "src/app/Modelo/usuario";
 import { ServiceService } from "src/app/Service/service.service";
 import swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: "CreateReserva",
@@ -32,7 +33,7 @@ export class CreateReserva implements OnInit{
     PrecioPension!:number;
     Days!:number;
 
-    constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder) {
+    constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder, private datePipe:DatePipe) {
 
       this.formCreateReserva = this.fomrBuilder.group({
         usuario:[],
@@ -52,6 +53,8 @@ export class CreateReserva implements OnInit{
       this.service.getAllTipohabitacion().subscribe(data=> this.habitaciones=data);
       this.service.getAllPension().subscribe(data=> this.pensiones=data);
 
+      //this.formCreateReserva.setValue({precio_final: this.Calculadora()});
+
      }
 
   CrearReserva() {
@@ -62,12 +65,13 @@ export class CreateReserva implements OnInit{
         this.reserva.pension.id = this.formCreateReserva.get('pension')?.value;
         this.reserva.habitacion.id = this.formCreateReserva.get('habitacion')?.value;
         this.reserva.cama_supletoria = this.formCreateReserva.get('cama_supletoria')?.value;
+        
         this.reserva.fecha_llegada = new Date(this.formCreateReserva.get('fecha_llegada')?.value);
         this.reserva.fecha_final = new Date(this.formCreateReserva.get('fecha_final')?.value);
-
         
-
         this.reserva.precio_final = this.Calculadora();
+
+
 
 
      

@@ -3,6 +3,11 @@ import { Router } from "@angular/router";
 import { ServiceService } from "src/app/Service/service.service";
 import { Reserva } from '../../Modelo/reserva';
 import swal from 'sweetalert2';
+import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
+import * as pdfMake from 'pdfmake/build/pdfmake.js';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
+
+PdfMakeWrapper.setFonts(pdfFonts);
 
 @Component({
   selector: "ViewReserva",
@@ -12,7 +17,8 @@ import swal from 'sweetalert2';
 export class ViewReserva implements OnInit{
 
     reserva:Reserva = new Reserva();
-    constructor(private service:ServiceService, private router:Router){}
+    constructor(private service:ServiceService, private router:Router, private pdfMakerWrapper:PdfMakeWrapper){
+    }
 
     ngOnInit(){
       let id= localStorage.getItem("id");
@@ -27,6 +33,30 @@ export class ViewReserva implements OnInit{
     View(reserva:Reserva):void{
       localStorage.setItem("id", reserva.id.toString());
       this.router.navigate(["ViewReserva"]);
+    }
+
+    descargarPDF(reserva:Reserva):void{
+
+      this.pdfMakerWrapper = new PdfMakeWrapper();
+
+      this.pdfMakerWrapper.add(
+       
+      new Table([
+        ['id', reserva.id],
+        ['Usuario', reserva.usuario.nombre + ' ' + reserva.usuario.apellidos],
+        ['Pension', reserva.pension.tipo],
+        ['Habitacion', reserva.habitacion.tipohabitacion.nombre],
+        ['Cama supletoria', reserva.cama_supletoria],
+        ['Fecha llegada', reserva.fecha_llegada],
+        ['Fecha final', reserva.fecha_final],
+        ['Precio total', reserva.precio_final]
+        
+      ]).end
+      
+      );
+
+      this.pdfMakerWrapper.create().open();
+
     }
 
     Delete(reserva:Reserva){

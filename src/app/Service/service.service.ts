@@ -34,6 +34,11 @@ export class ServiceService {
         });
     }
 
+    logout(){
+
+        return this.http.delete<Usuario>(this.Url + "session/");
+    }
+
     checkUsuario():Observable<any>{
         return this.http.get<Usuario>(this.Url + "session/", {
             
@@ -62,9 +67,7 @@ export class ServiceService {
         return this.cookies.get("token");
     }
     
-    logout(){
-        this.cookies.delete("token");
-    }
+    
 
     //servicio de imagenes
 
@@ -108,6 +111,10 @@ export class ServiceService {
 
     getTipousuario(id:Number){
         return this.http.get<Tipousuario>(this.Url + "tipousuario/" + id);
+    }
+
+    getAllTipousuario(){
+        return this.http.get<Tipousuario[]>(this.Url + "tipousuario/" + "all");
     }
 
     getPageTipousuario(){
@@ -185,7 +192,9 @@ export class ServiceService {
     }
 
     createReserva(reserva:Reserva): Observable<Reserva>{
+
         return this.http.post<Reserva>(this.Url + "reserva/", reserva);
+            
     }
 
     updateReserva(reserva:Reserva){

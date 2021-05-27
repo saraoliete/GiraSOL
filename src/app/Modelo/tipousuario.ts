@@ -1,5 +1,5 @@
 export class Tipousuario{
 
-    id_tipousuario!:Number;
+    id!:Number;
     nombre:string | undefined;
 }

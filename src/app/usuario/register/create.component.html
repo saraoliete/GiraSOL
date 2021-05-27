@@ -1,25 +1,13 @@
-<div class="title_header">
-
-  <h3 class="titulo">EDITAR USUARIO: {{this.usuario.nombreusuario}}</h3>
-
-</div>
-
 <div class="container col-md-9">
-
-
-  <div class="botones">
-
-    <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
-
-  </div>
 
   <div class="card">
     <div class="card-header">
+      <h3 class="float-left">REGISTRARSE</h3>
+      <button (click)="Volver()" class="btn btn-light float-right">x</button>
     </div>
     <div class="card-body">
 
-      <form [formGroup]="formEditUser" class="form">
-        
+      <form [formGroup]="formCreateUser" class="form" (ngSubmit)="register()">
         <fieldset>
           <legend>DATOS PERSONALES</legend>
         
@@ -110,9 +98,7 @@
   
       </fieldset>
         
-        <button (click)="activarComponente()" class="btn btn-primary float-right">FINALIZAR</button>
-
-     
+        <button class="btn btn-primary float-right">FINALIZAR</button>
       </form>
 
     </div>

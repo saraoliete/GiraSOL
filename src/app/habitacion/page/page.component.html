@@ -1,17 +1,20 @@
+<div class="title-header">
+
+    <h3 class="titulo">HABITACIONES</h3>
+    
+</div>
+
 <div class="container col-md-7">
     
-    <div class="title-header">
-
-        <h3 class="float-left titulo">HABITACIONES</h3>
-        <button (click)="UploadFile()" class="btn btn-sm btn-success m-1">subir archivos</button>
-        <button (click)="Galeria()" class="btn btn-sm btn-success m-1">Galería de imágenes</button>
+    <div class="botones">
         
-        <button (click)="Volver()" class="btn exit m-1 float-right"><i class="fas fa-times"></i></button>
         <button (click)="Create()" class="btn create m-1 float-right"><i class="fas fa-plus"></i></button>
+        <button (click)="UploadFile()" class="btn btn-sm btn-success m-1 float-right"><i class="fas fa-upload"></i></button>
+        <button (click)="Galeria()" class="btn btn-sm btn-success m-1 float-right"><i class="far fa-images"></i></button>
 
     </div>
     
-    <div class="paginacion bg-light">
+    <div class="paginacion">
 
         <table>
             <tr>
@@ -24,11 +27,11 @@
 
     </div>
 
-    <div class="card" *ngFor="let habitacion of habitaciones">
+    <div class="card m-1 mt-5" *ngFor="let habitacion of habitaciones">
 
         <div class="card-header">
             
-            <button (click)="SelectFile(habitacion)" class="btn btn-sm btn-success m-1">seleccionar archivos</button>
+            <button (click)="SelectFile(habitacion)" class="btn btn-sm btn-success m-1"><i class="fas fa-plus"></i></button>
         </div>
 
         <div class="card-body">
@@ -64,7 +67,7 @@
 
     </div>
 
-    <div class="float-right paginar bg-light">
+    <div class="float-right paginar m-1">
         <button class="btn btn-sm rewind" (click)="rewind()"><i class="fas fa-angle-double-left fa-2x"></i></button>
 
         <span *ngFor="let p of totalPages; let i = index">

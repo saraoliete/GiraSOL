@@ -89,6 +89,12 @@ export class getPageUsuario implements OnInit{
       this.router.navigate(["ViewUsuario"]);
     }
 
+    Crear(){
+
+      this.router.navigate(["CreateUsuario"]);
+
+    }
+
     Editar(usuario:Usuario):void{
       localStorage.setItem("id",usuario.id.toString());
       this.router.navigate(["EditUsuario"]);
@@ -123,9 +129,5 @@ export class getPageUsuario implements OnInit{
             )
           }
       })
-    }
-
-    Volver(){        
-      this.router.navigate(["home"]);
     }
 }

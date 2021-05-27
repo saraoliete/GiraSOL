@@ -4,7 +4,7 @@
     height: 485px;
     margin: 3% auto;
     overflow: scroll;
-    z-index: 0;
+    z-index: 999;
     text-transform: uppercase;
     &::-webkit-scrollbar{
         display: none;

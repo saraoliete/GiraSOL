@@ -5,6 +5,10 @@ import { ServiceService } from "src/app/Service/service.service";
 import swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
 
+import { PdfMakeWrapper, Table } from 'pdfmake-wrapper';
+import * as pdfMake from 'pdfmake/build/pdfmake.js';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
+
 @Component({
   selector: "getPageReserva",
   templateUrl: "./page.component.html",
@@ -23,7 +27,7 @@ export class getPageReserva implements OnInit{
     isFirst = false;
     isLast = false;
 
-    constructor(private service:ServiceService, private router:Router, private datePipe:DatePipe){}
+    constructor(private service:ServiceService, private router:Router, private datePipe:DatePipe, private pdfMakerWrapper:PdfMakeWrapper){}
 
     ngOnInit(){
 
@@ -36,13 +40,6 @@ export class getPageReserva implements OnInit{
         (data=>{
 
           console.log(data);
-
-          for(let item of data.content){
-
-           // this.datePipe.transform(item.fecha_llegada, 'dd-MM-yyyy h:mm a');
-            //this.datePipe.transform(item.fecha_final, 'dd-MM-yyyy h:mm a');
-    
-          }
 
           this.reservas = data.content;
           this.isFirst = data.first;
@@ -88,12 +85,56 @@ export class getPageReserva implements OnInit{
     }
 
     //ordenar por
-    setOrder(order: string): void {
+    setOrder(order: string): string {
       this.order = order;
       this.cargarReservas();
+
+      return order;
     }
 
-    CrearReserva():void{
+    descargarPDF():void{
+
+      this.service.getPageReserva(this.page, this.size, this.order, this.asc).subscribe
+        (data=>{
+
+          console.log(data);
+
+          this.reservas = data.content;
+          this.isFirst = data.first;
+          this.isLast = data.last;
+          this.totalPages = new Array(data.totalPages);
+
+          for(let item of data.content){
+
+            this.pdfMakerWrapper = new PdfMakeWrapper();
+      
+            this.pdfMakerWrapper.add(
+      
+            new Table([
+              ['id', item.id],
+              ['Usuario', item.usuario.nombre + ' ' + item.usuario.apellidos],
+              ['Pension', item.pension.tipo],
+              ['Habitacion', item.habitacion.tipohabitacion.nombre],
+              ['Cama supletoria', item.cama_supletoria],
+              ['Fecha llegada', item.fecha_llegada],
+              ['Fecha final', item.fecha_final],
+              ['Precio total', item.precio_final + '€']
+              
+            ]).alignment('center').end
+            
+            );
+      
+            this.pdfMakerWrapper.create().open();
+          }
+
+        })
+
+      
+
+
+    }
+
+    Crear():void{
       this.router.navigate(["CreateReserva"]);
     }
 

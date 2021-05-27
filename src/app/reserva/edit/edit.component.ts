@@ -12,6 +12,7 @@ import { Tipohabitacion } from "src/app/Modelo/tipohabitacion";
 import { Usuario } from "src/app/Modelo/usuario";
 import { ServiceService } from "src/app/Service/service.service";
 import swal from 'sweetalert2';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: "EditReserva",
@@ -31,7 +32,7 @@ export class EditReserva implements OnInit{
     PrecioPension!:number;
     Days!:number;
 
-    constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder) {
+    constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder, private DatePipe:DatePipe) {
 
       this.formEditReserva = this.fomrBuilder.group({
         id:[],
@@ -58,7 +59,15 @@ export class EditReserva implements OnInit{
       this.service.getAllTipohabitacion().subscribe(data=> this.habitaciones=data);
       this.service.getAllPension().subscribe(data=> this.pensiones=data);
 
-      this.service.getReserva(id).subscribe(data=> {this.reserva=data;this.formEditReserva.get('habitacion')?.setValue(this.reserva.habitacion.id); this.formEditReserva.get('pension')?.setValue(this.reserva.pension.id);this.formEditReserva.get('usuario')?.setValue(this.reserva.usuario.id);})
+      this.service.getReserva(id).subscribe(data=> {
+      this.reserva=data;this.formEditReserva.get('habitacion')?.setValue(this.reserva.habitacion.id); 
+      this.formEditReserva.get('pension')?.setValue(this.reserva.pension.id);
+      this.formEditReserva.get('usuario')?.setValue(this.reserva.usuario.id);
+      this.formEditReserva.get('fecha_llegada')?.setValue(this.DatePipe.transform(this.reserva.fecha_llegada, "dd-MM-yyyy hh:mm:ss"));
+      this.formEditReserva.get('fecha_final')?.setValue(this.DatePipe.transform(this.reserva.fecha_final, "dd-MM-yyyy hh:mm:ss"));})
+      
+
+      this.formEditReserva.patchValue({precio_final: 0});
 
      }
 
@@ -88,7 +97,6 @@ export class EditReserva implements OnInit{
 
     console.log("EditarReserva");
         
-        this.reserva.id = this.formEditReserva.get('id')?.value;
         this.reserva.usuario.id = this.formEditReserva.get('usuario')?.value;
         this.reserva.pension.id = this.formEditReserva.get('pension')?.value;
         this.reserva.habitacion.id = this.formEditReserva.get('habitacion')?.value;
@@ -148,6 +156,7 @@ export class EditReserva implements OnInit{
      }
 
      PrecioTotalVoid = (this.PrecioHabitacion + this.PrecioPension)*this.Days;
+
      
     }
     

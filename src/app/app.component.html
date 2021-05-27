@@ -1,43 +1,60 @@
 <div class="header fixed-top">
 
-  <nav class="menu">
+  <a class="home" (click)="home()"> <img src="../assets/home_icon.png" alt="home"> </a>
 
-    <label for="menu-toggle">
- 
-       <div class="botonMenu">
- 
-          <span></span>
- 
-          <span></span>
- 
-          <span></span>
- 
-       </div>
- 
-    </label>
+  <div class="sesion" *ngIf="this.usuario.id != null">
 
-    <input type="checkbox" id="menu-toggle" [(ngModel)]="isMasterSel" />
+    <p>Has iniciado sesión como: <a class="perfil" (click)="ViewUser(this.usuario)">{{this.usuario.nombreusuario}}</a></p>
 
-    <ul id="trickMenu">
- 
-       <li><a (click)="Habitacion();checkUncheck();"> HABITACIONES </a></li>
- 
-       <li><a (click)="Pension();checkUncheck();"> PENSIONES </a></li>
- 
-       <li><a (click)="Reservas();checkUncheck();"> RESERVAS </a></li>
-
-       <li><a (click)="Usuarios();checkUncheck();"> USUARIOS </a></li>
- 
-    </ul>
- 
-    
-  </nav>
-  
-  <div class="botones fixed-top">
-    <div (click)="Login()" class="btn sesion m-1">INICIAR SESIÓN</div>
-    <div class="separador"></div>
-    <div (click)="Register()" class="btn registrarse m-1">REGISTRARSE</div>
   </div>
+
+  <div class="main_menu">
+
+    <nav class="menu">
+  
+      <label for="menu-toggle">
+   
+         <div class="botonMenu">
+   
+            <span></span>
+   
+            <span></span>
+   
+            <span></span>
+   
+         </div>
+   
+      </label>
+  
+      <input type="checkbox" id="menu-toggle" [(ngModel)]="isMasterSel" />
+  
+      <div class="menu_content">
+  
+        <ul id="trickMenu">
+     
+           <li><a (click)="Habitacion();checkUncheck();"> HABITACIONES </a></li>
+     
+           <li><a (click)="Pension();checkUncheck();"> PENSIONES </a></li>
+     
+           <li><a (click)="Reservas();checkUncheck();"> RESERVAS </a></li>
+    
+           <li><a (click)="Usuarios();checkUncheck();"> USUARIOS </a></li>
+  
+           <li class="iniciar_sesion"><a (click)="Login()">INICIAR SESIÓN</a></li>
+
+           <li class="registro"><a (click)="Register()">REGISTRARSE</a></li>
+     
+        </ul>
+  
+      </div>
+  
+   
+      
+    </nav>
+
+  </div>
+
+
 </div>
   
 <router-outlet></router-outlet>

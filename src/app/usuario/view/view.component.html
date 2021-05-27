@@ -1,7 +1,13 @@
-<div class="container col-md-11">
+<div class="title-header">
 
-    <div class="title-header">
-        <h3 class="float-left titulo">Tu información personal</h3>
+    <h3 class="titulo">TU INFORMACIÓN PERSONAL</h3>
+    
+</div>
+
+<div class="container col-md-7">
+
+    <div class="volver">
+        
         <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-arrow-left"></i></button>
     </div>
 
@@ -10,7 +16,7 @@
         <div class="card-header">
 
             <h3 class="float-left">@{{this.usuario.nombreusuario}}</h3>
-            <button (click)="Logout(usuario)" class="btn delete1 float-right">Cerrar sesión</button>
+            <button (click)="Logout()" class="btn delete1 float-right">Cerrar sesión</button>
 
         </div>
 

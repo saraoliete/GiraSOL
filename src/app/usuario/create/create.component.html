@@ -1,92 +1,142 @@
-<div class="container col-md-8">
+<div class="container col-md-9">
+
+  <div class="title_header">
+
+    <h3 class="titulo float-left">CREAR USUARIO</h3>
+    <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
+
+  </div>
 
   <div class="card">
     <div class="card-header">
-      <h3 class="float-left">REGISTRARSE</h3>
-      <button (click)="Volver()" class="btn btn-light float-right">x</button>
+      
     </div>
     <div class="card-body">
 
       <form [formGroup]="formCreateUser" class="form" (ngSubmit)="register()">
-        <div class="form-group">  
-        
-          <!-- tipo usuario -->
-        <fieldset class="ml-2">
+        <fieldset>
           <legend>DATOS PERSONALES</legend>
+        
+        <div class="form-group" style="display: flex; justify-content: space-around; align-content: center;">  
   
         <!-- nombre -->
-        <label class="ml-5 mr-3" for="nombre">NOMBRE</label>
-          <input type="nombre" formControlName="nombre" name="nombre" id="nombre" class="form-control-sm col-3 ml-4 mr-5" required="required"/>
+        <label class="ml-4 mr-3" for="nombre">NOMBRE</label>
+          <input type="nombre" formControlName="nombre" name="nombre" id="nombre" class="form-control-sm col-3" required="required" minlength="3" maxlength="45" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"/>
+          <div *ngIf="formCreateUser.get('nombre')?.errors && formCreateUser.get('nombre')?.dirty">
+            <p *ngIf="formCreateUser.get('nombre')?.hasError('required')">Este campo es obligatorio</p>
+            <p *ngIf="formCreateUser.get('nombre')?.hasError('patter')">Introduce un nombre valido</p>
+            <p *ngIf="formCreateUser.get('nombre')?.hasError('minlength')">El mínimo de caracteres es 3</p>
+            <p *ngIf="formCreateUser.get('nombre')?.hasError('maxlength')">El máximo de caracteres es 45</p>
+
+          </div>
         
   
         <!-- apellidos -->
-        <label class="ml-5 mr-3" for="apellidos">APELLIDOS</label>
+          <label class="ml-4 mr-3" for="apellidos">APELLIDOS</label>
           <input type="apellidos" formControlName="apellidos" name="apellidos"
-            id="apellidos" class=" form-control-sm col-3 ml-4" required="required"/>
-
-        <br>
-  
-        <!-- dni -->
-        <label class="ml-5 mr-5 mt-3" for="dni">DNI</label>
-          <input type="dni" formControlName="dni" name="dni"
-            id="dni" class="form-control-sm col-3 ml-4" required="required"/>
-  
-        <!-- genero -->
-        <label class="ml-5" for="male">HOMBRE</label>
+            id="apellidos" class=" form-control-sm col-3" required="required" minlength="2" minlength="36" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"/>
+            
+            
+          </div>
+          
+          <div class="form-group" style="display: flex; justify-content: center; align-content: center;">
+            
+            <!-- dni -->
+            <label class="ml-4 mr-3" for="dni" style="position: relative; right: 107px;">DNI</label>
+            <input type="dni" formControlName="dni" name="dni"
+            id="dni" class="form-control-sm col-3" required="required" pattern="^[0-9]{8}[A-Za-z]$"/>
+          
+          <!-- genero -->
+          <label class="ml-5" for="male">HOMBRE</label>
           <input type="radio" formControlName="sexo" name="sexo"
-            value="M" class="ml-3"  id="male" required="required"/>
-  
+          value="M" class="ml-3"  id="male" required="required"/>
+          
           <label class="ml-4" for="female">MUJER</label>
           <input type="radio" formControlName="sexo" name="sexo"
-            value="F" class="ml-3"  id="female" required="required"/>
-
+          value="F" class="ml-3"  id="female" required="required"/>
+        
           <!-- edad -->
-            <label class="ml-5 mr-2" for="edad">EDAD</label>
-            <input type="text" formControlName="edad" name="edad"
-              id="edad" class="form-control-sm col-1 ml-2"  required="required"/>
-  
-        <!-- email -->
-        <label class="ml-5 mr-5 mt-3" for="email">EMAIL</label>
-          <input
-            type="email" formControlName="email" name="email"
-            id="email" class="form-control-sm col-4 ml-3" required="required"/>
-  
-          <!-- ttelefono -->
-            <label class="ml-4 mr-4" for="telefono">TELEFONO</label>
-            <input type="text" formControlName="telefono" name="telefono"
-              id="telefono" class="form-control-sm col-3 ml-4" required="required"/>
+            <label class="ml-4 mr-3" for="edad">EDAD</label>
+            <input type="number" formControlName="edad" name="edad"
+              id="edad" class="form-control-sm col-1 ml-2"  required="required" maxlength="3"/>
 
-            
-        <!-- localidad -->
-          <label class="ml-5 mr-3 mt-3" for="localidad">LOCALIDAD</label>
-          <input type="text" formControlName="localidad" name="localidad"
-            id="localidad" class="form-control-sm col-3 ml-2 mr-5" required="required"/>
+        </div>
+          
+        <div class="form-group" style="display: flex; justify-content: space-evenly; align-items: center;">
 
-        <!-- nacionalidad -->
-          <label class="ml-5 mr-1" for="nacionalidad">NACIONALIDAD</label>
-          <input type="text" formControlName="nacionalidad" name="nacionalidad"
-            id="nacionalidad" class="form-control-sm col-3 ml-2" required="required"/>
+          <!-- email -->
+          <label class="ml-4 mr-4" for="email">EMAIL</label>
+            <input
+              type="email" formControlName="email" name="email"
+              id="email" class="form-control-sm col-4 ml-5" required="required" minlength="6" minlength="30" pattern="^\S+@\S+\.\S+$"/>
+    
+            <!-- ttelefono -->
+              <label class="ml-4" for="telefono">TELEFONO</label>
+              <input type="text" formControlName="telefono" name="telefono"
+                id="telefono" class="form-control-sm col-3" required="required" pattern="^(6|7|9)[0-9]{8}$"/>
+
+        </div>
+  
+
+            <div class="form-group" style="display: flex; justify-content: space-evenly; align-items: center;">
+              
+              <!-- localidad -->
+                <label class="ml-2 mr-3" for="localidad">LOCALIDAD</label>
+                <input type="text" formControlName="localidad" name="localidad"
+                  id="localidad" class="form-control-sm col-3" required="required" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"/>
+      
+              <!-- nacionalidad -->
+                <label class="ml-4" for="nacionalidad">NACIONALIDAD</label>
+                <input type="text" formControlName="nacionalidad" name="nacionalidad"
+                  id="nacionalidad" class="form-control-sm col-3" required="required" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"/>
+
+            </div>
   
       </fieldset>
   
-      <fieldset class="ml-2 mt-4">
+      <fieldset>
           <legend>USUARIO</legend>
-  
-            <label class="ml-5 mr-1" for="nombreusuario">NOMBRE DE USUARIO</label>
-            <input type="text" formControlName="nombreusuario" name="nombreusuario"
-            id="nombreusuario" class="form-control-sm col-3 ml-1" required="required"/> 
 
-            <br>
+          <div class="form-group" style="display: flex; justify-content: space-evenly; align-items: center;">
   
-            <label class="ml-5 mr-5 mt-3" for="password">CONTRASEÑA</label>
+            <label class="ml-4" for="nombreusuario">NOMBRE DE USUARIO</label>
+            <input type="text" formControlName="nombreusuario" name="nombreusuario"
+            id="nombreusuario" class="form-control-sm col-3" required="required" minlength="6" maxlength="13" pattern="^[0-9A-Za-z_.]+$"/> 
+  
+            <label class="ml-4" for="password">CONTRASEÑA</label>
             <input type="text" formControlName="password" name="password"
-              id="password" class="form-control-sm col-3 ml-3" required="required"/>
+              id="password" class="form-control-sm col-3" required="required" minlength="8" maxlength="13" pattern="^[0-9A-Za-z_.\s]+$"/>
+
+              
+            </div>
+            
+            <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
+              
+              <label for="tipousuario" class="m-1 ml-5">Tipo de usuario</label>
+              <select name="miselect" formControlName="tipousuario" class="form-control-sm ml-1 col-1" >
+                <option value="{{item.id}}" *ngFor="let item of lista">{{item.nombre}}</option>
+              </select>
+
+          </div>
+
+          <div class="form-group" style="display: none;">
+              
+            <!-- token -->
+            <label class="ml-4" for="token">Token</label>
+            <input type="text" formControlName="token" name="token"
+            id="token" class="form-control-sm col-3"/> 
+
+            <!-- validado -->
+            <label for="validado" class="ml-5 mr-1">Validado<input type="checkbox" [checked]="true" class="ml-2 mr-5" formControlName="validado" id="validado" value="1"> </label><br>
+
+            <!-- activo -->
+            <label for="activo" class="ml-5 mr-1">Activo<input type="checkbox" [checked]="true" class="ml-2 mr-5" formControlName="activo" id="activo" value="1"> </label><br>
+
+        </div>
   
       </fieldset>
         
-        <button type="submit" class="btn btn-primary float-right">FINALIZAR</button>
-
-      </div>
+        <button class="btn btn-primary float-right">FINALIZAR</button>
       </form>
 
     </div>

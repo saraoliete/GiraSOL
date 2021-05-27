@@ -1,9 +1,13 @@
+<div class="title-header">
+
+    <h3 class="titulo">RESERVAS</h3>
+    
+</div>
+
 <div class="container col-md-9">
 
-    <div class="title-header">
-        <h3 class="float-left titulo">RESERVAR</h3>
-        <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-times"></i></button>
-        <button (click)="CrearReserva()" class="btn create float-right m-1"><i class="fas fa-plus"></i></button>
+    <div class="botones">
+        <button (click)="Crear()" class="btn create float-right m-1"><i class="fas fa-plus"></i></button>
     </div>
 
 
@@ -52,7 +56,7 @@
                         <td>{{reserva.cama_supletoria}}</td>
                         <td>{{reserva.fecha_llegada}}</td>
                         <td>{{reserva.fecha_final}}</td>
-                        <td>{{reserva.precio_final}}</td>
+                        <td>{{reserva.precio_final}}€</td>
                     </tr>
                 </tbody>
             </table>
@@ -74,6 +78,10 @@
         </span>
 
         <button class="btn btn-sm forward" (click)="forward()"><i class="fas fa-angle-double-right fa-2x"></i></button>
+    </div>
+
+    <div class="botones">
+        <button (click)="descargarPDF()" class="btn btn-light m-1">Descargar PDF</button>
     </div>
 
 </div>

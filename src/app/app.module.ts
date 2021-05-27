@@ -5,6 +5,7 @@ import { FormsModule} from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from "./login/login.component";
+import { RegisterUsuario } from "./usuario/register/create.component";
 import { CreateUsuario } from "./usuario/create/create.component";
 import { ViewUsuario } from "./usuario/view/view.component";
 import { CreateHabitacion } from "./habitacion/create/create.component";
@@ -30,12 +31,14 @@ import { ViewReserva } from './reserva/view/view.component';
 import { DatePipe } from '@angular/common';
 import { EditUsuario } from './usuario/edit/edit.component';
 import { getPageUsuario } from './usuario/page/page.component';
+import { PdfMakeWrapper } from 'pdfmake-wrapper';
 
 @NgModule({
   declarations: [
     AppComponent, 
     LoginComponent, 
-    CreateUsuario, 
+    RegisterUsuario, 
+    CreateUsuario,
     ViewUsuario,
     EditUsuario,
     getPageUsuario,
@@ -64,7 +67,7 @@ import { getPageUsuario } from './usuario/page/page.component';
     FormsModule
 
   ],
-  providers: [ServiceService, CookieService, Login, DatePipe],
+  providers: [ServiceService, CookieService, Login, DatePipe, PdfMakeWrapper],
   bootstrap: [AppComponent]
 })
 

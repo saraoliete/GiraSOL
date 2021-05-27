@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from "./app.component";
 import { LoginComponent } from "./login/login.component";
-import { CreateUsuario } from "./usuario/create/create.component";
+import { RegisterUsuario } from "./usuario/register/create.component";
 import { ViewUsuario } from './usuario/view/view.component';
 import { CreateHabitacion } from './habitacion/create/create.component';
 import { getPageHabitacion } from "./habitacion/page/page.component";
@@ -21,9 +21,12 @@ import {UploadFile} from './file/upload/upload.component';
 import { EditReserva } from './reserva/edit/edit.component';
 import { ViewReserva } from './reserva/view/view.component';
 import { getPageUsuario } from './usuario/page/page.component';
+import { CreateUsuario } from './usuario/create/create.component';
 
 const routes: Routes = [
   { path: "home", component: AppComponent, pathMatch: "full"},
+  { path: "RegisterUsuario", component: RegisterUsuario, pathMatch: "full" },
+  { path: "Login", component: LoginComponent, pathMatch: "full" },
   { path: "CreateUsuario", component: CreateUsuario, pathMatch: "full" },
   { path: "ViewUsuario", component: ViewUsuario, pathMatch: "full" },
   {path: "getPageUsuario", component: getPageUsuario, pathMatch:"full"},

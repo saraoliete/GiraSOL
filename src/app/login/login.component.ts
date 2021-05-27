@@ -2,6 +2,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Login } from "../Modelo/login";
 import { Usuario } from "../Modelo/usuario";
 import { ServiceService } from "../Service/service.service";
 
@@ -12,7 +13,8 @@ import { ServiceService } from "../Service/service.service";
 })
 export class LoginComponent{
 
-    usuario!:Usuario;
+    usuario:Usuario = new Usuario();
+    login:Login = new Login();
     formLogin!: FormGroup;
 
   constructor(private service: ServiceService, private router:Router, private formBuilder:FormBuilder, private activatedRoute: ActivatedRoute) {
@@ -29,7 +31,7 @@ export class LoginComponent{
   Check(){
 
     this.service.checkUsuario().subscribe(
-      data=>{ console.log(data)})
+      data=>{ console.log("check:" + data)})
   }
 
   Login(){
@@ -37,20 +39,22 @@ export class LoginComponent{
     this.service.login(parameter).subscribe(
     data=>{
       this.service.setToken(data.token);
-      console.log(data);
+      console.log("login:" + data.token + ", nombreusuario:" + data.nombreusuario + ", password:" + data.password);
+
+      localStorage.setItem("token", data.token.toString());
+
+      if(data.token!=null){
+
+        localStorage.setItem('id', data.id.toString());
+      }
+
       this.router.navigate(["home"]);
     },
     error => {
       console.log(error);
     });
   }
-
-  Logout(){
-    this.service.logout();
-    alert("Has cerrado sesion correctamente");
-    this.router.navigate(["home"]);
-
-  }
+  
 
   Volver(){        
     this.router.navigate(["home"]);

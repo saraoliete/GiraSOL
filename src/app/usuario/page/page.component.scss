@@ -1,22 +1,49 @@
-.container{
-    z-index: 9999;
+.title-header{
+
     width: 100%;
-    height: 585px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+
+    .titulo{
+
+        position: absolute;
+        top: 5%;
+        padding: 0.1em 0.5em;
+        font-size: 50px; 
+        background: linear-gradient(45deg, #d7a499, #f4c9b9);
+        font-weight: bolder;
+        color: white;
+        z-index: 9999;
+        
+    }
+
+}
+
+.container{
+    z-index: 999;
+    width: 100%;
+    height: 555px;
     text-align: center;
     top: 30px;
     right: 90px;
     left: 90px;
     margin: 3% auto;
     overflow: scroll;
+    background-color: #e2f1f1;
     text-transform: uppercase;
     position: absolute;
     &::-webkit-scrollbar{
         display: none;
     }
 
-    .title-header{
+
+    .botones{
 
         margin-bottom: 74px;
+        z-index: 99;
 
         .create{
     
@@ -25,47 +52,18 @@
             padding: 0.1em;
             margin-top: 15px;
             
-            border: 3px solid black;
+            border: 3px solid #66403b;
             background-color: white;
-            color: black;
+            color: #66403b;
             font-weight: bold;
     
             &:hover{
     
-                background-color: black;
+                background-color: #66403b;
                 color: white;
                 cursor: pointer;
             }
     
-        }
-    
-        .exit{
-    
-            width: 30px;
-            height: 30px;
-            padding: 0.1em;
-            margin-top: 15px;
-            
-            border: 3px solid indianred;
-            background-color: white;
-            color: indianred;
-            font-weight: bold;
-    
-            &:hover{
-    
-                background-color: indianred;
-                color: white;
-                cursor: pointer;
-            }
-    
-        }
-        
-        .titulo{
-    
-            font-size: 50px; 
-            font-weight: bolder;
-            color: white;
-            
         }
     }
 
@@ -77,21 +75,21 @@
 
         width: 100%;
         height: 55px;
-        margin-left: 6.4px;
         margin-bottom: -38px;
-        font-weight: 300;
+        font-weight: 600;
         
         table{
             
             display: flex;
             height: 31px;
             border-collapse: separate;
+            justify-content: center;
 
             tr td{
 
                 cursor: pointer;
-                background-color: #434750;
-                color: whitesmoke;
+                background-color: #eec1b2d1;
+                color: #434750;
                 width: 180px;
                 height: 31px;
 
@@ -122,8 +120,8 @@
             
         i, a{
             padding: 0.4em;
-            background-color: #434750;
-            color: whitesmoke;
+            background-color: #eec1b2d1;
+            color: #434750;
         }
 
         .rewind{
@@ -148,7 +146,14 @@
         border-width: 0px;
 
        .card-header{
+        
+        color: white;
+        border-radius: 5px;
         height: 50px;
+        background-image: url(../../../assets/fondo5.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-y: -600px;
         
         
         

@@ -1,14 +1,24 @@
+<div class="title-header">
+
+    <h3 class="titulo">PENSIONES</h3>
+    
+</div>
+
 <div class="container col-md-7">
 
-    <h3 class="float-left titulo">PENSIONES</h3>
-    <button (click)="Volver()" class="btn exit m-1 float-right"><i class="fas fa-times"></i></button>
-    <button (click)="Create()" class="btn create m-1 float-right"><i class="fas fa-plus"></i></button>
+    <div class="botones">
+        <button (click)="Create()" class="btn create float-right m-1"><i class="fas fa-plus"></i></button>
+    </div>
 
     <div class="paginacion">
-        <button class="btn btn-light" (click)="setOrder('id')">ID</button>
-        <button class="btn btn-light" (click)="setOrder('tipohabitacion.nombre')">Nombre</button>
-        <button class="btn btn-light" (click)="setOrder('tipohabitacion.precio')">Precio</button>
-        <button class="btn btn-light" (click)="sort()"><i class="fas fa-sort"></i>Sort</button>
+        <table>
+            <tr>
+                <td (click)="setOrder('id')">ID</td>
+                <td (click)="setOrder('tipohabitacion.nombre')">Nombre</td>
+                <td (click)="setOrder('tipohabitacion.precio')">Precio</td>
+                <td (click)="sort()"><i class="fas fa-sort"></i></td>
+            </tr>
+        </table>
     </div>
 
     <div class="card" *ngFor="let pension of pension">
@@ -48,13 +58,13 @@
         </div>
     </div>
 
-    <div class="float-right">
-        <button class="btn btn-light" (click)="rewind()"><i class="fas fa-angle-double-left fa-2x"></i></button>
+    <div class="float-right paginar m-1">
+        <button class="btn btn-sm rewind" (click)="rewind()"><i class="fas fa-angle-double-left fa-2x"></i></button>
 
-        <span *ngFor="let p of totalPages; let i = index" class="bg-light">
+        <span *ngFor="let p of totalPages; let i = index">
             <a style="cursor: pointer;" (click)="setPage(i)" [ngClass]="{'text-primary': i === page }">{{ i+1 }}&nbsp;&nbsp;&nbsp;</a>
         </span>
 
-        <button class="btn btn-light" (click)="forward()"><i class="fas fa-angle-double-right fa-2x"></i></button>
+        <button class="btn btn-sm forward" (click)="forward()"><i class="fas fa-angle-double-right fa-2x"></i></button>
     </div>
 </div>

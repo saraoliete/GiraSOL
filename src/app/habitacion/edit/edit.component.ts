@@ -47,7 +47,7 @@ export class EditHabitacion implements OnInit{
 
       swal.fire({
         title: 'Confirme, por favor.',
-        text: '¿Quieres guardar los cambios?',
+        text: '¿Quiere guardar los cambios?',
         icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Sí, guardar cambios',

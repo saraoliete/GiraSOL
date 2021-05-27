@@ -17,7 +17,7 @@
           <!-- reserva -->
           <div class="form-group text-justify">
             <label for="id" class="ml-5">Id reserva</label>
-            <input type="text" class="form-control-sm ml-5 col-1" formControlName="id" name="id" readonly="readonly" value="{{this.reserva.id}}" placeholder="{{this.reserva.id}}">
+            <input type="text" class="form-control-sm ml-5 col-1" formControlName="id" name="id" readonly="readonly" value="{{this.reserva.id}}">
           </div>
 
           <!-- usuario -->
@@ -40,13 +40,13 @@
           <!-- habitacion -->
           <div class="form-group" style="margin-top: -25px;">
             <label for="habitacion" class="ml-5 mr-5">Habitacion</label>
-            <select name="habitacion" class="form-control-sm ml-4 col-3" formControlName="habitacion">
+            <select name="habitacion" class="form-control-sm ml-1 col-3" formControlName="habitacion">
               <option value="{{item.id}}" *ngFor="let item of habitaciones">{{item.nombre}} - {{item.precio}}€</option>
             </select>
 
 
             <!-- cama_supletoria -->
-            <label for="cama_supletoria" class="ml-5">Cama supletoria<input type="checkbox" class="ml-2 mr-2" formControlName="cama_supletoria" id="cama_supletoria" value="{{this.reserva.cama_supletoria}}"> </label><br>
+            <label for="cama_supletoria" class="ml-5">Cama supletoria<input type="checkbox" name="cama_supletoria" class="ml-2 mr-2" formControlName="cama_supletoria" id="cama_supletoria" value="{{this.reserva.cama_supletoria}}"> </label><br>
           </div>
     
           <!-- llegada -->
@@ -71,7 +71,7 @@
 
               <label for="precio_final" class="ml-5 mr-2 mt-3">Precio final</label>
               <input type="text" formControlName="precio_final" name="precio_final" class="form-control-sm ml-2 mr-1 col-4"
-                id="precio_final" value="{{this.reserva.precio_final}}" required="required"/><br>
+                id="precio_final" value="{{this.reserva.precio_final}}" readonly="readonly" required="required"/><br>
 
             </div>
           

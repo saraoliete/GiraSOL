@@ -18,7 +18,7 @@ export class ViewTipousuario implements OnInit{
      }
 
     View(){
-      let id:Number = this.tipousuario.id_tipousuario;
+      let id:Number = this.tipousuario.id;
       localStorage.getItem("id");
       this.service.getTipousuario(+id).subscribe(data=>{ this.tipousuario=data;})
     }

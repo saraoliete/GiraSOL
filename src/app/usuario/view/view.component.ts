@@ -25,9 +25,11 @@ export class ViewUsuario implements OnInit{
       this.router.navigate(["EditUsuario"]);
     }
 
-    Logout(usuario:Usuario){        
-      localStorage.setItem("id",usuario.id.toString());
-      this.router.navigate(["login"]);
+    Logout(){        
+      
+      this.service.logout();
+      alert("Has cerrado sesion correctamente");
+      this.router.navigate(["home"]);
     }
 
     Delete(usuario:Usuario):void{
