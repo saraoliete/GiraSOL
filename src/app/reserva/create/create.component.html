@@ -50,16 +50,17 @@
           <div class="form-group">
 
             <!-- email -->
+            
             <label for="fecha_llegada" class="ml-5 mr-1">Fecha llegada:</label>
-            <input
-              type="text" formControlName="fecha_llegada" name="fecha_llegada" class="form-control-sm ml-2 mr-2"
-              id="fecha_llegada" placeholder="Cuando quieres llegar?" required="required"/>
+              <input type="date" class="form-control-sm ml-2 mr-2" formControlName="fecha_llegada" 
+              name="fecha_llegada" placeholder="Cuando quieres llegar?" id="fecha_llegada" 
+              required="required" >
 
           
 
             <!-- localidad -->
             <label for="fecha_final" class="ml-5 mr-1">Fecha final</label>
-            <input type="text" formControlName="fecha_final" name="fecha_final" class="form-control-sm ml-2 mr-2"
+            <input type="date" formControlName="fecha_final" name="fecha_final" class="form-control-sm ml-2 mr-2"
               id="fecha_final" placeholder="Cuando te quieres ir?" required="required"/><br>
 
           </div>
@@ -72,7 +73,7 @@
 
             <label for="precio_final" class="ml-5 mr-2 mt-3">Precio final</label>
             <input type="number" formControlName="precio_final" name="precio_final" class="form-control-sm ml-2 mr-1 col-4"
-              id="precio_final" placeholder="coste total" readonly="readonly" required="required" /><br>
+              id="precio_final" placeholder="coste total" value="{{this.reserva.precio_final}}" readonly="readonly" required="required" /><br>
 
           </div>
           

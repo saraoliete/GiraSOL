@@ -33,6 +33,7 @@ export class CreateReserva implements OnInit{
     PrecioPension!:number;
     Days!:number;
 
+
     constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder, private datePipe:DatePipe) {
 
       this.formCreateReserva = this.fomrBuilder.group({
@@ -55,6 +56,9 @@ export class CreateReserva implements OnInit{
 
       //this.formCreateReserva.setValue({precio_final: this.Calculadora()});
 
+      this.reserva.precio_final = this.Calculadora();
+
+
      }
 
   CrearReserva() {
@@ -69,7 +73,7 @@ export class CreateReserva implements OnInit{
         this.reserva.fecha_llegada = new Date(this.formCreateReserva.get('fecha_llegada')?.value);
         this.reserva.fecha_final = new Date(this.formCreateReserva.get('fecha_final')?.value);
         
-        this.reserva.precio_final = this.Calculadora();
+        this.reserva.precio_final = this.formCreateReserva.get('precio_final')?.value;
 
 
 
@@ -93,6 +97,7 @@ export class CreateReserva implements OnInit{
     
   }
 
+
   Calculadora():number{
 
     let PrecioTotalVoid:number = this.PrecioTotal;
@@ -101,8 +106,21 @@ export class CreateReserva implements OnInit{
   this.formCreateReserva.get('fecha_final')?.value != undefined && 
   this.formCreateReserva.get('pension')?.value != undefined && 
   this.formCreateReserva.get('habitacion')?.value != undefined){
+
+    let dia_llegada = new Date(this.formCreateReserva.get('fecha_final')?.value).getDay();
+    let dia_partida = new Date(this.formCreateReserva.get('fecha_llegada')?.value).getDay();
+
+    if(dia_llegada < dia_partida){
+
+      this.Days = dia_partida - dia_llegada;
+      
+    }else if(dia_partida < dia_llegada){
+
+      this.Days = dia_llegada - dia_partida;
+
+    }
    
-   this.Days = new Date(this.formCreateReserva.get('fecha_final')?.value).getDay() - new Date(this.formCreateReserva.get('fecha_llegada')?.value).getDay();
+   
    
     for( let item of this.pensiones){
       
@@ -119,6 +137,7 @@ export class CreateReserva implements OnInit{
      PrecioTotalVoid = (this.PrecioHabitacion + this.PrecioPension)*this.Days;
      
     }
+    
     
     console.log("Días: " + this.Days);
     console.log("Precio pension: " + this.PrecioPension);

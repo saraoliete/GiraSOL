@@ -53,7 +53,7 @@
                         <td>{{reserva.usuario.nombre}}, {{reserva.usuario.apellidos}}</td>
                         <td>{{reserva.pension.tipo}}</td>
                         <td>{{reserva.habitacion.tipohabitacion.nombre}}</td>
-                        <td>{{reserva.cama_supletoria}}</td>
+                        <td><span *ngIf="reserva.cama_supletoria == true">Sí</span><span *ngIf="reserva.cama_supletoria == false">No</span></td>
                         <td>{{reserva.fecha_llegada}}</td>
                         <td>{{reserva.fecha_final}}</td>
                         <td>{{reserva.precio_final}}€</td>

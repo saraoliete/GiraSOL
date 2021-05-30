@@ -47,6 +47,8 @@ export class getPageReserva implements OnInit{
           this.totalPages = new Array(data.totalPages);
 
         })
+
+
         
     }
 

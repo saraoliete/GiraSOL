@@ -33,6 +33,7 @@ import { EditUsuario } from './usuario/edit/edit.component';
 import { getPageUsuario } from './usuario/page/page.component';
 import { PdfMakeWrapper } from 'pdfmake-wrapper';
 
+
 @NgModule({
   declarations: [
     AppComponent, 

@@ -1,3 +1,27 @@
+.title-header{
+
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+
+    .titulo{
+
+        position: absolute;
+        top: 5%;
+        padding: 0.1em 0.5em;
+        font-size: 50px; 
+        background: linear-gradient(45deg, #d7a499, #f4c9b9);
+        font-weight: bolder;
+        color: white;
+        z-index: 9999;
+        
+    }
+
+}
+
 .container{
 
     width: 100%;
@@ -6,19 +30,39 @@
     overflow: scroll;
     z-index: 999;
     text-transform: uppercase;
+    background-color: #e2f1f1;
     &::-webkit-scrollbar{
         display: none;
     }
 
-    .titulo{
+    .botones{
 
-        font-size: 50px; 
-        font-weight: bolder;
-        color: white;
+        margin-bottom: 74px;
+        z-index: 99;
+
+    .volver{
+
+        width: 30px;
+        height: 30px;
+        padding: 0.1em;
+        margin-top: 15px;
         
-    }
+        border: 3px solid indianred;
+        background-color: white;
+        color: indianred;
+        font-weight: bold;
 
-    .guardar, .volver{
+        &:hover{
+
+            background-color: indianred;
+            color: white;
+            cursor: pointer;
+        }
+    }
+}
+
+
+    .guardar{
 
         width: 30px;
         height: 28px;
@@ -48,31 +92,6 @@
         }
 
     }
-
-    .volver{
-
-        border-color: IndianRed ;
-        background-color: white;
-        color: IndianRed;
-
-        &:hover{
-
-            border-color: IndianRed ;
-            background-color: IndianRed;
-            color: white;
-            cursor: pointer;
-        }
-
-    }
-
-    
-        .titulo{
-
-            font-size: 50px; 
-            font-weight: bolder;
-            color: white;
-            
-        }
 
     
 
