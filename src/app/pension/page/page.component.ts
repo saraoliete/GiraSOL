@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ServiceService } from "src/app/Service/service.service";
 import { Pension } from '../../Modelo/pension';
 import swal from 'sweetalert2';
+import { PdfMakeWrapper, Table, Txt } from "pdfmake-wrapper";
 
 @Component({
   selector: "app-getPagePension",
@@ -11,6 +12,8 @@ import swal from 'sweetalert2';
 })
 export class getPagePension implements OnInit{
 
+    pdfMakerWrapper = new PdfMakeWrapper();
+    
     pension!: Array<any>;
     totalPages!: Array<number>;
 
@@ -78,10 +81,67 @@ export class getPagePension implements OnInit{
       this.cargarPensiones();
     }
 
+     //numero de cards
+     setSize(size:number):void{
+
+      this.size = size;
+      this.cargarPensiones();
+    }
+
     //ordenar por
     setOrder(order: string): void {
       this.order = order;
       this.cargarPensiones();
+    }
+
+    descargarPDF():void{
+
+      this.service.getPagePension(this.page, this.size, this.order, this.asc).subscribe
+        ((data: any)=>{
+          
+          console.log(data);
+          
+          this.pension = data.content;
+          this.isFirst = data.first;
+          this.isLast = data.last;
+          this.totalPages = new Array(data.totalPages);
+
+          this.pdfMakerWrapper = new PdfMakeWrapper();
+
+          this.pdfMakerWrapper.defaultStyle({
+
+            fontSize: 15,
+
+          });
+
+          this.pdfMakerWrapper.pageSize('A4');
+
+          this.pdfMakerWrapper.pageMargins([80, 40]);
+
+          this.pdfMakerWrapper.header([
+            new Txt('Listar pensiones').alignment('center').end
+          ]);
+          
+          for(let item of data.content){
+          
+            this.pdfMakerWrapper.add(  
+      
+            new Table([
+              ['idPension', item.id],
+              ['Tipo de pension', item.tipo],
+              ['Descripcion', item.descripcion],
+              ['Precio', item.precio]
+              
+            ]).widths([100, '*']).alignment('center').end
+            
+            );
+      
+          }
+          
+          this.pdfMakerWrapper.create().open();
+        })     
+
+
     }
 
     View(pension:Pension):void{

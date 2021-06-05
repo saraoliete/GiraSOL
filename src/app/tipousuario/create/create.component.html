@@ -1,0 +1,39 @@
+<div class="title-header">
+
+    <h3 class="float-left titulo">Crear tipo de usuario</h3>
+  </div>
+  
+  <div class="container col-md-6">
+  
+    <div class="botones">
+      <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
+    </div>
+  
+    <div class="card">
+      <div class="card-header">
+      </div>
+      <div class="card-body">
+  
+        <form [formGroup]="formCreateTipousuario" class="form">
+          <div class="form-group" style="display: flex; flex-direction: column; align-items: stretch;">  
+  
+            <!-- nombre -->
+            <div class="nombre_field" class="ml-5 mt-3">
+  
+              <label for="nombre">Nombre</label>
+              <input type="text" formControlName="nombre" name="nombre" class="form-control-sm col-3"
+                 required="required" style="margin-left: 10%;"/>
+  
+            </div>
+  
+              <div class="btn-reservar mt-3" style="display: flex; justify-content: flex-end;">
+  
+                  <button (click)="activarComponente()" class="btn guardar">Guardar registro</button>
+  
+              </div>
+        </div>
+      </form>
+    </div>
+  </div>
+    
+  </div>

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Login } from './Modelo/login';
 import { Usuario } from './Modelo/usuario';
 import { ServiceService } from './Service/service.service';
+import { StorageService } from './Service/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -17,28 +18,31 @@ export class AppComponent implements OnInit{
   check!:number;
 
   
-  constructor(private router:Router, public activatedRoute:ActivatedRoute, private service:ServiceService){ 
+  constructor(private router:Router, public activatedRoute:ActivatedRoute, private service:ServiceService, private storage: StorageService){ 
     this.isMasterSel = false;
   }
   
   ngOnInit(){
     
     let token = localStorage.getItem("token");
-    let id= localStorage.getItem("id");
-
-    if(token!=null){
-
-      this.service.getUsuario(id).subscribe(data=>{ this.usuario=data;});
-
-      console.log(token);
-    }
+    let id= localStorage.getItem("idUsuario");
+    let nombreUsuario = localStorage.getItem('nombreUsuario');
 
   }
+ 
+  recuperarIdUsuario(){
+    return localStorage.getItem('idUsuario');
+  }
 
-    ViewUser(usuario:Usuario){
+  mostrarUsuario(){
+    console.log('nombreUsuario:'+localStorage.getItem('nombreUsuario'));
+    return localStorage.getItem('nombreUsuario');
+  }
 
-      localStorage.setItem('id', usuario.id.toString());
-      this.router.navigate(['ViewUsuario']);
+    ViewUser(){
+      let idUsuario = String(localStorage.getItem("idUsuario"));
+      localStorage.setItem('id', idUsuario);
+      this.router.navigate(['app-PersonalView']);
       
     }
 
@@ -75,7 +79,7 @@ export class AppComponent implements OnInit{
     }
 
     home(){
-      this.router.navigate(["home"])
+      this.router.navigate(["app-root"])
     }
     
 }

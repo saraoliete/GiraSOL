@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ServiceService } from "src/app/Service/service.service";
 import { Habitacion } from '../../Modelo/habitacion';
 import swal from 'sweetalert2';
+import { PdfMakeWrapper, Table, Txt} from "pdfmake-wrapper";
 
 @Component({
   selector: "getPageHabitacion",
@@ -10,6 +11,8 @@ import swal from 'sweetalert2';
   styleUrls: ["./page.component.scss"]
 })
 export class getPageHabitacion implements OnInit{
+
+    pdfMakerWrapper = new PdfMakeWrapper();
 
     habitaciones!: Array<any>;
     totalPages!: Array<number>;
@@ -79,10 +82,69 @@ export class getPageHabitacion implements OnInit{
       this.cargarHabitaciones();
     }
 
+
+    //numero de cards
+    setSize(size:number):void{
+
+      this.size = size;
+      this.cargarHabitaciones();
+    }
+
     //ordenar por
     setOrder(order: string): void {
       this.order = order;
       this.cargarHabitaciones();
+    }
+
+
+    descargarPDF():void{
+
+      this.service.getPageHabitacion(this.page, this.size, this.order, this.asc).subscribe
+        (data=>{
+
+          console.log(data);
+          
+          this.habitaciones = data.content;
+          this.isFirst = data.first;
+          this.isLast = data.last;
+          this.totalPages = new Array(data.totalPages);
+
+          this.pdfMakerWrapper = new PdfMakeWrapper();
+
+          this.pdfMakerWrapper.defaultStyle({
+
+            fontSize: 15,
+
+          });
+
+          this.pdfMakerWrapper.pageSize('A4');
+
+          this.pdfMakerWrapper.pageMargins([80, 40]);
+
+          this.pdfMakerWrapper.header([
+            new Txt('Listar habitaciones').alignment('center').end
+          ]);
+          
+          for(let item of data.content){
+          
+            this.pdfMakerWrapper.add(  
+      
+            new Table([
+              ['idHabitacion', item.id],
+              ['Tipo de habitacion', item.tipohabitacion.nombre],
+              ['Descripcion', item.tipohabitacion.descripcion],
+              ['Precio', item.tipohabitacion.precio]
+              
+            ]).widths([100, '*']).alignment('center').end
+            
+            );
+      
+          }
+          
+          this.pdfMakerWrapper.create().open();
+        })     
+
+
     }
   
     Editar(habitacion:Habitacion):void{

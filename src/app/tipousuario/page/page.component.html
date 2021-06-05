@@ -1,29 +1,75 @@
-<div class="container">
+<div class="title-header">
 
-    <div class="card">
+    <h3 class="titulo">TIPO DE USUARIOS</h3>
+    
+</div>
+
+<div class="container col-md-7">
+    
+    <div class="botones">
+        
+        <button (click)="Create()" class="btn create m-1 float-right"><i class="fas fa-plus"></i></button>
+    
+    </div>
+
+    <div class="paginacion">
+
+        <table>
+            <tr>
+                <td (click)="setOrder('id')">ID</td>
+                <td (click)="setOrder('nombre')">Tipo</td>
+                <td (click)="sort()"><i class="fas fa-sort m-2"></i></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="card" *ngFor="let tipousuario of Tipousuarios">
 
         <div class="card-header">
-            <h3>Tipo Usuario</h3>
         </div>
 
         <div class="card-body">
             <table class="table">
                 <thead>
                     <tr class="text-center">
-                        <th>Id tipousuario</th>
-                        <th>Nombre del tipousuario</th>
+                        <th>Id</th>
+                        <th>Tipo</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let tipousuario of tipousuario" class="text-center">
-                        <td>{{tipousuario.id_tipousuario}}</td>
+                    <tr class="text-center">
+                        <td>{{tipousuario.id}}</td>
                         <td>{{tipousuario.nombre}}</td>
-                        <td>
-                            <button (click)="View(tipousuario)"class="btn btn-warning m-1">Ver</button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="card-footer">
+
+            <button (click)="View(tipousuario)" class="btn view m-1"><i class="fas fa-eye"></i></button>
+            <button (click)="Editar(tipousuario)" class="btn edit m-1"><i class="fas fa-edit"></i></button>
+            <button (click)="Delete(tipousuario)" class="btn m-1 delete1"><i class="fas fa-trash-alt"></i></button>
+
+        </div>
+
     </div>
-</div>
+
+    <div class="page_footer">
+
+        <div class="botones">
+            <button (click)="descargarPDF()" class="btn pdf m-1">Descargar PDF</button>
+        </div>
+
+        <div class="paginar">
+            <button class="btn btn-sm rewind" (click)="rewind()"><i class="fas fa-angle-double-left fa-2x"></i></button>
+    
+            <span *ngFor="let p of totalPages; let i = index">
+                <a style="cursor: pointer;" (click)="setPage(i)" [ngClass]="{'text-primary': i === page }">{{ i+1 }}&nbsp;&nbsp;&nbsp;</a>
+            </span>
+    
+            <button class="btn btn-sm forward" (click)="forward()"><i class="fas fa-angle-double-right fa-2x"></i></button>
+            
+        </div>
+
+    </div>

@@ -90,7 +90,6 @@ export class EditHabitacion implements OnInit{
         text: 'Los cambios en la habitación ' +  this.habitacion.id + ' no han sido guardados.',
         icon: 'error'
       });
-      this.router.navigate(["getPageHabitacion"]);
     }
 
     Volver(){        

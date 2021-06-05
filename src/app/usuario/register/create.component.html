@@ -1,9 +1,21 @@
+<div class="title-header">
+
+  <h3 class="titulo">Registrarse</h3>
+
+</div>
+
 <div class="container col-md-9">
+
+
+  <div class="botones">
+
+    <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
+
+  </div>
 
   <div class="card">
     <div class="card-header">
-      <h3 class="float-left">REGISTRARSE</h3>
-      <button (click)="Volver()" class="btn btn-light float-right">x</button>
+      
     </div>
     <div class="card-body">
 
@@ -14,15 +26,29 @@
         <div class="form-group" style="display: flex; justify-content: space-around; align-content: center;">  
   
         <!-- nombre -->
-        <label class="ml-4 mr-3" for="nombre">NOMBRE</label>
-          <input type="nombre" formControlName="nombre" name="nombre" id="nombre" class="form-control-sm col-3" required="required" value="{{this.usuario.nombre}}"/>
-        
+          <label class="ml-4 mr-3" for="nombre">NOMBRE</label>
+          <input type="text" formControlName="nombre" name="nombre" id="nombre" autocomplete="off" class="form-control-sm col-3" required="required" minlength="3" maxlength="45" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"/>
+          
+          <div class="validaciones" *ngIf="formCreateUser.get('nombre')?.errors && formCreateUser.get('nombre')?.dirty">
+            <p *ngIf="formCreateUser.get('nombre')?.hasError('required')">Este campo es obligatorio</p>
+            <p *ngIf="formCreateUser.get('nombre')?.hasError('pattern')">Introduce un nombre valido</p>
+            <p *ngIf="formCreateUser.get('nombre')?.hasError('minlength')">El mínimo de caracteres es 3</p>
+            <p *ngIf="formCreateUser.get('nombre')?.hasError('maxlength')">El máximo de caracteres es 45</p>
+            
+          </div>
   
         <!-- apellidos -->
           <label class="ml-4 mr-3" for="apellidos">APELLIDOS</label>
-          <input type="apellidos" formControlName="apellidos" name="apellidos"
-            id="apellidos" class=" form-control-sm col-3" required="required" value="{{this.usuario.apellidos}}"/>
+          <input type="text" formControlName="apellidos" name="apellidos" autocomplete="off"
+            id="apellidos" class=" form-control-sm col-3" required="required" minlength="36" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"/>
             
+            <div class="validaciones" *ngIf="formCreateUser.get('apellidos')?.errors && formCreateUser.get('apellidos')?.dirty">
+              <p *ngIf="formCreateUser.get('apellidos')?.hasError('required')">Este campo es obligatorio</p>
+              <p *ngIf="formCreateUser.get('apellidos')?.hasError('pattern')">Introduce unos apellidos validos</p>
+              <p *ngIf="formCreateUser.get('apellidos')?.hasError('minlength')">El mínimo de caracteres es 2</p>
+              <p *ngIf="formCreateUser.get('apellidos')?.hasError('maxlength')">El máximo de caracteres es 36</p>
+              
+            </div>
             
           </div>
           
@@ -30,8 +56,14 @@
             
             <!-- dni -->
             <label class="ml-4 mr-3" for="dni" style="position: relative; right: 107px;">DNI</label>
-            <input type="dni" formControlName="dni" name="dni"
-            id="dni" class="form-control-sm col-3" required="required" value="{{this.usuario.dni}}"/>
+            <input type="text" formControlName="dni" name="dni" autocomplete="off"
+            id="dni" class="form-control-sm col-3" required="required" pattern="^[0-9]{8}[A-Za-z]$"/>
+
+            <div class="validaciones" *ngIf="formCreateUser.get('dni')?.errors && formCreateUser.get('dni')?.dirty">
+              <p *ngIf="formCreateUser.get('dni')?.hasError('required')">Este campo es obligatorio</p>
+              <p *ngIf="formCreateUser.get('dni')?.hasError('pattern')">Introduce un dni valido</p>
+              
+            </div>
           
           <!-- genero -->
           <label class="ml-5" for="male">HOMBRE</label>
@@ -44,8 +76,14 @@
         
           <!-- edad -->
             <label class="ml-4 mr-3" for="edad">EDAD</label>
-            <input type="text" formControlName="edad" name="edad"
-              id="edad" class="form-control-sm col-1 ml-2"  required="required" value="{{this.usuario.edad}}"/>
+            <input type="number" formControlName="edad" name="edad" autocomplete="off"
+              id="edad" class="form-control-sm col-1 ml-2"  required="required" maxlength="3"/>
+
+            <div class="validaciones" *ngIf="formCreateUser.get('edad')?.errors && formCreateUser.get('edad')?.dirty">
+              <p *ngIf="formCreateUser.get('edad')?.hasError('required')">Este campo es obligatorio</p>
+              <p *ngIf="formCreateUser.get('edad')?.hasError('maxlength')">El máximo de caracteres es 3</p>
+              
+            </div>
 
         </div>
           
@@ -54,13 +92,27 @@
           <!-- email -->
           <label class="ml-4 mr-4" for="email">EMAIL</label>
             <input
-              type="email" formControlName="email" name="email"
-              id="email" class="form-control-sm col-4 ml-5" required="required" value="{{this.usuario.email}}"/>
+              type="text" formControlName="email" name="email" autocomplete="off"
+              id="email" class="form-control-sm col-4 ml-5" required="required" minlength="6" minlength="30" pattern="^\S+@\S+\.\S+$"/>
+
+              <div class="validaciones" *ngIf="formCreateUser.get('email')?.errors && formCreateUser.get('email')?.dirty">
+                <p *ngIf="formCreateUser.get('email')?.hasError('required')">Este campo es obligatorio</p>
+                <p *ngIf="formCreateUser.get('email')?.hasError('pattern')">Introduce un email valido</p>
+                <p *ngIf="formCreateUser.get('email')?.hasError('minlength')">El mínimo de caracteres es 6</p>
+                <p *ngIf="formCreateUser.get('email')?.hasError('maxlength')">El máximo de caracteres es 30</p>
+                
+              </div>
     
             <!-- ttelefono -->
               <label class="ml-4" for="telefono">TELEFONO</label>
-              <input type="text" formControlName="telefono" name="telefono"
-                id="telefono" class="form-control-sm col-3" required="required" value="{{this.usuario.telefono}}"/>
+              <input type="text" formControlName="telefono" name="telefono" autocomplete="off"
+                id="telefono" class="form-control-sm col-3" required="required" pattern="^(6|7|9)[0-9]{8}$"/>
+
+                <div class="validaciones" *ngIf="formCreateUser.get('telefono')?.errors && formCreateUser.get('telefono')?.dirty">
+                  <p *ngIf="formCreateUser.get('telefono')?.hasError('required')">Este campo es obligatorio</p>
+                  <p *ngIf="formCreateUser.get('telefono')?.hasError('pattern')">Introduce un telefono valido</p>
+                  
+                </div>
 
         </div>
   
@@ -69,13 +121,25 @@
               
               <!-- localidad -->
                 <label class="ml-2 mr-3" for="localidad">LOCALIDAD</label>
-                <input type="text" formControlName="localidad" name="localidad"
-                  id="localidad" class="form-control-sm col-3" required="required" value="{{this.usuario.localidad}}"/>
+                <input type="text" formControlName="localidad" name="localidad" autocomplete="off"
+                  id="localidad" class="form-control-sm col-3" required="required" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"/>
+
+                  <div class="validaciones" *ngIf="formCreateUser.get('localidad')?.errors && formCreateUser.get('localidad')?.dirty">
+                    <p *ngIf="formCreateUser.get('localidad')?.hasError('required')">Este campo es obligatorio</p>
+                    <p *ngIf="formCreateUser.get('localidad')?.hasError('pattern')">Introduce una localidad valida</p>
+                    
+                  </div>
       
               <!-- nacionalidad -->
                 <label class="ml-4" for="nacionalidad">NACIONALIDAD</label>
-                <input type="text" formControlName="nacionalidad" name="nacionalidad"
-                  id="nacionalidad" class="form-control-sm col-3" required="required" value="{{this.usuario.nacionalidad}}"/>
+                <input type="text" formControlName="nacionalidad" name="nacionalidad" autocomplete="off"
+                  id="nacionalidad" class="form-control-sm col-3" required="required" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"/>
+
+                  <div class="validaciones" *ngIf="formCreateUser.get('nacionalidad')?.errors && formCreateUser.get('nacionalidad')?.dirty">
+                    <p *ngIf="formCreateUser.get('nacionalidad')?.hasError('required')">Este campo es obligatorio</p>
+                    <p *ngIf="formCreateUser.get('nacionalidad')?.hasError('pattern')">Introduce una nacionalidad valida</p>
+                    
+                  </div>
 
             </div>
   
@@ -87,18 +151,64 @@
           <div class="form-group" style="display: flex; justify-content: space-evenly; align-items: center;">
   
             <label class="ml-4" for="nombreusuario">NOMBRE DE USUARIO</label>
-            <input type="text" formControlName="nombreusuario" name="nombreusuario"
-            id="nombreusuario" class="form-control-sm col-3" required="required" value="{{this.usuario.nombreusuario}}"/> 
+            <input type="text" formControlName="nombreusuario" name="nombreusuario" autocomplete="off"
+            id="nombreusuario" class="form-control-sm col-3" required="required" minlength="6" maxlength="13" pattern="^[0-9A-Za-z_.]+$"/>
+
+            <div class="validaciones" *ngIf="formCreateUser.get('nombreusuario')?.errors && formCreateUser.get('nombreusuario')?.dirty">
+              <p *ngIf="formCreateUser.get('nombreusuario')?.hasError('required')">Este campo es obligatorio</p>
+              <p *ngIf="formCreateUser.get('nombreusuario')?.hasError('pattern')">Introduce un nombre de usuario valido</p>
+              <p *ngIf="formCreateUser.get('nombreusuario')?.hasError('minlength')">El mínimo de caracteres es 6</p>
+              <p *ngIf="formCreateUser.get('nombreusuario')?.hasError('maxlength')">El máximo de caracteres es 13</p>
+              
+            </div>
   
             <label class="ml-4" for="password">CONTRASEÑA</label>
-            <input type="text" formControlName="password" name="password"
-              id="password" class="form-control-sm col-3" required="required" value="{{this.usuario.password}}"/>
+            <input type="text" formControlName="password" name="password" autocomplete="off"
+              id="password" class="form-control-sm col-3" required="required" minlength="7" maxlength="13" pattern="^[0-9A-Za-z_.\s]+$"/>
 
-      </div>
+              <div class="validaciones" *ngIf="formCreateUser.get('password')?.errors && formCreateUser.get('password')?.dirty">
+                <p *ngIf="formCreateUser.get('password')?.hasError('required')">Este campo es obligatorio</p>
+                <p *ngIf="formCreateUser.get('password')?.hasError('pattern')">Introduce una contraseña valida</p>
+                <p *ngIf="formCreateUser.get('password')?.hasError('minlength')">El mínimo de caracteres es 7</p>
+                <p *ngIf="formCreateUser.get('password')?.hasError('maxlength')">El máximo de caracteres es 13</p>
+                
+              </div>
+
+              
+            </div>
+            
+            <div class="form-group" style="display: none; justify-content: center; align-items: center;">
+              
+              <label for="tipousuario" class="m-1 ml-5">Tipo de usuario</label>
+              <input type="number" name="tipousuario" formControlName="tipousuario" class="form-control-sm ml-1 col-2" />
+
+              <div class="validaciones" *ngIf="formCreateUser.get('tipousuario')?.errors && formCreateUser.get('tipousuario')?.dirty">
+                <p *ngIf="formCreateUser.get('tipousuario')?.hasError('required')">Este campo es obligatorio</p>
+                
+              </div>
+
+              
+
+          </div>
+
+          <div class="form-group" style="display: none;">
+              
+            <!-- token -->
+            <label class="ml-4" for="token">Token</label>
+            <input type="text" formControlName="token" name="token"
+            id="token" class="form-control-sm col-3"/> 
+
+            <!-- validado -->
+            <label for="validado" class="ml-5 mr-1">Validado<input type="checkbox" [checked]="true" class="ml-2 mr-5" formControlName="validado" id="validado" value="1"> </label><br>
+
+            <!-- activo -->
+            <label for="activo" class="ml-5 mr-1">Activo<input type="checkbox" [checked]="true" class="ml-2 mr-5" formControlName="activo" id="activo" value="1"> </label><br>
+
+        </div>
   
       </fieldset>
         
-        <button class="btn btn-primary float-right">FINALIZAR</button>
+      <button (click)="register()" class="btn guardar float-right">Registrarse</button>
       </form>
 
     </div>

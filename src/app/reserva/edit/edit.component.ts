@@ -3,7 +3,7 @@
 //crear el usuario
 
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Habitacion } from "src/app/Modelo/habitacion";
 import { Pension } from "src/app/Modelo/pension";
@@ -13,6 +13,7 @@ import { Usuario } from "src/app/Modelo/usuario";
 import { ServiceService } from "src/app/Service/service.service";
 import swal from 'sweetalert2';
 import {DatePipe} from '@angular/common';
+
 
 @Component({
   selector: "EditReserva",
@@ -24,6 +25,9 @@ export class EditReserva implements OnInit{
   formEditReserva!: FormGroup;
 
     reserva!:Reserva;
+    pension!:Pension;
+    habitacion!:Tipohabitacion;
+
     pensiones!: Array<Pension>;
     habitaciones!: Array<Tipohabitacion>;
 
@@ -32,16 +36,19 @@ export class EditReserva implements OnInit{
     PrecioPension!:number;
     Days!:number;
 
+    fecha_llegada:Date = new Date();
+    fecha_final:Date = new Date();
+
     constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder, private DatePipe:DatePipe) {
 
       this.formEditReserva = this.fomrBuilder.group({
         id:[],
         usuario:[],
-        pension:[],
-        habitacion:[],
+        pension:['', [Validators.required]],
+        habitacion:['', [Validators.required]],
         cama_supletoria:[],
-        fecha_llegada:[],
-        fecha_final:[],
+        fecha_llegada:['', [Validators.required]],
+        fecha_final:['', [Validators.required]],
         precio_final:[]
 
       })
@@ -60,14 +67,19 @@ export class EditReserva implements OnInit{
       this.service.getAllPension().subscribe(data=> this.pensiones=data);
 
       this.service.getReserva(id).subscribe(data=> {
-      this.reserva=data;this.formEditReserva.get('habitacion')?.setValue(this.reserva.habitacion.id); 
+      this.reserva=data;
+      this.formEditReserva.get('habitacion')?.setValue(this.reserva.habitacion.id); 
       this.formEditReserva.get('pension')?.setValue(this.reserva.pension.id);
       this.formEditReserva.get('usuario')?.setValue(this.reserva.usuario.id);
-      this.formEditReserva.get('fecha_llegada')?.setValue(this.DatePipe.transform(this.reserva.fecha_llegada, "dd-MM-yyyy hh:mm:ss"));
-      this.formEditReserva.get('fecha_final')?.setValue(this.DatePipe.transform(this.reserva.fecha_final, "dd-MM-yyyy hh:mm:ss"));})
-      
+      this.formEditReserva.get('cama_supletoria')?.setValue(this.reserva.cama_supletoria);
+      this.formEditReserva.get('fecha_llegada')?.setValue(this.reserva.fecha_llegada);
+      this.formEditReserva.get('fecha_final')?.setValue(this.reserva.fecha_final);
+      this.formEditReserva.get('precio_final')?.setValue(this.reserva.precio_final);
 
-      this.formEditReserva.patchValue({precio_final: 0});
+      console.log(this.formEditReserva.get('precio_final')?.value);
+
+      
+    })
 
      }
 
@@ -103,21 +115,30 @@ export class EditReserva implements OnInit{
         this.reserva.cama_supletoria = this.formEditReserva.get('cama_supletoria')?.value;
         this.reserva.fecha_llegada = new Date(this.formEditReserva.get('fecha_llegada')?.value);
         this.reserva.fecha_final = new Date(this.formEditReserva.get('fecha_final')?.value);
+
+        console.log("Fecha llegada: " + this.formEditReserva.get('fecha_llegada')?.value);
+        console.log("Fecha final " + this.formEditReserva.get('fecha_final')?.value);
+        
         this.reserva.precio_final = this.Calculadora();
+
+        console.log(this.reserva.precio_final);
+
 
 
      
      this.service.updateReserva(this.reserva).subscribe(data => {
       //this.reserva = data;
       console.log(data);
-     this.router.navigate(["getPageReserva"]);
+      this.router.navigate(["getPageReserva"]);
+
+      swal.fire({
+        title: '¡Enhorabuena!',
+        text: 'La reserva ' + this.reserva.id + ' ha sido editada correctamente.',
+        icon: 'success'
+      });
+      
    }, error => console.log(error));
      
-   swal.fire({
-     title: '¡Enhorabuena!',
-     text: 'La reserva ' + this.reserva.id + ' ha sido editada correctamente.',
-     icon: 'success'
-   });
    
  }
 
@@ -135,30 +156,56 @@ export class EditReserva implements OnInit{
   Calculadora():number{
 
     let PrecioTotalVoid:number = this.PrecioTotal;
+    let diaEnMils = 1000 * 60 * 60 *24;
 
   if(this.formEditReserva.get('fecha_llegada')?.value != undefined && 
   this.formEditReserva.get('fecha_final')?.value != undefined && 
   this.formEditReserva.get('pension')?.value != undefined && 
   this.formEditReserva.get('habitacion')?.value != undefined){
-   
-   this.Days = new Date(this.formEditReserva.get('fecha_final')?.value).getDay() - new Date(this.formEditReserva.get('fecha_llegada')?.value).getDay();
-   
-    for( let item of this.pensiones){
+
+    let dia_llegada = new Date(this.formEditReserva.get('fecha_final')?.value).getTime();
+    let dia_partida = new Date(this.formEditReserva.get('fecha_llegada')?.value).getTime();
+
+    console.log('dia llegada: ' + dia_llegada + ', dia partida: ' + dia_partida);
+
+    if(dia_llegada < dia_partida){
+
+      this.Days = Math.floor((dia_partida - dia_llegada) / diaEnMils );
       
-      this.PrecioPension = item.precio;
-      
-     }
+    }else if(dia_partida < dia_llegada){
+
+      this.Days = Math.floor((dia_llegada - dia_partida) / diaEnMils );
+
+    }
+   
+   
+   
+      for( let item of this.pensiones){
+
+        this.PrecioPension = item.precio;
+
+      }
 
      for(let item of this.habitaciones){
-   
-      this.PrecioHabitacion = item.precio;
-   
-     }
+  
+        this.PrecioHabitacion = item.precio;
+  
+      }
 
-     PrecioTotalVoid = (this.PrecioHabitacion + this.PrecioPension)*this.Days;
+     if(this.formEditReserva.get('cama_supletoria')?.value != false){
+
+
+      PrecioTotalVoid = (this.PrecioHabitacion + this.PrecioPension)*this.Days + 5;
+
+     }else{
+
+      PrecioTotalVoid = (this.PrecioHabitacion + this.PrecioPension)*this.Days;
+
+     }
 
      
     }
+    
     
     console.log("Días: " + this.Days);
     console.log("Precio pension: " + this.PrecioPension);

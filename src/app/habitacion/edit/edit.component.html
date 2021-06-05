@@ -1,35 +1,52 @@
-<div class="container col-md-5">
+<div class="title-header">
 
-  <h3 class="titulo">Editar Habitacion</h3>
+  <h3 class="float-left titulo">Editar habitación {{this.habitacion.id}}</h3>
+</div>
 
-    <div class="card form-card">
+<div class="container col-md-6">
+
+  <div class="botones">
+    <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
+  </div>
+
+    <div class="card">
       <div class="card-header form-header">
       </div>
       <div class="card-body form-body">
   
           <form [formGroup]="formEditHabitacion" class="form">
 
-            <div class="form-group text-justify">
+            <div class="form-group text-justify" style="display: flex; flex-direction: column; align-items: stretch;">
 
-              <label for="id" class="m-1 ml-5">Id habitación</label>
-              <input type="text" class="form-control-sm ml-5 col-3" formControlName="id" readonly="readonly" value="{{this.habitacion.id}}">
+              <!-- id -->
+            <div class="nombre_field ml-5 mt-3">
+              
+              <label for="id">Id</label>
+              <input type="text" class="form-control-sm col-1" formControlName="id" style="margin-left: 27%;" readonly="readonly" value="{{this.habitacion.id}}">
+
             </div>
-
-            <div class="form-group text-justify">
-    
-              <label for="tipohabitacion" class="m-1 ml-5">Tipo de habitacion</label>
-              <select name="miselect" formControlName="tipohabitacion" class="form-control-sm ml-1">
+            
+              
+              <!-- id -->
+            <div class="nombre_field ml-5 mt-3">
+              
+              <label for="tipohabitacion">Tipo de habitacion</label>
+              <select name="miselect" formControlName="tipohabitacion" style="margin-left: 5%;" class="form-control-sm col-3">
                   <option value="{{item.id}}" *ngFor="let item of lista">{{item.nombre}}</option>
                   </select>
+
+                  
+                </div>
+                
+            <div class="btn-reservar mt-3" style="display: flex; justify-content: flex-end;">
+  
+                  <button (click)="activarComponente()" class="btn guardar">Guardar registro</button>
+  
+            </div>
 
           </div>
         </form>
 
-    </div>
-
-    <div class="card-footer form-footer">
-      <button (click)="activarComponente()" class="btn btn-primary float-right m-1 guardar"><i class="fas fa-save"></i></button>
-      <button (click)="Volver()" class="btn btn-danger float-right m-1 volver"><i class="fas fa-arrow-alt-left"></i></button>
     </div>
 
     

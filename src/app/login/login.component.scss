@@ -1,15 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+.title-header{
+
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+
+    .titulo{
+
+        position: absolute;
+        top: 5%;
+        padding: 0.1em 0.5em;
+        font-size: 50px; 
+        background: linear-gradient(45deg, #d7a499, #f4c9b9);
+        font-weight: bolder;
+        color: white;
+        z-index: 9999;
+        
+    }
+
+}
 
 .container{
 
-    font-family: 'Indie Flower', cursive;
+    z-index: 999;
+    width: 100%;
+    height: 370px;
+    margin: 3% auto;
+    top: 30px;
+    right: 90px;
+    left: 90px;
+    overflow: scroll;
+    background-color: #e2f1f1;
+    text-transform: uppercase;
+    position: absolute;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+    text-transform: uppercase;
+
+    .volver{
+
+        margin-bottom: 74px;
+
+        .exit{
     
+            width: 30px;
+            height: 30px;
+            padding: 0.1em;
+            margin-top: 15px;
+            
+            border: 3px solid indianred;
+            background-color: white;
+            color: indianred;
+            font-weight: bold;
+    
+            &:hover{
+    
+                background-color: indianred;
+                color: white;
+                cursor: pointer;
+            }
+    
+        }
+    }
+
     .card{
+
         width: 100%;
-        height: 280px;
-        margin: 90px auto;
         font-weight: bolder;
-        box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
+        margin-top: 12%;
+        border-radius: 0px;
+        border-width: 0px;
 
         .card-header{
 
@@ -19,43 +82,58 @@
             background-image: url(../../assets/fondo5.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            background-position-y: -285px;
+            background-position-y: -300px;
+    
+           }
 
-            .btn-light{
+           .card-body{
 
-                width: 30px;
-                height: 30px;
-                padding: 0%;
-                margin-top: -13px;
-                margin-right: -21px;
-                border-radius: 5px;
+            .nombre_field, .numero_camas_field, .descripcion_field, .precio_field{
 
-                &:hover{
+                display: flex;
+                align-items: center;
 
-                    
+                .validaciones{
+
+                    width: 50%;
+                    margin-left: 5%;
+
+                    p{
+
+                        font-size: 11px;
+                        color: red;
+                        line-height: 10px;
+                        letter-spacing: 1px;
+                        margin-bottom: 4%;
+                    }
                 }
             }
-        
-        
-            }
-
-        .card-body{
-
-            .btn-primary{
-
-                width: 140px;
-                height: 30px;
-                padding: 0%;
-                margin-right: 30px;
-            }
-        }
-
-        
-    }
+           }
 
     
-        
-        
-        
 
+    .guardar{
+
+        height: 30px;
+        padding: 0%;
+        margin-bottom: 0px;
+        margin-right: 3.7%;
+        border-width: 2px;
+        border-style: solid;
+        font-weight: bold;
+        text-transform: uppercase;
+
+        border-color: #5DADE2 ;
+        background-color: white;
+        color: #5DADE2 ;
+
+        &:hover{
+
+            background-color: #5DADE2 ;
+            color: white;
+            cursor: pointer;
+        }
+    }
+        
+    }
 }

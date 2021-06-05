@@ -1,0 +1,157 @@
+.title-header{
+
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+
+    .titulo{
+
+        position: absolute;
+        top: 5%;
+        padding: 0.1em 0.5em;
+        font-size: 50px; 
+        background: linear-gradient(45deg, #d7a499, #f4c9b9);
+        font-weight: bolder;
+        color: white;
+        z-index: 9999;
+        
+    }
+
+}
+
+.container{
+    z-index: 999;
+    width: 100%;
+    height: 355px;
+    text-align: center;
+    top: 30px;
+    margin: 3% auto;
+    overflow: scroll;
+    background-color: #e2f1f1;
+    text-transform: uppercase;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+
+    .botones{
+
+        margin-bottom: 74px;
+        z-index: 99;
+
+        .exit{
+    
+            width: 30px;
+            height: 30px;
+            padding: 0.1em;
+            margin-top: 15px;
+            
+            border: 3px solid IndianRed;
+            background-color: white;
+            color: IndianRed;
+            font-weight: bold;
+    
+            &:hover{
+    
+                background-color: white;
+                color: IndianRed;
+                cursor: pointer;
+            }
+    
+        }
+    }
+
+    .card{
+
+        width: 100%;
+        height: 250px;        
+        font-weight: bolder;
+        margin-bottom: 2%;
+        border-radius: 0px;
+        border-width: 0px;
+
+       .card-header{
+
+        color: white;
+        border-radius: 5px;
+        height: 50px;
+        background-image: url(../../../assets/fondo5.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-y: -300px;        
+        
+        
+       }
+
+       .card-body{
+
+        vertical-align: middle ;
+        padding: 0px;
+           
+           table{
+               
+                thead{
+                    
+                    th{       
+                        
+                        vertical-align: middle ;
+
+                    }
+
+                }
+
+                tbody{
+
+                    tr{
+                        vertical-align: middle ;
+                    }
+                }
+            }
+       }
+
+       .card-footer{
+
+        .edit{
+
+        width: 30px;
+        height: 30px;
+        padding: 0.1em;
+        margin-top: 0.5%;
+        border-width: 3px;
+        border-style: solid;
+        border-color: rgb(255, 194, 41) ;
+        background-color: white;
+        color: rgb(255, 194, 41);
+
+
+        &:hover{
+
+            border-color: rgb(255, 194, 41) ;
+            background-color: rgb(255, 194, 41);
+            color: white;
+            cursor: pointer;
+        }
+        }
+
+        .pdf{
+    
+            height: 30px;
+            padding: 0.1em;
+            border: 3px solid #66403b;
+            background-color: white;
+            color: #66403b;
+            font-weight: bold;
+    
+            &:hover{
+    
+                color: white;
+                background-color: #66403b;
+                cursor: pointer;
+            }
+    
+        }
+       }
+    }
+}

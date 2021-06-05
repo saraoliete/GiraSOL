@@ -19,9 +19,11 @@ export class CreatePension implements OnInit{
 
     constructor(private service:ServiceService, private router:Router, private formBuilder:FormBuilder){
         this.formCreatePension = this.formBuilder.group({
-            tipo:[],
-            descripcion:[],
-            precio:[]      
+          
+          tipo:['', [Validators.required], [Validators.maxLength]],
+          descripcion:['', [Validators.required], [Validators.maxLength]],
+          precio:['', [Validators.required], [Validators.pattern]]  
+
           })
     }
 

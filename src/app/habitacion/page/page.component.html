@@ -13,6 +13,13 @@
         <button (click)="Galeria()" class="btn btn-sm btn-success m-1 float-right"><i class="far fa-images"></i></button>
 
     </div>
+
+    <div class="size">
+        <p style="text-align: center; margin-bottom: 0%; font-weight: 600; color: #66403b;">Habitaciones a mostrar:</p>
+        <button  class="btn setSize m-1" style="cursor: pointer;" (click)="setSize(5)">4</button>
+        <button  class="btn setSize m-1" style="cursor: pointer;" (click)="setSize(10)">8</button>
+        <button  class="btn setSize m-1" style="cursor: pointer;" (click)="setSize(15)">16</button>
+    </div>
     
     <div class="paginacion">
 
@@ -67,14 +74,23 @@
 
     </div>
 
-    <div class="float-right paginar m-1">
-        <button class="btn btn-sm rewind" (click)="rewind()"><i class="fas fa-angle-double-left fa-2x"></i></button>
+    <div class="page_footer">
 
-        <span *ngFor="let p of totalPages; let i = index">
-            <a style="cursor: pointer;" (click)="setPage(i)" [ngClass]="{'text-primary': i === page }">{{ i+1 }}&nbsp;&nbsp;&nbsp;</a>
-        </span>
+        <div class="botones">
+            <button (click)="descargarPDF()" class="btn pdf m-1">Descargar PDF</button>
+        </div>
 
-        <button class="btn btn-sm forward" (click)="forward()"><i class="fas fa-angle-double-right fa-2x"></i></button>
+        <div class="paginar">
+            <button class="btn btn-sm rewind" (click)="rewind()"><i class="fas fa-angle-double-left fa-2x"></i></button>
+    
+            <span *ngFor="let p of totalPages; let i = index">
+                <a style="cursor: pointer;" (click)="setPage(i)" [ngClass]="{'text-primary': i === page }">{{ i+1 }}&nbsp;&nbsp;&nbsp;</a>
+            </span>
+    
+            <button class="btn btn-sm forward" (click)="forward()"><i class="fas fa-angle-double-right fa-2x"></i></button>
+            
+        </div>
+        
     </div>
 
 

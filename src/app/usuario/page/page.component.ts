@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { ServiceService } from "src/app/Service/service.service";
 import { Usuario } from '../../Modelo/usuario';
 import swal from 'sweetalert2';
+import { PdfMakeWrapper, Table, Txt } from "pdfmake-wrapper";
+import { isEqual } from "date-fns";
 
 @Component({
   selector: "app-getPageUsuario",
@@ -10,6 +12,8 @@ import swal from 'sweetalert2';
   styleUrls: ["./page.component.scss"]
 })
 export class getPageUsuario implements OnInit{
+
+  pdfMakerWrapper = new PdfMakeWrapper();
 
     usuario!:Array<Usuario>;
     totalPages!: Array<number>;
@@ -78,10 +82,75 @@ export class getPageUsuario implements OnInit{
       this.cargarUsuarios();
     }
 
+    //numero de cards
+    setSize(size:number):void{
+
+      this.size = size;
+      this.cargarUsuarios();
+    }
+
     //ordenar por
     setOrder(order: string): void {
       this.order = order;
       this.cargarUsuarios();
+    }
+
+    descargarPDF():void{
+
+      this.service.getPageUsuario(this.page, this.size, this.order, this.asc).subscribe
+        (data=>{
+
+          console.log(data);
+
+          this.usuario = data.content;
+          this.isFirst = data.first;
+          this.isLast = data.last;
+          this.totalPages = new Array(data.totalPages);
+
+          this.pdfMakerWrapper = new PdfMakeWrapper();
+
+          this.pdfMakerWrapper.defaultStyle({
+
+            fontSize: 15,
+
+          });
+
+          this.pdfMakerWrapper.pageSize('A4');
+
+          this.pdfMakerWrapper.pageMargins([80, 40]);
+
+          this.pdfMakerWrapper.header([
+            new Txt('Listar usuarios').alignment('center').end
+          ]);
+          
+          for(let item of data.content){
+          
+            this.pdfMakerWrapper.add(  
+      
+            new Table([
+              ['idUsuario', item.id],
+              ['Nombre de usuario', item.nombreusuario],
+              ['Tipo de usuario', item.tipousuario.nombre],
+              ['Nombre', item.nombre],
+              ['Apellidos', item.apellidos],
+              ['DNI', item.dni],
+              ['Edad', item.edad],
+              ['Sexo', item.sexo],
+              ['Email', item.email],
+              ['Localidad', item.localidad],
+              ['Nacionalidad', item.nacionalidad],
+              ['Teléfono', item.telefono]
+              
+            ]).widths([100, '*']).alignment('center').end
+            
+            );
+      
+          }
+          
+          this.pdfMakerWrapper.create().open();
+        })     
+
+
     }
 
     View(usuario:Usuario):void{

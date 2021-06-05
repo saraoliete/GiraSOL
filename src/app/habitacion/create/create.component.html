@@ -1,22 +1,41 @@
+<div class="title-header">
+
+  <h3 class="float-left titulo">Crear habitación</h3>
+</div>
+
 <div class="container col-md-6">
+
+  <div class="botones">
+    <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
+  </div>
 
   <div class="card form-card">
     <div class="card-header form-header">
-      <h3 class="float-left">CREAR HABITACIÓN</h3>
-      <button (click)="Volver()" class="btn btn-light float-right">x</button>
     </div>
     <div class="card-body form-body">
 
       <form [formGroup]="formCreateHabitacion" class="form">
-        <div class="form-group text-justify">
+        <div class="form-group text-justify" style="display: flex; flex-direction: column; align-items: stretch;">
 
-          <label for="tipohabitacion" class="m-1 ml-5">Tipo de habitacion</label>
-          <select name="miselect" formControlName="tipohabitacion" class="form-control-sm ml-1" >
-            <option value="{{item.id}}" *ngFor="let item of lista">{{item.nombre}}</option>
-          </select>
+          <div class="ml-5 mt-3 tipohabitacion_field">
 
-        <button (click)="createHabitacion()" type="btn btn-primary" class="btn btn-primary float-right m-1">GUARDAR</button>
-      </div>
+            <label for="tipohabitacion">Tipo de habitacion</label>
+            <select name="miselect" formControlName="tipohabitacion" style="margin-left: 10%;" class="form-control-sm" >
+              <option value="{{item.id}}" *ngFor="let item of lista">{{item.nombre}}</option>
+            </select>
+
+            <div class="validaciones" *ngIf="formCreateHabitacion.get('tipohabitacion')?.errors && formCreateHabitacion.get('tipohabitacion')?.dirty">
+              <p *ngIf="formCreateHabitacion.get('tipohabitacion')?.hasError('required')">Este campo es obligatorio</p>
+            </div>
+
+          </div>
+
+          <div class="btn-reservar mt-3" style="display: flex; justify-content: flex-end;">
+
+            <button (click)="createHabitacion()" [disabled]="formCreateHabitacion.invalid" class="btn guardar">Guardar registro</button>
+      
+          </div>
+        </div>
     </form>
   </div>
 </div>

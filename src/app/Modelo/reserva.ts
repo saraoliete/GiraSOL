@@ -10,8 +10,8 @@ export class Reserva{
     habitacion:Habitacion = new Habitacion();
     cama_supletoria:boolean | undefined;
 
-    fecha_llegada:Date | undefined;
-    fecha_final:Date | undefined;
+    fecha_llegada!:Date;
+    fecha_final!:Date;
 
     precio_final!:number;
 

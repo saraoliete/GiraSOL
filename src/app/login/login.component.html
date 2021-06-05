@@ -1,10 +1,22 @@
+<div class="title-header">
+
+  <h3 class="float-left titulo">Iniciar sesión</h3>
+</div>
+
 <div class="container col-md-6">
 
+  <div class="volver">
+        
+    <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-times"></i></button>
+  
+  </div>
+
   <div class="card">
-    <div class="card-header">
-      <h3 class="float-left">INICIAR SESIÓN</h3>
-      <button (click)="Volver()" class="btn btn-light float-right">x</button>
-    </div>
+
+      <div class="card-header">
+
+      </div>
+
     <div class="card-body">
 
       <form [formGroup]="formLogin" class="form" (ngSubmit)="Login()">
@@ -12,13 +24,13 @@
 
           <label class="ml-5 mr-3 mt-4" for="nombreusuario">NOMBRE DE USUARIO</label>
           <input type="nombreusuario" formControlName="nombreusuario" name="nombreusuario" class="col-5 m-4"
-            id="nombreusuario" class="form-control-sm col-4 ml-4 mr-5" required="required"/><br>
+            id="nombreusuario" autocomplete="off" class="form-control-sm col-4 ml-4 mr-5" required="required"/><br>
 
           <label class="ml-5 mr-5 mt-4" for="password">CONTRASEÑA</label>
           <input type="password" formControlName="password" name="password" class="col-5"
-          id="password" class="form-control-sm col-4 ml-5" required="required" /><br>
+          id="password" autocomplete="off" class="form-control-sm col-4 ml-5" required="required" /><br>
 
-        <button type="submit" class="btn btn-primary mt-4 float-right">ACCEDER</button>
+        <button type="submit" class="btn guardar float-right">ACCEDER</button>
       </div>
     </form>
   </div>

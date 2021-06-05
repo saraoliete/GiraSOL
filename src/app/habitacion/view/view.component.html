@@ -1,7 +1,16 @@
-<div class="container col-md-7">
-    
-    <h3 class="titulo">HABITACIÓN {{habitacion.tipohabitacion.nombre}}</h3>
+<div class="title-header">
 
+    <h3 class="titulo">Habitación {{this.habitacion.id}}</h3>
+    
+</div>
+
+<div class="container col-md-6">
+    
+    <div class="botones">
+        
+        <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
+
+    </div>
     <div class="card">
 
         <div class="card-header">
@@ -9,19 +18,19 @@
 
         <div class="card-body">
             <table class="table">
-               <tr class="text-left">  
+               <tr class="center">  
                     <th>TIPO DE HABITACIÓN</th> 
-                    <td>{{habitacion.tipohabitacion.nombre}}</td>                       
+                    <td>{{this.habitacion.tipohabitacion.nombre}}</td>                       
                 </tr>
-                <tr class="text-left">  
+                <tr class="center">  
                     <th>DESCRIPCIÓN</th> 
-                    <td>{{habitacion.tipohabitacion.descripcion}}</td>                       
+                    <td>{{this.habitacion.tipohabitacion.descripcion}}</td>                       
                 </tr>
             </table>
         </div>
         <div class="card-footer">
-            <button (click)="Volver()" class="btn btn-danger float-right m-1"><i class="fas fa-arrow-alt-left"></i></button>
-            <button (click)="EditHabitacion(habitacion)" class="btn btn-warning float-right m-1"><i class="fas fa-edit"></i></button>
+            <button (click)="descargarPDF()" class="btn float-right m-1 pdf">Descargar PDF</button>
+            <button (click)="EditHabitacion(this.habitacion)" class="btn float-right m-1 edit"><i class="fas fa-edit"></i></button>
         </div>
     </div>
     

@@ -3,6 +3,7 @@
 //crear el usuario
 
 import { Component, OnInit } from "@angular/core";
+import { Validators } from "@angular/forms";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Habitacion } from "src/app/Modelo/habitacion";
@@ -24,7 +25,7 @@ export class CreateHabitacion implements OnInit{
     constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder) {
 
       this.formCreateHabitacion = this.fomrBuilder.group({
-        tipohabitacion:[]
+        tipohabitacion:['',[Validators.required]]
       })
 
     }

@@ -28,6 +28,7 @@
   .sesion{
 
     position: absolute;
+    z-index:99999;
     right: 5%;
     top: 10px;
     color: #66403b;
@@ -112,6 +113,36 @@
 
             list-style: none;
             padding: 0;
+
+            li:not(.habitaciones, .usuarios){
+
+              z-index: 2!important;
+
+            }
+
+            .habitaciones:hover + .tipoHabitaciones{
+
+              opacity:1!important;
+              transition: opacity 0.4s ease-in-out;
+            }
+
+            .tipoHabitaciones:hover{
+
+              opacity:1!important;
+
+            }
+
+            .usuarios:hover + .tipoUsuarios{
+
+              opacity:1!important;
+              transition: opacity 0.4s ease-in-out;
+            }
+
+            .tipoUsuarios:hover{
+
+              opacity:1!important;
+
+            }
 
             .iniciar_sesion{
 

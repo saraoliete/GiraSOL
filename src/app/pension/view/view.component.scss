@@ -23,13 +23,15 @@
 }
 
 .container{
-
     z-index: 999;
     width: 100%;
-    height: 385px;
+    height: 355px;
+    text-align: center;
+    top: 30px;
     margin: 3% auto;
-    text-transform: uppercase;
+    overflow: scroll;
     background-color: #e2f1f1;
+    text-transform: uppercase;
     &::-webkit-scrollbar{
         display: none;
     }
@@ -39,86 +41,117 @@
         margin-bottom: 74px;
         z-index: 99;
 
-    .volver{
-
-        width: 30px;
-        height: 30px;
-        padding: 0.1em;
-        margin-top: 15px;
-        
-        border: 3px solid indianred;
-        background-color: white;
-        color: indianred;
-        font-weight: bold;
-
-        &:hover{
-
-            background-color: indianred;
-            color: white;
-            cursor: pointer;
-        }
-    }
-}
-
-    .editar{
-
-        width: 30px;
-        height: 26px;
-        padding: 0.1em;
-        margin-top: 0px;
-        border-width: 2px;
-        border-style: solid;
-        font-weight: bold;
-        text-transform: uppercase;
-
-        
-
-    }
-
-    .editar{
-
-
-        padding: 0.1em 1.3em 1.5em 0.4em;
-        border-color: gold ;
-        background-color: white;
-        color: gold;
-
-
-        &:hover{
-
-            background-color: gold;
-            color: white;
-            cursor: pointer;
-        }
-
-    }
-
+        .exit{
     
+            width: 30px;
+            height: 30px;
+            padding: 0.1em;
+            margin-top: 15px;
+            
+            border: 3px solid IndianRed;
+            background-color: white;
+            color: IndianRed;
+            font-weight: bold;
+    
+            &:hover{
+    
+                color: white;
+                background-color: IndianRed;
+                cursor: pointer;
+            }
+    
+        }
+    }
 
     .card{
 
-        margin: 9% auto;
         width: 100%;
-        height: 250px;    
-        top: 30px;    
+        height: 270px;        
         font-weight: bolder;
-        box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
+        margin-bottom: 2%;
+        border-radius: 0px;
+        border-width: 0px;
 
        .card-header{
+
+        color: white;
         border-radius: 5px;
         height: 50px;
-        
+        background-image: url(../../../assets/fondo5.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-y: -250px;        
         
         
        }
 
        .card-body{
 
-        vertical-align: middle;
-        
+        vertical-align: middle ;
+        padding: 0px;
+           
+           table{
+               
+                thead{
+                    
+                    th{       
+                        
+                        vertical-align: middle ;
+
+                    }
+
+                }
+
+                tbody{
+
+                    tr{
+                        vertical-align: middle ;
+                    }
+                }
+            }
        }
 
-   
-    }
+       .card-footer{
 
+        .edit{
+
+        width: 30px;
+        height: 30px;
+        padding: 0.1em;
+        margin-top: 0.5%;
+        border-width: 3px;
+        border-style: solid;
+        border-color: rgb(255, 194, 41) ;
+        background-color: white;
+        color: rgb(255, 194, 41);
+
+
+        &:hover{
+
+            border-color: rgb(255, 194, 41) ;
+            background-color: rgb(255, 194, 41);
+            color: white;
+            cursor: pointer;
+        }
+        }
+
+        .pdf{
+    
+            height: 30px;
+            padding: 0.1em;
+            border: 3px solid #66403b;
+            background-color: white;
+            color: #66403b;
+            font-weight: bold;
+    
+            &:hover{
+    
+                color: white;
+                background-color: #66403b;
+                cursor: pointer;
+            }
+    
+        }
+       }
+    }
 }

@@ -32,9 +32,6 @@
     overflow: scroll;
     background-color: #e2f1f1;
     text-transform: uppercase;
-    &::-webkit-scrollbar{
-        display: none;
-    }
 
     .botones{
 
@@ -55,8 +52,8 @@
     
             &:hover{
     
-                background-color: white;
-                color: #66403b;
+                color: white;
+                background-color: #66403b;
                 cursor: pointer;
             }
     
@@ -64,7 +61,32 @@
     }
 
 
+    .size{
+
+        margin-top: -4%;
+        margin-bottom: 1%;
+        
+
+        .setSize{
+
+            width: 30px;
+            height: 30px;
+            padding: 0.1em;
+            margin-top: 15px;
+            
+            border: 3px solid #66403b;
+            background-color: white;
+            color: #66403b;
+            font-weight: bold;
     
+            &:hover{
+    
+                color: white;
+                background-color: #66403b;
+                cursor: pointer;
+            }
+        }
+    }
 
 
     .paginacion{
@@ -100,37 +122,78 @@
 
     }
 
-    .paginar{
 
-        width: 100%;
-        padding: 0.5em;
+    .page_footer{
 
-        i{
-            font-size: 20px;
-        }
+        .paginar{
+    
+            width: auto;
+            padding: 0.5em;
+            float: right;
+    
+            i{
+                font-size: 20px;
+            }
+    
+            a{
+                
+                font-size: 15.6px;
+                font-weight: bold;
 
-        a{
+            }
+
+                
+            i, a{
+                padding: 0.4em;
+                background-color:#eec1b2d1;
+                color: #434750;
+
+                &:hover{
+
+                    background-color:#434750;
+                    color: #eec1b2d1;
+                    
+                }
+            }
+    
+            .rewind{
+    
+                margin-right: -7px;
+            }
+    
+            .forward{
+    
+                margin-left: -7px;
+            }
+    
+    
             
-            font-size: 15.6px;
         }
-            
-        i, a{
-            padding: 0.4em;
-            background-color:#eec1b2d1;
-            color: #434750;
-        }
+        
+        .botones{
 
-        .rewind{
+            float: left;
 
-            margin-right: -7px;
-        }
+            .pdf{
+    
+                border: 3px solid #66403b;
+                background-color: white;
+                color: #66403b;
+                font-weight: bold;
+        
+                &:hover{
+        
+                    color: white;
+                    background-color: #66403b;
+                    cursor: pointer;
+                }
+        
+            }
 
-        .forward{
-
-            margin-left: -7px;
         }
 
     }
+
 
     .card{
 

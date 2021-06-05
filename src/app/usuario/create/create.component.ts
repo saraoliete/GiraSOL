@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
 import { Tipousuario } from "src/app/Modelo/tipousuario";
 import { Usuario } from "src/app/Modelo/usuario";
 import { ServiceService } from "src/app/Service/service.service";
+import swal from 'sweetalert2';
 
 @Component({
   selector: "CreateUsuario",
@@ -23,18 +24,18 @@ export class CreateUsuario implements OnInit{
     constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder) {
 
       this.formCreateUser = this.fomrBuilder.group({
-        nombre:["", [Validators.required, Validators.pattern("^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"), Validators.minLength(3), Validators.maxLength(45)]],
-        apellidos:["", Validators.required, Validators.pattern("^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"), Validators.minLength(2), Validators.maxLength(36)],
-        dni:["", Validators.required, Validators.pattern("^[0-9]{8}[A-Za-z]$")],
-        sexo:["", Validators.required],
-        edad:["", Validators.required, Validators.maxLength(3)],
-        email:["", Validators.required, Validators.pattern("^\S+@\S+\.\S+$"), Validators.minLength(6), Validators.maxLength(30)],
-        localidad:["", Validators.required, Validators.pattern("^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$")],
-        nacionalidad:["", Validators.required, Validators.pattern("^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$")],
-        telefono:["", Validators.required, Validators.pattern("^(6|7|9)[0-9]{8}$")],
-        nombreusuario:["", Validators.required, Validators.pattern("^[0-9A-Za-z_.]+$"), Validators.minLength(6), Validators.maxLength(30)],
-        password:["", Validators.required, Validators.pattern("^[0-9A-Za-z_.\s]+$"), Validators.minLength(8), Validators.maxLength(13)],
-        tipousuario:["", Validators.required],
+        nombre:['', [Validators.required], [Validators.pattern], [Validators.minLength], [Validators.maxLength]],
+        apellidos:['', [Validators.required], [Validators.pattern], [Validators.maxLength]],
+        dni:['', [Validators.required], [Validators.pattern]],
+        sexo:['', [Validators.required]],
+        edad:['', [Validators.required], [Validators.maxLength]],
+        email:['', [Validators.required], [Validators.pattern], [Validators.minLength], [Validators.maxLength]],
+        localidad:['', [Validators.required], [Validators.pattern]],
+        nacionalidad:['', [Validators.required], [Validators.pattern]],
+        telefono:['', [Validators.required], [Validators.pattern]],
+        nombreusuario:['', [Validators.required], [Validators.pattern], [Validators.minLength], [Validators.maxLength]],
+        password:['', [Validators.required], [Validators.pattern], [Validators.minLength], [Validators.maxLength]],
+        tipousuario:['', [Validators.required]],
         token:[],
         validado:[],
         activo:[]
@@ -56,7 +57,7 @@ export class CreateUsuario implements OnInit{
 
         this.usuario.nombreusuario = this.formCreateUser.get('nombreusuario')?.value;
         this.usuario.password = this.formCreateUser.get('password')?.value;
-        this.usuario.tipousuario = this.formCreateUser.get('tipousuario')?.value;
+        this.usuario.tipousuario.id = this.formCreateUser.get('tipousuario')?.value;
         this.usuario.nombre = this.formCreateUser.get('nombre')?.value;
         this.usuario.apellidos = this.formCreateUser.get('apellidos')?.value;
         this.usuario.dni = this.formCreateUser.get('dni')?.value;
@@ -75,6 +76,12 @@ export class CreateUsuario implements OnInit{
         
       this.usuario=data;
       console.log("usuario:" + data);
+
+      swal.fire({
+        title: '¡Enhorabuena!',
+        text: 'El usuario' + this.usuario.nombreusuario + ' ha sido creado correctamente.',
+        icon: 'success'
+      });
 
         this.router.navigate(["getPageUsuario"]);
     },

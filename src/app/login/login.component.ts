@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Login } from "../Modelo/login";
 import { Usuario } from "../Modelo/usuario";
 import { ServiceService } from "../Service/service.service";
+import { StorageService } from "../Service/storage.service";
+import swal from 'sweetalert2';
 
 @Component({
   selector: "Login",
@@ -17,7 +19,7 @@ export class LoginComponent{
     login:Login = new Login();
     formLogin!: FormGroup;
 
-  constructor(private service: ServiceService, private router:Router, private formBuilder:FormBuilder, private activatedRoute: ActivatedRoute) {
+  constructor(private service: ServiceService, private storage: StorageService, private router:Router, private formBuilder:FormBuilder, private activatedRoute: ActivatedRoute) {
 
     this.formLogin = this.formBuilder.group({
       nombreusuario:[],
@@ -44,19 +46,32 @@ export class LoginComponent{
       localStorage.setItem("token", data.token.toString());
 
       if(data.token!=null){
-
-        localStorage.setItem('id', data.id.toString());
+        localStorage.setItem('idUsuario', data.id.toString());
+        localStorage.setItem('nombreUsuario', data.nombreusuario);
+        
       }
 
-      this.router.navigate(["home"]);
+      swal.fire({
+        title: '¡Correcto!',
+        text: 'Has iniciado sesión como ' + data.nombreusuario,
+        icon: 'success'
+      });
+
+      this.router.navigate(["app-root"]);
     },
     error => {
+
+      swal.fire({
+        title: '¡Ups!',
+        text: 'El nombre de usuario o la contraseña es incorrecto.',
+        icon: 'error'
+      });
       console.log(error);
     });
   }
   
 
   Volver(){        
-    this.router.navigate(["home"]);
+    this.router.navigate(["app-root"]);
   }
 }

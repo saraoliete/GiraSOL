@@ -1,0 +1,76 @@
+<div class="title-header">
+
+    <h3 class="titulo">TU INFORMACIÓN PERSONAL</h3>
+    
+</div>
+
+<div class="container col-md-7">
+
+    <div class="volver">
+        
+        <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h3 class="float-left">@{{this.usuario.nombreusuario}}</h3>
+            <button (click)="Logout()" class="btn delete1 float-right">Cerrar sesión</button>
+
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+                <tr class="text-center">
+                    <td>Nombre de usuario</td>
+                    <td>{{usuario.nombreusuario}}</td>             
+                </tr>
+                <tr>
+
+                    <td>Tipo usuario</td>
+                    <td>{{usuario.tipousuario.nombre}}</td>     
+                </tr>
+                <tr>
+                    <td>Nombre</td>
+                    <td>{{usuario.nombre}}</td>   
+                </tr>
+                <tr>
+                    <td>Apellidos</td>
+                    <td>{{usuario.apellidos}}</td>  
+                </tr>
+                <tr>
+                    <td>DNI</td>
+                    <td>{{usuario.dni}}</td>  
+                </tr>
+                <tr>
+                    <td>Genero</td>
+                    <td>{{usuario.sexo}}</td>  
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{usuario.email}}</td>  
+                </tr>
+                <tr>
+                    <td>Localidad</td>
+                    <td>{{usuario.localidad}}</td>   
+                </tr>
+                <tr>
+                    <td>Nacionalidad</td>
+                    <td>{{usuario.nacionalidad}}</td>
+                </tr>
+                <tr>
+                    <td>Telefono</td>
+                    <td>{{usuario.telefono}}</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="card-footer">
+
+                <button (click)="descargarPDF()" class="btn float-right m-1 pdf">Descargar PDF</button>
+                <button (click)="EditUsuario(usuario)" class="btn float-right edit m-1"><i class="fas fa-edit"></i></button>
+
+        </div>
+    </div>
+</div>

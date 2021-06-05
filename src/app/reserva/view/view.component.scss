@@ -1,23 +1,45 @@
+.title-header{
+
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+
+    .titulo{
+
+        position: absolute;
+        top: 5%;
+        padding: 0.1em 0.5em;
+        font-size: 50px; 
+        background: linear-gradient(45deg, #d7a499, #f4c9b9);
+        font-weight: bolder;
+        color: white;
+        z-index: 9999;
+        
+    }
+
+}
+
 .container{
     z-index: 999;
     width: 100%;
-    height: 585px;
+    height: 570px;
     text-align: center;
-    top: 30px;
-    right: 90px;
-    left: 90px;
     margin: 3% auto;
     overflow: scroll;
+    background-color: #e2f1f1;
     text-transform: uppercase;
-    position: absolute;
+    padding-bottom: 1%;
     &::-webkit-scrollbar{
         display: none;
     }
 
-    .title-header{
+    .volver{
 
         margin-bottom: 74px;
-
+        
         .exit{
     
             width: 30px;
@@ -47,11 +69,11 @@
             
         }
     }
-
+    
     .card{
 
         width: 100%;
-        height: 300px;        
+        height: 600px;        
         font-weight: bolder;
         margin-bottom: 0px;
         border-radius: 0px;
@@ -60,6 +82,25 @@
        .card-header{
         height: 50px;
         
+
+        .delete1{
+
+            width: 130px;
+            height: 30px;
+            padding: 0.1em;
+            font-weight: 600;
+            border-color: IndianRed;
+            background-color: white;
+            color: IndianRed;
+    
+            &:hover{
+    
+                background-color: IndianRed;
+                color: white;
+                cursor: pointer;
+            }
+            }
+        
         
         
        }
@@ -67,12 +108,15 @@
        .card-body{
 
         vertical-align: middle ;
+        display: flex;
+        align-items: center;
+        padding: 0px;
            
            table{
-               
+
                 thead{
-                    
-                    th{       
+
+                     th{       
                         
                         vertical-align: middle ;
 
@@ -82,7 +126,7 @@
 
                 tbody{
 
-                    tr{
+                     tr{
                         vertical-align: middle ;
                     }
                 }
@@ -91,35 +135,14 @@
 
        .card-footer{
 
-        .view, .edit, .delete1{
+        .edit{
 
         width: 30px;
         height: 30px;
         padding: 0.1em;
-        margin-top: 0px;
+        margin-top: 0.5%;
         border-width: 3px;
         border-style: solid;
-
-        }
-
-        .view{
-
-        border-color: #5DADE2 ;
-        background-color: white;
-        color: #5DADE2;
-
-
-        &:hover{
-
-            border-color: #5DADE2 ;
-            background-color: #5DADE2;
-            color: white;
-            cursor: pointer;
-        }
-        }
-
-        .edit{
-        
         border-color: rgb(255, 194, 41) ;
         background-color: white;
         color: rgb(255, 194, 41);
@@ -134,18 +157,22 @@
         }
         }
 
-        .delete1{
-
-        border-color: IndianRed;
-        background-color: white;
-        color: IndianRed;
-
-        &:hover{
-
-            background-color: IndianRed;
-            color: white;
-            cursor: pointer;
-        }
+        .pdf{
+    
+            height: 30px;
+            padding: 0.1em;
+            border: 3px solid #66403b;
+            background-color: white;
+            color: #66403b;
+            font-weight: bold;
+    
+            &:hover{
+    
+                color: white;
+                background-color: #66403b;
+                cursor: pointer;
+            }
+    
         }
        }
     }

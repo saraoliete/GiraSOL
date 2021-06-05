@@ -1,32 +1,95 @@
+<div class="title-header">
+
+  <h3 class="float-left titulo">{{this.tipohabitacion.nombre}} - Editar</h3>
+</div>
+
 <div class="container col-md-6">
+
+  <div class="botones">
+    <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
+  </div>
 
   <div class="card">
     <div class="card-header">
-      <h3>Editar Tipo Habitacion:</h3>
-      <button (click)="Volver()" class="btn btn-danger">Volver</button>
     </div>
     <div class="card-body">
 
-      <form [formGroup]="formEditTipohabitacion" class="form" (ngSubmit)="EditTipohabitacion()">
-        <div class="form-group">
+      <form [formGroup]="formEditTipohabitacion" class="form">
+        <div class="form-group" style="display: flex; flex-direction: column; align-items: stretch;">  
 
-          <label for="nombre">Nombre:</label>
-          <input type="nombre" formControlName="nombre" name="nombre"
-            placeholder="nombre" required="required"/>
+          <!-- id -->
+          <div class="id" class="ml-5 mt-3">
 
-          <label for="numero_camas">Numero de camas:</label>
-          <input type="numero_camas" formControlName="numero_camas" name="numero_camas"
-            placeholder="numero_camas" required="required"/>
+            <label for="id">Id:</label>
+            <input type="number" formControlName="id" name="id" class="form-control-sm col-1"
+              placeholder="id" value="{{this.tipohabitacion.id}}" readonly="readonly" required="required" style="margin-left: 24.7%;"/>
 
-            <label for="descripcion">Descripcion:</label>
-          <input type="descripcion" formControlName="descripcion" name="descripcion"
-            placeholder="descripcion" required="required"/>
+          </div>
+          
+          <!-- nombre -->
+          <div class="ml-5 mt-3 nombre_field">
 
-          <label for="precio">Precio:</label>
-          <input type="precio" formControlName="precio" name="precio"
-            placeholder="precio" required="required"/>
+            <label for="nombre">Nombre:</label>
+            <input type="text" formControlName="nombre" name="nombre" class="form-control-sm col-3"
+              placeholder="nombre" value="{{this.tipohabitacion.nombre}}" autocomplete="off" pattern="^[A-ZÁÉÍÓÚÜÑ]([a-záéíóúüñ]+)*$" minlength="4" maxlength="13" required="required" style="margin-left: 17.5%;"/>
 
-        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+              <div class="validaciones" *ngIf="formEditTipohabitacion.get('nombre')?.errors && formEditTipohabitacion.get('nombre')?.dirty">
+                <p *ngIf="formEditTipohabitacion.get('nombre')?.hasError('required')">Este campo es obligatorio</p>
+                <p *ngIf="formEditTipohabitacion.get('nombre')?.hasError('pattern')">Solo caracteres alfabéticos y primera letra en mayúscula</p>
+                <p *ngIf="formEditTipohabitacion.get('nombre')?.hasError('minlength')">Mínimo 4 caracteres</p>
+                <p *ngIf="formEditTipohabitacion.get('nombre')?.hasError('maxlength')">Máximo 13 caracteres</p>
+              </div>
+
+          </div>
+
+          <!-- numero camas -->
+          <div class="numero_camas_field ml-5 mt-3">
+
+            <label for="numero_camas">Numero de camas:</label>
+            <input type="number" formControlName="numero_camas" name="numero_camas" class="form-control-sm col-1"
+              value="{{this.tipohabitacion.numero_camas}}" autocomplete="off" pattern="^[0-9]{1}$" required="required" style="margin-left: 5%;"/>
+
+              <div class="validaciones" *ngIf="formEditTipohabitacion.get('numero_camas')?.errors && formEditTipohabitacion.get('numero_camas')?.dirty">
+                <p *ngIf="formEditTipohabitacion.get('numero_camas')?.hasError('required')">Este campo es obligatorio</p>
+                <p *ngIf="formEditTipohabitacion.get('numero_camas')?.hasError('pattern')">Máximo 1 caracter</p>
+              </div>
+
+          </div>
+
+           <!-- descripcion -->
+           <div class="descripcion_field ml-5 mt-3">
+
+              <label for="descripcion">Descripcion:</label>
+              <textarea formControlName="descripcion" name="descripcion"
+                value="{{this.tipohabitacion.descripcion}}" cols="30" rows="3" maxlength="380" autocomplete="off" required="required" style="margin-left: 11.7%;"></textarea>
+
+                <div class="validaciones" *ngIf="formEditTipohabitacion.get('descripcion')?.errors && formEditTipohabitacion.get('descripcion')?.dirty">
+                  <p *ngIf="formEditTipohabitacion.get('descripcion')?.hasError('required')">Este campo es obligatorio</p>
+                  <p *ngIf="formEditTipohabitacion.get('descripcion')?.hasError('maxlength')">Máximo 380 caracteres</p>
+                </div>
+
+            </div>
+
+            <!-- precio -->
+           <div class="precio_field ml-5 mt-3">
+
+              <label for="precio">Precio:</label>
+              <input type="precio" formControlName="precio" name="precio" class="form-control-sm col-2"
+                value="{{this.tipohabitacion.precio}}" pattern="^([0-9]{1,4})+(,([0-9]{1,2}))?$" autocomplete="off" required="required" style="margin-left: 18.9%;"/>
+
+                <div class="validaciones" *ngIf="formEditTipohabitacion.get('precio')?.errors && formEditTipohabitacion.get('precio')?.dirty">
+                  <p *ngIf="formEditTipohabitacion.get('precio')?.hasError('required')">Este campo es obligatorio</p>
+                  <p *ngIf="formEditTipohabitacion.get('precio')?.hasError('pattern')">Solo valores numéricos: 4 enteros y 2 decimales máximo</p>
+                </div>
+
+            </div>
+
+            <div class="btn-reservar mt-3" style="display: flex; justify-content: flex-end;">
+
+                <button (click)="activarComponente()" class="btn guardar">Guardar cambios</button>
+
+            </div>
       </div>
     </form>
   </div>

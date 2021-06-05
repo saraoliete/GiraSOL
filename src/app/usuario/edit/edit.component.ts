@@ -1,6 +1,8 @@
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Tipousuario } from 'src/app/Modelo/tipousuario';
 import { Usuario } from 'src/app/Modelo/usuario';
 import { ServiceService } from 'src/app/Service/service.service';
 import swal from 'sweetalert2';
@@ -14,21 +16,24 @@ import swal from 'sweetalert2';
 export class EditUsuario implements OnInit{
 
     usuario:Usuario=new Usuario();
+    tipousuario!:Array<Tipousuario>;
     formEditUser!:FormGroup;
     constructor(private service:ServiceService, private router:Router, private formBuilder:FormBuilder){
 
       this.formEditUser = this.formBuilder.group({
-        nombre:[],
-        apellidos:[],
-        dni:[],
+        id:[],
+        nombre:['', [Validators.required], [Validators.pattern], [Validators.maxLength], [Validators.minLength]],
+        apellidos:['', [Validators.required], [Validators.pattern], [Validators.maxLength], [Validators.minLength]],
+        dni:['', [Validators.required], [Validators.pattern]],
         sexo:[],
-        email:[],
-        localidad:[],
-        nacionalidad:[],
-        telefono:[],
-        edad:[],
-        nombreusuario:[],
-        password:[]
+        email:['', [Validators.required], [Validators.pattern], [Validators.maxLength], [Validators.minLength]],
+        localidad:['', [Validators.required], [Validators.pattern]],
+        nacionalidad:['', [Validators.required], [Validators.pattern]],
+        telefono:['', [Validators.required], [Validators.pattern]],
+        edad:['', [Validators.required], [Validators.maxLength]],
+        nombreusuario:['', [Validators.required], [Validators.pattern], [Validators.maxLength], [Validators.minLength]],
+        password:['', [Validators.required], [Validators.pattern], [Validators.maxLength], [Validators.minLength]],
+        tipousuario:[]
   
       })
     }
@@ -41,7 +46,23 @@ export class EditUsuario implements OnInit{
 
       console.log("editar:"+id);
 
-      this.service.getUsuario(id).subscribe(data=>{ this.usuario=data;});
+      this.service.getAllTipousuario().subscribe(data=> this.tipousuario=data);
+
+      this.service.getUsuario(id).subscribe(data=>{ this.usuario=data;
+      this.formEditUser.get('nombre')?.setValue(this.usuario.nombre);
+      this.formEditUser.get('apellidos')?.setValue(this.usuario.apellidos);
+      this.formEditUser.get('dni')?.setValue(this.usuario.dni);
+      this.formEditUser.get('sexo')?.setValue(this.usuario.sexo);
+      this.formEditUser.get('edad')?.setValue(this.usuario.edad);
+      this.formEditUser.get('email')?.setValue(this.usuario.edad);
+      this.formEditUser.get('telefono')?.setValue(this.usuario.telefono);
+      this.formEditUser.get('localidad')?.setValue(this.usuario.localidad);
+      this.formEditUser.get('nacionalidad')?.setValue(this.usuario.nacionalidad);
+      this.formEditUser.get('nombreusuario')?.setValue(this.usuario.nombreusuario);
+      this.formEditUser.get('password')?.setValue(this.usuario.password);
+      this.formEditUser.get('tipousuario')?.setValue(this.usuario.tipousuario.id);
+      this.formEditUser.get('id')?.setValue(this.usuario.id);
+      });
 
     }
 
@@ -80,6 +101,7 @@ export class EditUsuario implements OnInit{
         this.usuario.nacionalidad = this.formEditUser.get('nacionalidad')?.value;
         this.usuario.nombreusuario = this.formEditUser.get('nombreusuario')?.value;
         this.usuario.password = this.formEditUser.get('password')?.value;
+        this.usuario.tipousuario.id = this.formEditUser.get('tipousuario')?.value;
 
         this.service.updateUsuario(this.usuario).subscribe(data=>{this.usuario=data;
         this.router.navigate(["getPageUsuario"]);})

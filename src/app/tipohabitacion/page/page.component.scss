@@ -1,0 +1,301 @@
+.title-header{
+
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+
+    .titulo{
+
+        position: absolute;
+        top: 5%;
+        padding: 0.1em 0.5em;
+        font-size: 50px; 
+        background: linear-gradient(45deg, #d7a499, #f4c9b9);
+        font-weight: bolder;
+        color: white;
+        z-index: 9999;
+        
+    }
+
+}
+
+.container{
+    z-index: 999;
+    width: 100%;
+    height: 555px;
+    text-align: center;
+    top: 30px;
+    margin: 3% auto;
+    overflow: scroll;
+    background-color: #e2f1f1;
+    text-transform: uppercase;
+
+    .botones{
+
+        margin-bottom: 74px;
+        z-index: 99;
+
+        .create{
+    
+            width: 30px;
+            height: 30px;
+            padding: 0.1em;
+            margin-top: 15px;
+            
+            border: 3px solid #66403b;
+            background-color: white;
+            color: #66403b;
+            font-weight: bold;
+    
+            &:hover{
+    
+                background-color: white;
+                color: #66403b;
+                cursor: pointer;
+            }
+    
+        }
+    }
+
+    .size{
+
+        margin-top: -4%;
+        margin-bottom: 1%;
+        
+
+        .setSize{
+
+            width: 30px;
+            height: 30px;
+            padding: 0.1em;
+            margin-top: 15px;
+            
+            border: 3px solid #66403b;
+            background-color: white;
+            color: #66403b;
+            font-weight: bold;
+    
+            &:hover{
+    
+                color: white;
+                background-color: #66403b;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .paginacion{
+
+        width: 100%;
+        height: 55px;
+        margin-top: -2.5%;
+        font-weight: 600;
+        
+        table{
+            
+            display: flex;
+            height: 31px;
+            border-collapse: separate;
+            justify-content: center;
+
+            tr td{
+
+                cursor: pointer;
+                background-color: #eec1b2d1;
+                color: #434750;
+                width: 180px;
+                height: 31px;
+
+                &:hover{
+
+                    
+                }
+
+            }
+
+        }
+
+    }
+
+    .page_footer{
+
+        .paginar{
+    
+            width: auto;
+            padding: 0.5em;
+            float: right;
+    
+            i{
+                font-size: 20px;
+            }
+    
+            a{
+                
+                font-size: 15.6px;
+                font-weight: bold;
+
+            }
+
+                
+            i, a{
+                padding: 0.4em;
+                background-color:#eec1b2d1;
+                color: #434750;
+
+                &:hover{
+
+                    background-color:#434750;
+                    color: #eec1b2d1;
+                    
+                }
+            }
+    
+            .rewind{
+    
+                margin-right: -7px;
+            }
+    
+            .forward{
+    
+                margin-left: -7px;
+            }
+    
+    
+            
+        }
+        
+        .botones{
+
+            float: left;
+
+            .pdf{
+    
+                border: 3px solid #66403b;
+                background-color: white;
+                color: #66403b;
+                font-weight: bold;
+        
+                &:hover{
+        
+                    color: white;
+                    background-color: #66403b;
+                    cursor: pointer;
+                }
+        
+            }
+
+        }
+
+    }
+
+    .card{
+
+        width: 100%;
+        height: 300px;        
+        font-weight: bolder;
+        margin-bottom: 2%;
+        border-radius: 0px;
+        border-width: 0px;
+
+       .card-header{
+
+        color: white;
+        border-radius: 5px;
+        height: 50px;
+        background-image: url(../../../assets/fondo5.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-y: -300px;        
+        
+        
+       }
+
+       .card-body{
+
+        vertical-align: middle ;
+           
+           table{
+               
+                thead{
+                    
+                    th{       
+                        
+                        vertical-align: middle ;
+
+                    }
+
+                }
+
+                tbody{
+
+                    tr{
+                        vertical-align: middle ;
+                    }
+                }
+            }
+       }
+
+       .card-footer{
+
+        .view, .edit, .delete1{
+
+        width: 30px;
+        height: 30px;
+        padding: 0.1em;
+        margin-top: 0px;
+        border-width: 3px;
+        border-style: solid;
+
+        }
+
+        .view{
+
+        border-color: #5DADE2 ;
+        background-color: white;
+        color: #5DADE2;
+
+
+        &:hover{
+
+            border-color: #5DADE2 ;
+            background-color: #5DADE2;
+            color: white;
+            cursor: pointer;
+        }
+        }
+
+        .edit{
+        
+        border-color: rgb(255, 194, 41) ;
+        background-color: white;
+        color: rgb(255, 194, 41);
+
+
+        &:hover{
+
+            border-color: rgb(255, 194, 41) ;
+            background-color: rgb(255, 194, 41);
+            color: white;
+            cursor: pointer;
+        }
+        }
+
+        .delete1{
+
+        border-color: IndianRed;
+        background-color: white;
+        color: IndianRed;
+
+        &:hover{
+
+            background-color: IndianRed;
+            color: white;
+            cursor: pointer;
+        }
+        }
+       }
+    }
+}

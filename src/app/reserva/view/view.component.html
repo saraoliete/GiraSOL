@@ -1,49 +1,68 @@
+<div class="title-header">
+
+    <h3 class="titulo">Reserva del {{this.reserva.fecha_llegada | date: 'dd/MM/yyyy'}} al {{this.reserva.fecha_final | date: 'dd/MM/yyyy'}}</h3>
+    
+</div>
+
 <div class="container col-md-8">
 
-    <div class="title-header">
-        <h3 class="float-left titulo">Reserva</h3>
-        <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-arrow-left"></i></button>
-        <button (click)="descargarPDF(this.reserva)">Descargar PDF</button>
-    </div>
-
-    <div class="card m-1 mt-5">
+    <div class="volver">
         
-    <div class="card-header">
+        <button (click)="Volver()" class="btn exit float-right m-1"><i class="fas fa-arrow-left"></i></button>
     </div>
+    
+    <div class="card">
+        
+        <div class="card-header">
+        
+            
+
+        </div>
 
     <div class="card-body">
         <table class="table">
-            <thead>
                 <tr class="text-center">
-                    <th>ID</th>
-                    <th>USUARIO</th>
-                    <th>PENSIÓN</th>
-                    <th>HABITACIÓN</th>
-                    <th>CAMA SUPLETORIA</th>
-                    <th>FECHA LLEGADA</th>
-                    <th>FECHA FINAL</th>
-                    <th>PRECIO FINAL</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="text-center">
+                    <td>ID</td>
                     <td>{{reserva.id}}</td>
-                    <td>{{reserva.usuario.nombre}}, {{reserva.usuario.apellidos}}</td>
-                    <td>{{reserva.pension.tipo}}</td>
-                    <td>{{reserva.habitacion.tipohabitacion.nombre}}</td>
-                    <td>{{reserva.cama_supletoria}}</td>
-                    <td>{{reserva.fecha_llegada}}</td>
-                    <td>{{reserva.fecha_final}}</td>
-                    <td>{{reserva.precio_final}}</td>
+                    
                 </tr>
-            </tbody>
+                <tr>
+                    <td>USUARIO</td>
+                    <td>{{reserva.usuario.nombre}}, {{reserva.usuario.apellidos}}</td>
+                    
+                </tr>
+                <tr>
+                    <td>PENSIÓN</td>
+                    <td>{{reserva.pension.tipo}}</td>
+                    
+                </tr>
+                <tr>
+                    <td>HABITACIÓN</td>
+                    <td>{{reserva.habitacion.tipohabitacion.nombre}}</td>
+                    
+                </tr>
+                <tr>
+                    <td>CAMA SUPLETORIA</td>
+                    <td><span *ngIf="this.reserva.cama_supletoria == true">Sí</span><span *ngIf="this.reserva.cama_supletoria == false">No</span></td>
+                </tr>
+                <tr>
+                    <td>FECHA LLEGADA</td>
+                    <td>{{this.reserva.fecha_llegada | date: 'dd/MM/yyyy'}}</td>
+                </tr>
+                <tr>
+                    <td>FECHA FINAL</td>
+                    <td>{{this.reserva.fecha_final | date: 'dd/MM/yyyy'}}</td>
+                </tr>
+                <tr>
+                    <td>PRECIO FINAL</td>
+                    <td>{{this.reserva.precio_final}}</td>
+                </tr>
         </table>
     </div>
     <div class="card-footer">
 
-        <button (click)="View(reserva)"class="btn view m-1"><i class="fas fa-eye"></i></button>
-        <button (click)="Editar(reserva)"class="btn edit m-1"><i class="fas fa-edit"></i></button>
-        <button (click)="Delete(reserva)"class="btn delete1 m-1"><i class="fas fa-trash-alt"></i></button>
+        <button (click)="descargarPDF()" class="btn float-right m-1 pdf">Descargar PDF</button>
+        <button (click)="Editar(this.reserva)"class="btn float-right edit m-1"><i class="fas fa-edit"></i></button>
 
     </div>
 </div>

@@ -22,15 +22,27 @@ import { EditReserva } from './reserva/edit/edit.component';
 import { ViewReserva } from './reserva/view/view.component';
 import { getPageUsuario } from './usuario/page/page.component';
 import { CreateUsuario } from './usuario/create/create.component';
+import { ViewTipohabitacion } from './tipohabitacion/view/view.component';
+import { CreateTipohabitacion } from './tipohabitacion/create/create.component';
+import { getPageTipousuario } from './tipousuario/page/page.component';
+import { ViewTipousuario } from './tipousuario/view/view.component';
+import { CreateTipousuario } from './tipousuario/create/create.component';
+import { EditTipousuario } from './tipousuario/edit/edit.component';
+import { PersonalView } from './usuario/personal view/view.component';
 
 const routes: Routes = [
-  { path: "home", component: AppComponent, pathMatch: "full"},
+  { path: "app-root", component: AppComponent, pathMatch: "full"},
   { path: "RegisterUsuario", component: RegisterUsuario, pathMatch: "full" },
   { path: "Login", component: LoginComponent, pathMatch: "full" },
   { path: "CreateUsuario", component: CreateUsuario, pathMatch: "full" },
   { path: "ViewUsuario", component: ViewUsuario, pathMatch: "full" },
+  { path: "app-PersonalView", component: PersonalView, pathMatch: "full" },
   {path: "getPageUsuario", component: getPageUsuario, pathMatch:"full"},
   { path: "EditUsuario", component: EditUsuario, pathMatch: "full" },
+  { path: "app-getPageTipousuario", component: getPageTipousuario, pathMatch: "full" },
+  { path: "app-ViewTipousuario", component: ViewTipousuario, pathMatch: "full" },
+  { path: "app-CreateTipousuario", component: CreateTipousuario, pathMatch: "full" },
+  { path: "app-EditTipousuario", component: EditTipousuario, pathMatch: "full" },
   { path: "CreateHabitacion", component: CreateHabitacion, pathMatch: "full" },
   { path: "CreatePension", component: CreatePension, pathMatch: "full" },
   { path: "getPageHabitacion", component: getPageHabitacion, pathMatch: "full" },
@@ -44,8 +56,9 @@ const routes: Routes = [
   { path: "getPagePension", component: getPagePension, pathMatch: "full" },
   { path: "ViewPension", component: ViewPension, pathMatch: "full" },
   { path: "EditTipohabitacion", component: EditTipohabitacion, pathMatch: "full" },
-  { path: "getPageTipohabitacion", component: getPageTipohabitacion, pathMatch: "full" },
-  { path: "ViewTipohabitacion", component: EditTipohabitacion, pathMatch: "full" },
+  { path: "app-getPageTipohabitacion", component: getPageTipohabitacion, pathMatch: "full" },
+  { path: "app-ViewTipohabitacion", component: ViewTipohabitacion, pathMatch: "full" },
+  { path: "app-CreateTipohabitacion", component: CreateTipohabitacion, pathMatch: "full" },
   { path: "UploadFile", component: UploadFile, pathMatch: "full" }
   
 ];

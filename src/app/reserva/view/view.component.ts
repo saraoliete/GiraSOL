@@ -25,38 +25,73 @@ export class ViewReserva implements OnInit{
       this.service.getReserva(id).subscribe(data=>{ this.reserva=data;});
      }
 
+     descargarPDF(){
+
+      let id= localStorage.getItem("id");
+      this.service.getReserva(id).subscribe(data=>{ this.reserva=data;
+      
+        this.pdfMakerWrapper = new PdfMakeWrapper();
+
+          this.pdfMakerWrapper.defaultStyle({
+
+            fontSize: 15,
+
+          });
+
+          this.pdfMakerWrapper.pageSize('A4');
+
+          this.pdfMakerWrapper.pageMargins([80, 40]);
+
+          this.pdfMakerWrapper.header([
+            new Txt('Reserva ' + data.id).alignment('center').end
+          ]);
+          
+          this.pdfMakerWrapper.add(  
+      
+            new Table([
+              ['idReserva', data.id],
+              ['Usuario', data.usuario.nombre + ' ' + data.usuario.apellidos],
+              ['Pension', data.pension.tipo],
+              ['Habitacion', data.habitacion.tipohabitacion.nombre],
+              ['Cama supletoria', this.camaSupletoria()],
+              ['Fecha llegada', data.fecha_llegada],
+              ['Fecha final', data.fecha_final],
+              ['Precio total', data.precio_final]
+              
+            ]).widths([100, '*']).alignment('center').end
+            
+            );
+
+            this.pdfMakerWrapper.create().open();
+      
+      })
+
+    }
+
+    camaSupletoria():String{
+
+      let SiNo:String = '';
+
+      if(this.reserva.cama_supletoria == false){
+
+          SiNo='No';
+
+        }else if(this.reserva.cama_supletoria==true){
+
+          SiNo='Sí';
+        }
+      
+      return SiNo;
+    }
+
     Editar(reserva:Reserva):void{
-      localStorage.setItem("id", this.reserva.id.toString());
+      localStorage.setItem("id", reserva.id.toString());
       this.router.navigate(["EditReserva"]);
     }
 
     View(reserva:Reserva):void{
       localStorage.setItem("id", reserva.id.toString());
       this.router.navigate(["ViewReserva"]);
-    }
-
-    descargarPDF(reserva:Reserva):void{
-
-      this.pdfMakerWrapper = new PdfMakeWrapper();
-
-      this.pdfMakerWrapper.add(
-       
-      new Table([
-        ['id', reserva.id],
-        ['Usuario', reserva.usuario.nombre + ' ' + reserva.usuario.apellidos],
-        ['Pension', reserva.pension.tipo],
-        ['Habitacion', reserva.habitacion.tipohabitacion.nombre],
-        ['Cama supletoria', reserva.cama_supletoria],
-        ['Fecha llegada', reserva.fecha_llegada],
-        ['Fecha final', reserva.fecha_final],
-        ['Precio total', reserva.precio_final]
-        
-      ]).end
-      
-      );
-
-      this.pdfMakerWrapper.create().open();
-
     }
 
     Delete(reserva:Reserva){

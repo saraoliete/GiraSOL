@@ -3,10 +3,12 @@
 //crear el usuario
 
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Tipousuario } from "src/app/Modelo/tipousuario";
 import { Usuario } from "src/app/Modelo/usuario";
 import { ServiceService } from "src/app/Service/service.service";
+import swal from 'sweetalert2';
 
 @Component({
   selector: "RegisterUsuario",
@@ -17,24 +19,27 @@ export class RegisterUsuario implements OnInit{
 
     formCreateUser!: FormGroup;
     usuario:Usuario=new Usuario();
+    lista!: Array<Tipousuario>;
 
     constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder) {
 
       this.formCreateUser = this.fomrBuilder.group({
-        tipousuario:[],
-        nombreusuario:[],
-        password:[],
-        nombre:[],
-        apellidos:[],
-        dni:[],
-        sexo:[],
-        edad:[],
-        email:[],
-        localidad:[],
-        nacionalidad:[],
-        telefono:[],
+        nombre:['', [Validators.required], [Validators.pattern], [Validators.minLength], [Validators.maxLength]],
+        apellidos:['', [Validators.required], [Validators.pattern], [Validators.maxLength]],
+        dni:['', [Validators.required], [Validators.pattern]],
+        sexo:['', [Validators.required]],
+        edad:['', [Validators.required], [Validators.maxLength]],
+        email:['', [Validators.required], [Validators.pattern], [Validators.minLength], [Validators.maxLength]],
+        localidad:['', [Validators.required], [Validators.pattern]],
+        nacionalidad:['', [Validators.required], [Validators.pattern]],
+        telefono:['', [Validators.required], [Validators.pattern]],
+        nombreusuario:['', [Validators.required], [Validators.pattern], [Validators.minLength], [Validators.maxLength]],
+        password:['', [Validators.required], [Validators.pattern], [Validators.minLength], [Validators.maxLength]],
+        tipousuario:['', [Validators.required]],
+        token:[],
         validado:[],
         activo:[]
+        
 
 
 
@@ -42,10 +47,19 @@ export class RegisterUsuario implements OnInit{
 
     }
 
-    ngOnInit(){  }
+    ngOnInit(){ 
+
+      this.service.getAllTipousuario().subscribe(data=> this.lista=data)
+
+      this.formCreateUser.get('tipousuario')?.setValue(2);
+      
+     }
 
   register() {
 
+        this.usuario.nombreusuario = this.formCreateUser.get('nombreusuario')?.value;
+        this.usuario.password = this.formCreateUser.get('password')?.value;
+        this.usuario.tipousuario.id = this.formCreateUser.get('tipousuario')?.value;
         this.usuario.nombre = this.formCreateUser.get('nombre')?.value;
         this.usuario.apellidos = this.formCreateUser.get('apellidos')?.value;
         this.usuario.dni = this.formCreateUser.get('dni')?.value;
@@ -55,14 +69,23 @@ export class RegisterUsuario implements OnInit{
         this.usuario.telefono = this.formCreateUser.get('telefono')?.value;
         this.usuario.localidad = this.formCreateUser.get('localidad')?.value;
         this.usuario.nacionalidad = this.formCreateUser.get('nacionalidad')?.value;
-        this.usuario.nombreusuario = this.formCreateUser.get('nombreusuario')?.value;
-        this.usuario.password = this.formCreateUser.get('password')?.value;
+        this.usuario.token = this.formCreateUser.get('token')?.value;
+        this.usuario.validado = this.formCreateUser.get('validado')?.value;
+        this.usuario.activo = this.formCreateUser.get('activo')?.value;
     
     this.service.createUser(this.usuario).subscribe(
     data => { 
         
-        this.usuario=data;
-        this.router.navigate(["home"]);
+      this.usuario=data;
+      console.log("usuario:" + data);
+
+      swal.fire({
+        title: '¡Enhorabuena!',
+        text: 'Has sido registrado correctamente.',
+        icon: 'success'
+      });
+
+        this.router.navigate(["Login"]);
     },
     error => {
           console.log(error);
@@ -70,6 +93,6 @@ export class RegisterUsuario implements OnInit{
   }
 
   Volver(){        
-    this.router.navigate(["home"]);
+    this.router.navigate(["getPageUsuario"]);
   }
 }

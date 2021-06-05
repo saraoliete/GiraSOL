@@ -14,6 +14,7 @@ import { Usuario } from "src/app/Modelo/usuario";
 import { ServiceService } from "src/app/Service/service.service";
 import swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
+import { Validators } from "@angular/forms";
 
 @Component({
   selector: "CreateReserva",
@@ -38,11 +39,11 @@ export class CreateReserva implements OnInit{
 
       this.formCreateReserva = this.fomrBuilder.group({
         usuario:[],
-        pension:[],
-        habitacion:[],
+        pension:['', [Validators.required]],
+        habitacion:['', [Validators.required]],
         cama_supletoria:[],
-        fecha_llegada:[],
-        fecha_final:[],
+        fecha_llegada:['', [Validators.required]],
+        fecha_final:['', [Validators.required]],
         precio_final:[]
 
       })
@@ -55,8 +56,6 @@ export class CreateReserva implements OnInit{
       this.service.getAllPension().subscribe(data=> this.pensiones=data);
 
       //this.formCreateReserva.setValue({precio_final: this.Calculadora()});
-
-      this.reserva.precio_final = this.Calculadora();
 
 
      }
@@ -73,7 +72,7 @@ export class CreateReserva implements OnInit{
         this.reserva.fecha_llegada = new Date(this.formCreateReserva.get('fecha_llegada')?.value);
         this.reserva.fecha_final = new Date(this.formCreateReserva.get('fecha_final')?.value);
         
-        this.reserva.precio_final = this.formCreateReserva.get('precio_final')?.value;
+        this.reserva.precio_final = this.Calculadora();
 
 
 
@@ -101,40 +100,53 @@ export class CreateReserva implements OnInit{
   Calculadora():number{
 
     let PrecioTotalVoid:number = this.PrecioTotal;
+    let diaEnMils = 1000* 60 * 60 *24;
 
   if(this.formCreateReserva.get('fecha_llegada')?.value != undefined && 
   this.formCreateReserva.get('fecha_final')?.value != undefined && 
   this.formCreateReserva.get('pension')?.value != undefined && 
   this.formCreateReserva.get('habitacion')?.value != undefined){
 
-    let dia_llegada = new Date(this.formCreateReserva.get('fecha_final')?.value).getDay();
-    let dia_partida = new Date(this.formCreateReserva.get('fecha_llegada')?.value).getDay();
+    let dia_llegada = new Date(this.formCreateReserva.get('fecha_final')?.value).getTime();
+    let dia_partida = new Date(this.formCreateReserva.get('fecha_llegada')?.value).getTime();
+
+    console.log('dia llegada: ' + dia_llegada + ', dia partida: ' + dia_partida);
 
     if(dia_llegada < dia_partida){
 
-      this.Days = dia_partida - dia_llegada;
+      this.Days = Math.floor((dia_partida - dia_llegada) / diaEnMils );
       
     }else if(dia_partida < dia_llegada){
 
-      this.Days = dia_llegada - dia_partida;
+      this.Days = Math.floor((dia_llegada - dia_partida) / diaEnMils );
 
     }
    
    
    
-    for( let item of this.pensiones){
-      
-      this.PrecioPension = item.precio;
-      
-     }
+      for( let item of this.pensiones){
+
+        this.PrecioPension = item.precio;
+
+      }
 
      for(let item of this.habitaciones){
-   
-      this.PrecioHabitacion = item.precio;
-   
+  
+        this.PrecioHabitacion = item.precio;
+  
+      }
+
+     if(this.formCreateReserva.get('cama_supletoria')?.value != false){
+
+
+      PrecioTotalVoid = (this.PrecioHabitacion + this.PrecioPension)*this.Days + 5;
+
+     }else{
+
+      PrecioTotalVoid = (this.PrecioHabitacion + this.PrecioPension)*this.Days;
+
      }
 
-     PrecioTotalVoid = (this.PrecioHabitacion + this.PrecioPension)*this.Days;
      
     }
     

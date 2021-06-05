@@ -5,7 +5,7 @@ import { ServiceService } from "src/app/Service/service.service";
 import swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
 
-import { PdfMakeWrapper, Table } from 'pdfmake-wrapper';
+import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import * as pdfMake from 'pdfmake/build/pdfmake.js';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
 
@@ -18,6 +18,8 @@ export class getPageReserva implements OnInit{
 
     reservas!:Array<Reserva>;
     totalPages!: Array<number>;
+
+    date:any;
 
     page = 0;
     size = 4;
@@ -86,6 +88,13 @@ export class getPageReserva implements OnInit{
       this.cargarReservas();
     }
 
+    //numero de cards
+    setSize(size:number):void{
+
+      this.size = size;
+      this.cargarReservas();
+    }
+
     //ordenar por
     setOrder(order: string): string {
       this.order = order;
@@ -106,34 +115,66 @@ export class getPageReserva implements OnInit{
           this.isLast = data.last;
           this.totalPages = new Array(data.totalPages);
 
-          for(let item of data.content){
+          this.pdfMakerWrapper = new PdfMakeWrapper();
 
-            this.pdfMakerWrapper = new PdfMakeWrapper();
-      
-            this.pdfMakerWrapper.add(
+          this.pdfMakerWrapper.defaultStyle({
+
+            fontSize: 15,
+
+          });
+
+          this.pdfMakerWrapper.pageSize('A4');
+
+          this.pdfMakerWrapper.pageMargins([80, 40]);
+
+          this.pdfMakerWrapper.header([
+            new Txt('Listar reservas').alignment('center').end
+          ]);
+          
+          for(let item of data.content){
+          
+            this.pdfMakerWrapper.add(  
       
             new Table([
-              ['id', item.id],
+              ['idReserva', item.id],
               ['Usuario', item.usuario.nombre + ' ' + item.usuario.apellidos],
               ['Pension', item.pension.tipo],
               ['Habitacion', item.habitacion.tipohabitacion.nombre],
-              ['Cama supletoria', item.cama_supletoria],
+              ['Cama supletoria', this.camaSupletoria()],
               ['Fecha llegada', item.fecha_llegada],
               ['Fecha final', item.fecha_final],
-              ['Precio total', item.precio_final + '€']
+              ['Precio final', item.precio_final]
               
-            ]).alignment('center').end
+            ]).widths([100, '*']).alignment('center').end
             
             );
       
-            this.pdfMakerWrapper.create().open();
           }
+          
+          this.pdfMakerWrapper.create().open();
+        })     
 
-        })
 
+    }
+
+    camaSupletoria():String{
+
+      let SiNo:String = '';
+
+      for(let item of this.reservas){
+
+        if(item.cama_supletoria == false){
+
+          SiNo='No';
+
+        }else if(item.cama_supletoria==true){
+
+          SiNo='Sí';
+        }
+        
+      }
       
-
-
+      return SiNo;
     }
 
     Crear():void{
@@ -156,7 +197,7 @@ export class getPageReserva implements OnInit{
       console.log(reserva.id);
 
       swal.fire({
-        title: '¿Estás seguro de que quieres eliminar la habitación ' + reserva.id + '?',
+        title: '¿Estás seguro de que quieres eliminar la reserva ' + reserva.id + '?',
         text: '¡No podrás recuperarla si decides eliminarla!',
         icon: 'warning',
         showCancelButton: true,
@@ -171,14 +212,14 @@ export class getPageReserva implements OnInit{
 
           swal.fire(
             '¡Eliminada!',
-            'La habitación ' + reserva.id + ' ha sido eliminada.',
+            'La reserva ' + reserva.id + ' ha sido eliminada.',
           )
           } else if (result.dismiss === swal.DismissReason.cancel){
 
             swal.fire(
 
               'Cancelado',
-              'La habitación ' + reserva.id + ' está segura.',
+              'La reserva ' + reserva.id + ' está segura.',
             )
           }
       })

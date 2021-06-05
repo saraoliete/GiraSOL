@@ -18,9 +18,10 @@ export class EditPension implements OnInit{
 
     constructor(private service:ServiceService, private router:Router, private formBuilder:FormBuilder){
         this.formEditPension = this.formBuilder.group({
-            tipo:[],
-            descripcion:[],
-            precio:[]      
+            id:[],
+            tipo:['', [Validators.required], [Validators.maxLength]],
+            descripcion:['', [Validators.required], [Validators.maxLength]],
+            precio:['', [Validators.required], [Validators.pattern]]      
           })
     }
 
@@ -28,7 +29,12 @@ export class EditPension implements OnInit{
 
         this.pension = new Pension();
         let id = localStorage.getItem("id");
-        this.service.getPension(id).subscribe(data=>{ this.pension=data;})
+        this.service.getPension(id).subscribe(data=>{ 
+          this.pension=data;
+          this.formEditPension.get('id')?.setValue(this.pension.id);
+          this.formEditPension.get('tipo')?.setValue(this.pension.tipo);
+          this.formEditPension.get('descripcion')?.setValue(this.pension.descripcion);
+          this.formEditPension.get('precio')?.setValue(this.pension.precio);})
     }
 
     activarComponente(){

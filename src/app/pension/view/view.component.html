@@ -1,13 +1,13 @@
 <div class="title-header">
 
-    <h3 class="titulo">PENSION {{this.pension.tipo}}</h3>
+    <h3 class="titulo">Pensión {{this.pension.tipo}}</h3>
     
 </div>
 
 <div class="container col-md-5">
 
     <div class="botones">
-        <button (click)="Volver()" class="btn volver float-right m-1"><i class="fas fa-arrow-alt-left"></i></button>
+        <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-alt-left"></i></button>
     </div>
 
    <div class="card">
@@ -17,27 +17,24 @@
 
         <div class="card-body">
             <table class="table">
-                <thead>
                     <tr>
                         <th>Tipo de pension</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
+                        <td>{{this.pension.tipo}}</td>
                     </tr>
-                </thead>
-
-                <tbody>
                     <tr>
-                        <td>{{pension.tipo}}</td>
-                        <td>{{pension.descripcion}}</td>
-                        <td>{{pension.precio}} €</td>
+                        <th>Descripción</th>
+                        <td>{{this.pension.descripcion}}</td>
                     </tr>
-                </tbody>
+                    <tr>
+                        <th>Precio</th>
+                        <td>{{this.pension.precio}} €</td>
+                    </tr>
             </table>
         </div>
 
         <div class="card-footer">
-
-            <button (click)="EditPension(pension)" class="btn editar float-right m-1"><i class="fas fa-edit"></i></button>
+            <button (click)="descargarPDF()" class="btn float-right m-1 pdf">Descargar PDF</button>
+            <button (click)="EditPension(this.pension)" class="btn float-right m-1 edit"><i class="fas fa-edit"></i></button>
         </div>
     </div>
 </div>

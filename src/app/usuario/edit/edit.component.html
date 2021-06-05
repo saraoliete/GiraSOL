@@ -1,6 +1,6 @@
-<div class="title_header">
+<div class="title-header">
 
-  <h3 class="titulo">EDITAR USUARIO: {{this.usuario.nombreusuario}}</h3>
+  <h3 class="titulo">Editar usuario: {{this.usuario.nombreusuario}}</h3>
 
 </div>
 
@@ -27,14 +27,30 @@
   
         <!-- nombre -->
         <label class="ml-4 mr-3" for="nombre">NOMBRE</label>
-          <input type="nombre" formControlName="nombre" name="nombre" id="nombre" class="form-control-sm col-3" required="required" value="{{this.usuario.nombre}}"/>
+          <input type="text" formControlName="nombre" name="nombre" id="nombre" class="form-control-sm col-3" autocomplete="off"
+          required="required" minlength="3" maxlength="45" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))$" value="{{this.usuario.nombre}}"/>
         
+          <div class="validaciones" *ngIf="formEditUser.get('nombre')?.errors && formEditUser.get('nombre')?.dirty">
+            <p *ngIf="formEditUser.get('nombre')?.hasError('required')">Este campo es obligatorio</p>
+            <p *ngIf="formEditUser.get('nombre')?.hasError('pattern')">Introduce un nombre valido</p>
+            <p *ngIf="formEditUser.get('nombre')?.hasError('minlength')">El mínimo de caracteres es 3</p>
+            <p *ngIf="formEditUser.get('nombre')?.hasError('maxlength')">El máximo de caracteres es 45</p>
+
+          </div>
+
   
         <!-- apellidos -->
           <label class="ml-4 mr-3" for="apellidos">APELLIDOS</label>
-          <input type="apellidos" formControlName="apellidos" name="apellidos"
+          <input type="text" formControlName="apellidos" name="apellidos" autocomplete="off" minlength="2" minlength="36" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"
             id="apellidos" class=" form-control-sm col-3" required="required" value="{{this.usuario.apellidos}}"/>
             
+            <div class="validaciones" *ngIf="formEditUser.get('apellidos')?.errors && formEditUser.get('apellidos')?.dirty">
+              <p *ngIf="formEditUser.get('apellidos')?.hasError('required')">Este campo es obligatorio</p>
+              <p *ngIf="formEditUser.get('apellidos')?.hasError('pattern')">Introduce un nombre valido</p>
+              <p *ngIf="formEditUser.get('apellidos')?.hasError('minlength')">El mínimo de caracteres es 2</p>
+              <p *ngIf="formEditUser.get('apellidos')?.hasError('maxlength')">El máximo de caracteres es 45</p>
+  
+            </div>
             
           </div>
           
@@ -42,8 +58,14 @@
             
             <!-- dni -->
             <label class="ml-4 mr-3" for="dni" style="position: relative; right: 107px;">DNI</label>
-            <input type="dni" formControlName="dni" name="dni"
+            <input type="text" formControlName="dni" name="dni" pattern="^[0-9]{8}[A-Za-z]$"
             id="dni" class="form-control-sm col-3" required="required" value="{{this.usuario.dni}}"/>
+
+            <div class="validaciones" *ngIf="formEditUser.get('dni')?.errors && formEditUser.get('dni')?.dirty">
+              <p *ngIf="formEditUser.get('dni')?.hasError('required')">Este campo es obligatorio</p>
+              <p *ngIf="formEditUser.get('dni')?.hasError('pattern')">Introduce un dni valido</p>
+  
+            </div>
           
           <!-- genero -->
           <label class="ml-5" for="male">HOMBRE</label>
@@ -56,8 +78,14 @@
         
           <!-- edad -->
             <label class="ml-4 mr-3" for="edad">EDAD</label>
-            <input type="text" formControlName="edad" name="edad"
-              id="edad" class="form-control-sm col-1 ml-2"  required="required" value="{{this.usuario.edad}}"/>
+            <input type="text" formControlName="edad" name="edad" maxlength="3"
+              id="number" class="form-control-sm col-1 ml-2"  required="required" value="{{this.usuario.edad}}"/>
+
+              <div class="validaciones" *ngIf="formEditUser.get('edad')?.errors && formEditUser.get('edad')?.dirty">
+                <p *ngIf="formEditUser.get('edad')?.hasError('required')">Este campo es obligatorio</p>
+                <p *ngIf="formEditUser.get('edad')?.hasError('maxlength')">Máximo 3 dígitos</p>
+    
+              </div>
 
         </div>
           
@@ -66,13 +94,26 @@
           <!-- email -->
           <label class="ml-4 mr-4" for="email">EMAIL</label>
             <input
-              type="email" formControlName="email" name="email"
+              type="text" formControlName="email" name="email" minlength="6" minlength="30" pattern="^\S+@\S+\.\S+$"
               id="email" class="form-control-sm col-4 ml-5" required="required" value="{{this.usuario.email}}"/>
+
+              <div class="validaciones" *ngIf="formEditUser.get('email')?.errors && formEditUser.get('email')?.dirty">
+                <p *ngIf="formEditUser.get('email')?.hasError('required')">Este campo es obligatorio</p>
+                <p *ngIf="formEditUser.get('email')?.hasError('pattern')">Introduce un email válido</p>
+                <p *ngIf="formEditUser.get('email')?.hasError('maxlength')">Máximo 30 caracteres</p>
+    
+              </div>
     
             <!-- ttelefono -->
               <label class="ml-4" for="telefono">TELEFONO</label>
-              <input type="text" formControlName="telefono" name="telefono"
+              <input type="text" formControlName="telefono" name="telefono" pattern="^(6|7|9)[0-9]{8}$"
                 id="telefono" class="form-control-sm col-3" required="required" value="{{this.usuario.telefono}}"/>
+
+                <div class="validaciones" *ngIf="formEditUser.get('telefono')?.errors && formEditUser.get('telefono')?.dirty">
+                  <p *ngIf="formEditUser.get('telefono')?.hasError('required')">Este campo es obligatorio</p>
+                  <p *ngIf="formEditUser.get('telefono')?.hasError('pattern')">Introduce un teléfono válido</p>
+      
+                </div>
 
         </div>
   
@@ -81,13 +122,25 @@
               
               <!-- localidad -->
                 <label class="ml-2 mr-3" for="localidad">LOCALIDAD</label>
-                <input type="text" formControlName="localidad" name="localidad"
+                <input type="text" formControlName="localidad" name="localidad" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"
                   id="localidad" class="form-control-sm col-3" required="required" value="{{this.usuario.localidad}}"/>
+
+                  <div class="validaciones" *ngIf="formEditUser.get('localidad')?.errors && formEditUser.get('localidad')?.dirty">
+                    <p *ngIf="formEditUser.get('localidad')?.hasError('required')">Este campo es obligatorio</p>
+                    <p *ngIf="formEditUser.get('localidad')?.hasError('pattern')">Introduce una localidad válida</p>
+        
+                  </div>
       
               <!-- nacionalidad -->
                 <label class="ml-4" for="nacionalidad">NACIONALIDAD</label>
-                <input type="text" formControlName="nacionalidad" name="nacionalidad"
+                <input type="text" formControlName="nacionalidad" name="nacionalidad" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"
                   id="nacionalidad" class="form-control-sm col-3" required="required" value="{{this.usuario.nacionalidad}}"/>
+
+                  <div class="validaciones" *ngIf="formEditUser.get('nacionalidad')?.errors && formEditUser.get('nacionalidad')?.dirty">
+                    <p *ngIf="formEditUser.get('nacionalidad')?.hasError('required')">Este campo es obligatorio</p>
+                    <p *ngIf="formEditUser.get('nacionalidad')?.hasError('pattern')">Introduce una nacionalidad válida</p>
+        
+                  </div>
 
             </div>
   
@@ -99,18 +152,50 @@
           <div class="form-group" style="display: flex; justify-content: space-evenly; align-items: center;">
   
             <label class="ml-4" for="nombreusuario">NOMBRE DE USUARIO</label>
-            <input type="text" formControlName="nombreusuario" name="nombreusuario"
+            <input type="text" formControlName="nombreusuario" name="nombreusuario" minlength="6" maxlength="13" pattern="^[0-9A-Za-z_.]+$"
             id="nombreusuario" class="form-control-sm col-3" required="required" value="{{this.usuario.nombreusuario}}"/> 
+
+            <div class="validaciones" *ngIf="formEditUser.get('nombreusuario')?.errors && formEditUser.get('nombreusuario')?.dirty">
+              
+              <p *ngIf="formEditUser.get('nombreusuario')?.hasError('required')">Este campo es obligatorio</p>
+              <p *ngIf="formEditUser.get('nombreusuario')?.hasError('pattern')">Introduce un nombre de usuario válido</p>
+              <p *ngIf="formEditUser.get('nombreusuario')?.hasError('minlength')">Mínimo 6 caracteres</p>
+              <p *ngIf="formEditUser.get('nombreusuario')?.hasError('maxlength')">Máximo 13 caracteres</p>
+  
+            </div>
   
             <label class="ml-4" for="password">CONTRASEÑA</label>
-            <input type="text" formControlName="password" name="password"
+            <input type="text" formControlName="password" name="password" minlength="7" maxlength="13" pattern="^[0-9A-Za-z_.\s]+$"
               id="password" class="form-control-sm col-3" required="required" value="{{this.usuario.password}}"/>
 
-      </div>
-  
+              <div class="validaciones" *ngIf="formEditUser.get('password')?.errors && formEditUser.get('password')?.dirty">
+              
+                <p *ngIf="formEditUser.get('password')?.hasError('required')">Este campo es obligatorio</p>
+                <p *ngIf="formEditUser.get('password')?.hasError('pattern')">Introduce una contraseña válida</p>
+                <p *ngIf="formEditUser.get('password')?.hasError('minlength')">Mínimo 7 caracteres</p>
+                <p *ngIf="formEditUser.get('password')?.hasError('maxlength')">Máximo 13 caracteres</p>
+    
+              </div>
+
+              
+              
+            </div>
+            
+            <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
+
+              <label for="id" class="m-1 ml-5">Id</label>
+              <input type="text" value="{{this.usuario.id}}" name="id" formControlName="id" class="form-control-sm ml-1 col-1" />
+            
+              <label for="tipousuario" class="m-1 ml-5">Tipo de usuario</label>
+              <select name="tipousuario" formControlName="tipousuario" class="form-control-sm ml-1 col-2" >
+                <option value="{{item.id}}" *ngFor="let item of tipousuario">{{item.id}} - {{item.nombre}}</option>
+              </select>
+
+            </div>
+
       </fieldset>
         
-        <button (click)="activarComponente()" class="btn btn-primary float-right">FINALIZAR</button>
+        <button (click)="activarComponente()" class="btn guardar float-right">Guardar cambios</button>
 
      
       </form>

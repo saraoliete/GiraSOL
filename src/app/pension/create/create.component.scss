@@ -1,164 +1,127 @@
-.container{
+.title-header{
 
     width: 100%;
-    height: 485px;
-    margin: 3% auto;
-    overflow: scroll;
-    z-index: 999;
-    text-transform: uppercase;
-    &::-webkit-scrollbar{
-        display: none;
-    }
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
 
     .titulo{
 
+        position: absolute;
+        top: 5%;
+        padding: 0.1em 0.5em;
         font-size: 50px; 
+        background: linear-gradient(45deg, #d7a499, #f4c9b9);
         font-weight: bolder;
         color: white;
+        z-index: 9999;
         
     }
 
-    .guardar, .volver{
+}
 
-        width: 30px;
-        height: 28px;
-        padding: 0.1em 0em 0.1em 0em;
-        margin-top: 0px;
-        border-width: 2px;
-        border-style: solid;
+.container{
 
-        
-
+    z-index: 999;
+    width: 100%;
+    height: 550px;
+    margin: 3% auto;
+    top: 30px;
+    right: 90px;
+    left: 90px;
+    overflow: scroll;
+    background-color: #e2f1f1;
+    text-transform: uppercase;
+    position: absolute;
+    &::-webkit-scrollbar{
+        display: none;
     }
+    text-transform: uppercase;
+
+    .botones{
+
+        margin-bottom: 74px;
+
+        .exit{
+    
+            width: 30px;
+            height: 30px;
+            padding: 0.1em;
+            margin-top: 15px;
+            
+            border: 3px solid indianred;
+            background-color: white;
+            color: indianred;
+            font-weight: bold;
+    
+            &:hover{
+    
+                background-color: indianred;
+                color: white;
+                cursor: pointer;
+            }
+    
+        }
+    }
+
+    .card{
+
+        width: 100%;
+        font-weight: bolder;
+        margin-bottom: 0px;
+        border-radius: 0px;
+        border-width: 0px;
+
+        .card-header{
+
+            color: white;
+            border-radius: 5px;
+            height: 50px;
+            background-image: url(../../../assets/fondo5.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position-y: -300px;
+    
+           }
+
+           .card-body{
+
+            .nombre_field, .numero_camas_field, .descripcion_field, .precio_field{
+
+                display: flex;
+                align-items: center;
+
+                .validaciones{
+
+                    width: 50%;
+                    margin-left: 5%;
+
+                    p{
+
+                        font-size: 11px;
+                        color: red;
+                        line-height: 10px;
+                        letter-spacing: 1px;
+                        margin-bottom: 4%;
+                    }
+                }
+            }
+           }
+
+    
 
     .guardar{
 
-
-        border-color: #5DADE2 ;
-        background-color: white;
-        color: #5DADE2;
-
-
-        &:hover{
-
-            border-color: #5DADE2 ;
-            background-color: #5DADE2;
-            color: white;
-            cursor: pointer;
-        }
-
-    }
-
-    .volver{
-
-        border-color: IndianRed ;
-        background-color: white;
-        color: IndianRed;
-
-        &:hover{
-
-            border-color: IndianRed ;
-            background-color: IndianRed;
-            color: white;
-            cursor: pointer;
-        }
-
-    }
-
-    
-        .titulo{
-
-            font-size: 50px; 
-            font-weight: bolder;
-            color: white;
-            
-        }
-
-    
-
-    .form-card{
-
-        width: 100%;
-        height: 298px;        
-        font-weight: bolder;
-        box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
-
-       .form-header{
-        border-radius: 5px;
-        height: 50px;
-        
-        
-        
-       }
-
-       .form-body{
-
-        vertical-align: middle;
-        
-       }
-        
-    }
-
-    .alert-message{
-
-        width: 100%;
-        height: 200px;        
-        font-weight: bolder;
-        box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
-        border: 2px solid rgb(255, 194, 41);
-
-        margin-top: -272px;
-        margin-left: 48px;
-
-        z-index: 999999;
-
-       .alert-header{
-        
-        text-align: center;
-        height: 50px;
-        border: 2px solid rgb(255, 194, 41);
-        
-        .alert-title{
-
-            font-size: 24px;
-        }
-        
-       }
-
-       .alert-body{
-
-        vertical-align: middle;
-        text-align: center;
-
-        border: 2px solid rgb(255, 194, 41);
-        
-        
-       }
-
-       .alert-footer{
-
-        border: 2px solid rgb(255, 194, 41);
-
-       }
-        
-    }
-
-    .aceptar, .cancelar{
-
-        width: 83px;
-        height: 23px;
+        height: 30px;
         padding: 0%;
-        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-right: 3.7%;
         border-width: 2px;
         border-style: solid;
         font-weight: bold;
         text-transform: uppercase;
-
-        
-
-    }
-
-    .aceptar{
 
         border-color: #5DADE2 ;
         background-color: white;
@@ -171,19 +134,6 @@
             cursor: pointer;
         }
     }
-
-    .cancelar{
-
-        border-color: IndianRed;
-        background-color: white;
-        color: IndianRed;
-
-        &:hover{
-
-            background-color: IndianRed;
-            color: white;
-            cursor: pointer;
-        }
+        
     }
-
 }

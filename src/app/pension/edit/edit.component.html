@@ -1,13 +1,13 @@
 <div class="title-header">
 
-  <h3 class="titulo">EDITAR PENSION {{this.pension.tipo}}</h3>
+  <h3 class="titulo">Editar pensión {{this.pension.tipo}}</h3>
   
 </div>
 
 <div class="container col-md-6">
   
   <div class="botones">
-    <button (click)="Volver()" class="btn volver float-right m-1"><i class="fas fa-arrow-alt-left"></i></button>
+    <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
   </div>
 
   <div class="card form-card">
@@ -17,37 +17,64 @@
     <div class="card-body form-body">
 
       <form [formGroup]="formEditPension" class="form">
-        <div class="form-group">
 
-          <label for="tipo" class="ml-4 mr-2 mt-1">Tipo de pension:</label>
-          <input type="tipo" class="form-control-sm col-3 ml-3 mr-5" formControlName="tipo" name="tipo" [(ngModel)]="pension.tipo"
-            placeholder="Tipo" required="required"/>
+        <div class="form-group" style="display: flex; flex-direction: column; align-items: stretch;">
+
+          <div class="nombre_field ml-5 mt-3">
+
+            <label for="tipo">Id</label>
+            <input type="tipo" class="form-control-sm col-2" autocomplete="off" formControlName="tipo" name="tipo" value="{{this.pension.id}}"
+              required="required" readonly="readonly" style="margin-left: 15.8%;"/>
+
+          </div>
+        
+          <div class="nombre_field ml-5 mt-3">
+
+              <label for="tipo">Tipo</label>
+              <input type="tipo" class="form-control-sm col-2" autocomplete="off" formControlName="tipo" name="tipo" value="{{this.pension.tipo}}"
+                required="required" maxlength="6" style="margin-left: 12.8%;"/>
+
+                <div class="validaciones" *ngIf="formEditPension.get('tipo')?.errors && formEditPension.get('tipo')?.dirty">
+                  <p *ngIf="formEditPension.get('tipo')?.hasError('required')">Este campo es obligatorio</p>
+                  <p *ngIf="formEditPension.get('tipo')?.hasError('maxlength')">Aquí van las siglas del tipo</p>
+                </div>
 
           </div>
 
-          <div class="form-group">
+          <div class="nombre_field ml-5 mt-3">
+            
+            <label for="descripcion">Descripcion</label>
+            <textarea type="descripcion" formControlName="descripcion" name="descripcion" value="{{this.pension.descripcion}}"
+              placeholder="descripcion" cols="30" rows="3" autocomplete="off" maxlength="280" required="required" style="margin-left: 3%;"></textarea>
 
-          <label for="descripcion" class="ml-4 mr-2 mt-1">Descripcion:</label>
-          <input type="descripcion" class="form-control-sm col-4 ml-5 mr-5" formControlName="descripcion" name="descripcion" [(ngModel)]="pension.descripcion"
-            placeholder="descripcion" required="required"/>
+            <div class="validaciones" *ngIf="formEditPension.get('descripcion')?.errors && formEditPension.get('descripcion')?.dirty">
+                  <p *ngIf="formEditPension.get('descripcion')?.hasError('required')">Este campo es obligatorio</p>
+                  <p *ngIf="formEditPension.get('descripcion')?.hasError('maxlength')">Descripción corta. Máxmimo 280 caracteres</p>
+            </div>
+          </div>
+
+          <div class="nombre_field ml-5 mt-3">
+            
+              <label for="precio">Precio</label>
+              <input type="precio" class="form-control-sm col-2" formControlName="precio" name="precio" value="{{this.pension.precio}}"
+                placeholder="precio" pattern="^([0-9]{1,4})+(,([0-9]{1,2}))?$" autocomplete="off" required="required" style="margin-left: 10%;"/> €
+
+              <div class="validaciones" *ngIf="formEditPension.get('precio')?.errors && formEditPension.get('precio')?.dirty">
+                  <p *ngIf="formEditPension.get('precio')?.hasError('required')">Este campo es obligatorio</p>
+                  <p *ngIf="formEditPension.get('precio')?.hasError('pattern')">Solo valores numéricos: 4 enteros y 2 decimales máximo</p>
+              </div>
+            </div>
+
+            <div class="btn-reservar mt-3" style="display: flex; justify-content: flex-end;">
+
+              <button (click)="activarComponente()" class="btn guardar">Guardar cambios</button>
 
           </div>
 
-          <div class="form-group">
-
-          <label for="precio" class="ml-4 mr-5 mt-1">Precio:</label>
-          <input type="precio" class="form-control-sm col-3 ml-5 mr-1" formControlName="precio" name="precio" [(ngModel)]="pension.precio"
-            placeholder="precio" required="required"/> €
-
           </div>
+
         </form>
       </div>
-      
-      <div class="card-footer form-footer">
-        
-        <button (click)="activarComponente()" class="btn guardar float-right m-1"><i class="fas fa-save"></i></button>
-
-  </div>
 
   
 </div>

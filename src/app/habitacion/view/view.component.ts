@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { PdfMakeWrapper, Table, Txt } from "pdfmake-wrapper";
 import { ServiceService } from "src/app/Service/service.service";
 import { Habitacion } from '../../Modelo/habitacion';
 
@@ -9,6 +10,8 @@ import { Habitacion } from '../../Modelo/habitacion';
   styleUrls: ["./view.component.scss"]
 })
 export class ViewHabitacion implements OnInit{
+
+  pdfMakerWrapper = new PdfMakeWrapper();
 
     habitacion:Habitacion = new Habitacion();
     constructor(private service:ServiceService, private router:Router){}
@@ -21,7 +24,46 @@ export class ViewHabitacion implements OnInit{
     View(){
       
       let id= localStorage.getItem("id");
-      this.service.getHabitacion(id).subscribe(data=>{ this.habitacion=data;})
+      this.service.getHabitacion(id).subscribe(data=>{ this.habitacion=data; });
+    }
+
+    descargarPDF(){
+
+      let id= localStorage.getItem("id");
+      this.service.getHabitacion(id).subscribe(data=>{ this.habitacion=data;
+      
+        this.pdfMakerWrapper = new PdfMakeWrapper();
+
+          this.pdfMakerWrapper.defaultStyle({
+
+            fontSize: 15,
+
+          });
+
+          this.pdfMakerWrapper.pageSize('A4');
+
+          this.pdfMakerWrapper.pageMargins([80, 40]);
+
+          this.pdfMakerWrapper.header([
+            new Txt('Habitación ' + data.id).alignment('center').end
+          ]);
+          
+          this.pdfMakerWrapper.add(  
+      
+            new Table([
+              ['idHabitacion', data.id],
+              ['Tipo de habitacion', data.tipohabitacion.nombre],
+              ['Descripcion', data.tipohabitacion.descripcion],
+              ['Precio', data.tipohabitacion.precio]
+              
+            ]).widths([100, '*']).alignment('center').end
+            
+            );
+
+            this.pdfMakerWrapper.create().open();
+      
+      })
+
     }
 
     EditHabitacion(habitacion:Habitacion):void{

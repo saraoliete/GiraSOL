@@ -1,36 +1,92 @@
-<div class="container">
+<div class="title-header">
 
-    <div class="card">
+    <h3 class="titulo">TIPO DE HABITACIONES</h3>
+    
+</div>
+
+<div class="container col-md-7">
+    
+    <div class="botones">
+        
+        <button (click)="Create()" class="btn create m-1 float-right"><i class="fas fa-plus"></i></button>
+    
+    </div>
+
+    <div class="size">
+        <p style="text-align: center; margin-bottom: 0%; font-weight: 600; color: #66403b;">Tipos de habitaciones a mostrar:</p>
+        <button  class="btn setSize m-1" style="cursor: pointer;" (click)="setSize(5)">4</button>
+        <button  class="btn setSize m-1" style="cursor: pointer;" (click)="setSize(10)">8</button>
+        <button  class="btn setSize m-1" style="cursor: pointer;" (click)="setSize(15)">16</button>
+    </div>
+
+    <div class="paginacion">
+
+        <table>
+            <tr>
+                <td (click)="setOrder('id')">ID</td>
+                <td (click)="setOrder('nombre')">Nombre</td>
+                <td (click)="setOrder('precio')">Precio</td>
+                <td (click)="sort()"><i class="fas fa-sort m-2"></i></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="card" *ngFor="let tipohabitacion of Tipohabitaciones">
 
         <div class="card-header">
-            <h3>Pension</h3>
+            
         </div>
 
         <div class="card-body">
             <table class="table">
                 <thead>
                     <tr class="text-center">
-                        <th>Id Tipo de Habitacion</th>
-                        <th>Nombre del tipo</th>
+                        <th>Id</th>
+                        <th>Nombre</th>
                         <th>Numero de camas</th>
                         <th>Descripcion</th>
                         <th>Precio</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let tipohabitacion of tipohabitacion" class="text-center">
-                        <td>{{tipohabitacion.id_tipohabitacion}}</td>
+                    <tr class="text-center">
+                        <td>{{tipohabitacion.id}}</td>
                         <td>{{tipohabitacion.nombre}}</td>
                         <td>{{tipohabitacion.numero_camas}}</td>
                         <td>{{tipohabitacion.descripcion}}</td>
                         <td>{{tipohabitacion.precio}}</td>
-                        <td>
-                            <button (click)="View(tipohabitacion)"class="btn btn-info m-1">Ver</button>
-                            <button (click)="Editar(tipohabitacion)"class="btn btn-warning m-1">Edit</button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <div class="card-footer">
+
+            <button (click)="View(tipohabitacion)" class="btn view m-1"><i class="fas fa-eye"></i></button>
+            <button (click)="Editar(tipohabitacion)" class="btn edit m-1"><i class="fas fa-edit"></i></button>
+            <button (click)="Delete(tipohabitacion)" class="btn m-1 delete1"><i class="fas fa-trash-alt"></i></button>
+
+        </div>
+
     </div>
-</div>
+
+
+    <div class="page_footer">
+
+        <div class="botones">
+            <button (click)="descargarPDF()" class="btn pdf m-1">Descargar PDF</button>
+        </div>
+
+        <div class="paginar">
+            <button class="btn btn-sm rewind" (click)="rewind()"><i class="fas fa-angle-double-left fa-2x"></i></button>
+    
+            <span *ngFor="let p of totalPages; let i = index">
+                <a style="cursor: pointer;" (click)="setPage(i)" [ngClass]="{'text-primary': i === page }">{{ i+1 }}&nbsp;&nbsp;&nbsp;</a>
+            </span>
+    
+            <button class="btn btn-sm forward" (click)="forward()"><i class="fas fa-angle-double-right fa-2x"></i></button>
+            
+        </div>
+
+    </div>

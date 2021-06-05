@@ -1,34 +1,47 @@
-<div class="container">
+<div class="title-header">
+
+    <h3 class="titulo">{{this.tipohabitacion.nombre}}</h3>
+    
+</div>
+
+<div class="container col-md-7">
+    
+    <div class="botones">
+        
+        <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
+
+    </div>
 
     <div class="card">
 
         <div class="card-header">
-            <h3>Pension:</h3>
+            
         </div>
 
         <div class="card-body">
             <table class="table">
                 <tr class="text-center">
                     <td>Tipo de habitacion:</td>
-                    <td>{{tipohabitacion.nombre}}</td>                        
+                    <td>{{this.tipohabitacion.nombre}}</td>                        
                 </tr>
                 <tr class="text-center">
                     <td>Numero de camas:</td>
-                    <td>{{tipohabitacion.numero_camas}}</td>                        
+                    <td>{{this.tipohabitacion.numero_camas}}</td>                        
                 </tr>
                 <tr class="text-center">
                     <td>Descripcion:</td>
-                    <td>{{tipohabitacion.descripcion}}</td>                        
+                    <td>{{this.tipohabitacion.descripcion}}</td>                        
                 </tr>
                 <tr class="text-center">
                     <td>Precio:</td>
-                    <td>{{tipohabitacion.precio}}</td>                        
-                </tr>
-                <tr>
-                    <td><button (click)="EditTipohabitacion(tipohabitacion)" class="btn">Editar Informacion</button></td>
-                    <td><button (click)="Volver()" class="btn btn-danger">Volver</button></td>
+                    <td>{{this.tipohabitacion.precio}}</td>                        
                 </tr>
             </table>
+        </div>
+
+        <div class="card-footer">
+            <button (click)="descargarPDF()" class="btn float-right m-1 pdf">Descargar PDF</button>
+            <button (click)="EditTipohabitacion(this.tipohabitacion)" class="btn float-right m-1 edit"><i class="fas fa-edit"></i></button>
         </div>
     </div>
 </div>

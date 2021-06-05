@@ -32,6 +32,13 @@ import { DatePipe } from '@angular/common';
 import { EditUsuario } from './usuario/edit/edit.component';
 import { getPageUsuario } from './usuario/page/page.component';
 import { PdfMakeWrapper } from 'pdfmake-wrapper';
+import { getPageTipohabitacion } from './tipohabitacion/page/page.component';
+import { CreateTipohabitacion } from './tipohabitacion/create/create.component';
+import { getPageTipousuario } from './tipousuario/page/page.component';
+import { CreateTipousuario } from './tipousuario/create/create.component';
+import {EditTipousuario} from './tipousuario/edit/edit.component';
+import { StorageService } from './Service/storage.service';
+import { PersonalView } from './usuario/personal view/view.component';
 
 
 @NgModule({
@@ -41,8 +48,13 @@ import { PdfMakeWrapper } from 'pdfmake-wrapper';
     RegisterUsuario, 
     CreateUsuario,
     ViewUsuario,
+    PersonalView,
     EditUsuario,
     getPageUsuario,
+    ViewTipousuario,
+    getPageTipousuario,
+    CreateTipousuario,
+    EditTipousuario,
     getPageHabitacion,
     ViewHabitacion,
     EditHabitacion,
@@ -56,7 +68,8 @@ import { PdfMakeWrapper } from 'pdfmake-wrapper';
     ViewPension,
     ViewTipohabitacion,
     EditTipohabitacion,
-    ViewTipousuario,
+    CreateTipohabitacion,
+    getPageTipohabitacion,
     CreatePension,
     UploadFile
   ],
@@ -68,7 +81,7 @@ import { PdfMakeWrapper } from 'pdfmake-wrapper';
     FormsModule
 
   ],
-  providers: [ServiceService, CookieService, Login, DatePipe, PdfMakeWrapper],
+  providers: [ServiceService, StorageService, CookieService, Login, DatePipe, PdfMakeWrapper],
   bootstrap: [AppComponent]
 })
 

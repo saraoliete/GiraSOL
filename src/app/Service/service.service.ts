@@ -109,16 +109,25 @@ export class ServiceService {
 
     //Tipousuario
 
-    getTipousuario(id:Number){
+    getTipousuario(id:String | null): Observable<Tipousuario>{
         return this.http.get<Tipousuario>(this.Url + "tipousuario/" + id);
     }
 
     getAllTipousuario(){
         return this.http.get<Tipousuario[]>(this.Url + "tipousuario/" + "all");
     }
+    updateTipousuario(tipousuario:Tipousuario){
+        return this.http.put<Tipousuario>(this.Url + "tipousuario/" + tipousuario.id, tipousuario);
+    }
+    createTipousuario(tipousuario:Tipousuario){
+        return this.http.post<Tipousuario>(this.Url + "tipousuario/", tipousuario);
+    }
+    deleteTipousuario(tipousuario:Tipousuario){
+        return this.http.delete<Tipousuario>(this.Url + "tipousuario/" + tipousuario.id);
+    }
 
-    getPageTipousuario(){
-            return this.http.get<Tipousuario[]>(this.Url + "tipousuario/" + "page");
+    getPageTipousuario(page: number, size: number, order: string, asc: boolean): Observable<any>{
+            return this.http.get<any>(this.Url + "tipousuario/" + "page?" + `page=${page}&size=${size}&order=${order}&asc=${asc}`);
     }
 
     //Habitacion
@@ -144,7 +153,7 @@ export class ServiceService {
 
     //tipohabitacion
 
-    getTipohabitacion(id:Number){
+    getTipohabitacion(id:String | null): Observable<Tipohabitacion>{
         return this.http.get<Tipohabitacion>(this.Url + "tipohabitacion/" + id);
     }
 
@@ -152,12 +161,20 @@ export class ServiceService {
         return this.http.get<Tipohabitacion[]>(this.Url + "tipohabitacion/" + "all");
     }
 
-    updateTipohabitacion(tipohabitacion:String){
-            return this.http.put<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion, tipohabitacion);
+    updateTipohabitacion(tipohabitacion:Tipohabitacion){
+            return this.http.put<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion.id, tipohabitacion);
     }
 
-    getPageTipohabitacion(){
-            return this.http.get<Tipohabitacion[]>(this.Url + "tipohabitacion/" + "page");
+    createTipohabitacion(tipohabitacion:Tipohabitacion){
+        return this.http.post<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion.id, tipohabitacion);
+    }
+
+    deleteTipohabitacion(tipohabitacion:Tipohabitacion){
+        return this.http.delete<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion.id);
+    }
+
+    getPageTipohabitacion(page: number, size: number, order: string, asc: boolean): Observable<any>{
+            return this.http.get<any>(this.Url + "tipohabitacion/" + "page?" + `page=${page}&size=${size}&order=${order}&asc=${asc}`);
     }
 
     //Pension
