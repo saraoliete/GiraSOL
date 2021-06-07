@@ -14,7 +14,6 @@ import { StorageService } from './Service/storage.service';
 export class AppComponent implements OnInit{
   title = 'girasol';
   isMasterSel:boolean;
-  usuario:Usuario = new Usuario();
   check!:number;
 
   
@@ -23,27 +22,24 @@ export class AppComponent implements OnInit{
   }
   
   ngOnInit(){
-    
-    let token = localStorage.getItem("token");
-    let id= localStorage.getItem("idUsuario");
-    let nombreUsuario = localStorage.getItem('nombreUsuario');
-
   }
  
   recuperarIdUsuario(){
-    return localStorage.getItem('idUsuario');
+    return this.storage.getCurrentSession()?.id;
   }
 
   mostrarUsuario(){
-    console.log('nombreUsuario:'+localStorage.getItem('nombreUsuario'));
-    return localStorage.getItem('nombreUsuario');
+    return this.storage.getCurrentSession()?.nombreusuario;
+  }
+
+  esAdministrador():boolean {
+    return this.storage.getCurrentSession()?.tipousuario.id == 1;
   }
 
     ViewUser(){
-      let idUsuario = String(localStorage.getItem("idUsuario"));
+      let idUsuario = String(this.recuperarIdUsuario());
       localStorage.setItem('id', idUsuario);
       this.router.navigate(['app-PersonalView']);
-      
     }
 
     Login(){    
@@ -58,12 +54,22 @@ export class AppComponent implements OnInit{
       this.router.navigate(["getPageHabitacion"])
     }
 
+    Tipohabitacion(){
+
+      this.router.navigate(["app-getPageTipohabitacion"])
+    }
+
     Pension(){
       this.router.navigate(["getPagePension"])
     }
 
     Usuarios(){
       this.router.navigate(["getPageUsuario"])
+    }
+
+    Tipousuario(){
+
+      this.router.navigate(["app-getPageTipousuario"])
     }
 
     Reservas(){

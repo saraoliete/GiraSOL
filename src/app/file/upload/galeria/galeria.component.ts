@@ -15,6 +15,8 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 export class GaleriaImagenes implements OnInit{
 
+    file!:Array<FileImg>
+
     constructor(private service:ServiceService, private router:Router, private formBuilder:FormBuilder){
       
         
@@ -23,7 +25,15 @@ export class GaleriaImagenes implements OnInit{
 
     ngOnInit(){
 
-        
+
+        this.service.getImagenes().subscribe(data=> this.file=data);
+
+    }
+
+    storageImagen(file:FileImg){
+
+        localStorage.setItem('idImagen', file.id.toString())
+
 
     }
 

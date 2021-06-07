@@ -114,33 +114,53 @@
             list-style: none;
             padding: 0;
 
-            li:not(.habitaciones, .usuarios){
+            .tipoHabitaciones{
 
-              z-index: 2!important;
+              position: absolute;
+              z-index: -1;
+              top: 19.4%;
+              right: -50%;
+              width: 88%;
+              background: white;
+              transition: all 0.7s ease-in-out;
+            }
 
+            .tipoUsuarios{
+
+              position: absolute;
+              z-index: -1;
+              bottom: 21.7%;
+              right: -50%;
+              width: 77%;
+              background: white;
+              transition: all 0.7s ease-in-out;
             }
 
             .habitaciones:hover + .tipoHabitaciones{
 
-              opacity:1!important;
-              transition: opacity 0.4s ease-in-out;
+              right: 100%!important;
+              transition: all 0.7s ease-in-out;
             }
 
             .tipoHabitaciones:hover{
 
-              opacity:1!important;
+              right: 100%!important;
+              background-color: #f4c9b9!important;
+              transition: background-color 0.7s ease-in-out;
 
             }
 
             .usuarios:hover + .tipoUsuarios{
 
-              opacity:1!important;
-              transition: opacity 0.4s ease-in-out;
+              right: 100%!important;
+              transition: all 0.7s ease-in-out;
             }
 
             .tipoUsuarios:hover{
 
-              opacity:1!important;
+              right: 100%!important;
+              background-color: #f4c9b9!important;
+              transition: background-color 0.7s ease-in-out;
 
             }
 

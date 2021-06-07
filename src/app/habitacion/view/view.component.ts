@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { PdfMakeWrapper, Table, Txt } from "pdfmake-wrapper";
 import { ServiceService } from "src/app/Service/service.service";
+import { StorageService } from "src/app/Service/storage.service";
 import { Habitacion } from '../../Modelo/habitacion';
 
 @Component({
@@ -14,11 +15,15 @@ export class ViewHabitacion implements OnInit{
   pdfMakerWrapper = new PdfMakeWrapper();
 
     habitacion:Habitacion = new Habitacion();
-    constructor(private service:ServiceService, private router:Router){}
+    constructor(private service:ServiceService, private storage:StorageService, private router:Router){}
 
     ngOnInit(){
 
       this.View();
+    }
+
+    esAdministrador():boolean {
+      return this.storage.getCurrentSession()?.tipousuario.id == 1;
     }
 
     View(){

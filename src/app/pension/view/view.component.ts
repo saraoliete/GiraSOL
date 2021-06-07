@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { PdfMakeWrapper, Table, Txt } from "pdfmake-wrapper";
 import { ServiceService } from "src/app/Service/service.service";
+import { StorageService } from "src/app/Service/storage.service";
 import { Pension } from '../../Modelo/pension';
 
 @Component({
@@ -14,12 +15,16 @@ export class ViewPension implements OnInit{
   pdfMakerWrapper = new PdfMakeWrapper();
 
     pension:Pension = new Pension();
-    constructor(private service:ServiceService, private router:Router){}
+    constructor(private service:ServiceService, private storage:StorageService, private router:Router){}
 
     ngOnInit(){
       let id= localStorage.getItem("id");
       this.service.getPension(id).subscribe(data=>{ this.pension=data;});
      }
+
+     esAdministrador():boolean {
+      return this.storage.getCurrentSession()?.tipousuario.id == 1;
+    }
 
      descargarPDF(){
 

@@ -6,7 +6,7 @@
 
 <div class="container col-md-7">
 
-    <div class="botones">
+    <div class="botones" style="position: block; margin-bottom: 0px;" *ngIf="esAdministrador()">
         <button (click)="Create()" class="btn create float-right m-1"><i class="fas fa-plus"></i></button>
     </div>
 
@@ -59,15 +59,15 @@
         <div class="card-footer">
 
             <button (click)="View(pension)"class="btn view m-1"><i class="fas fa-eye"></i></button>
-            <button (click)="Editar(pension)"class="btn edit m-1"><i class="fas fa-edit"></i></button>
-            <button (click)="Delete(pension)" class="btn m-1 delete1"><i class="fas fa-trash-alt"></i></button>
+            <button (click)="Editar(pension)"class="btn edit m-1" *ngIf="esAdministrador()"><i class="fas fa-edit"></i></button>
+            <button (click)="Delete(pension)" class="btn m-1 delete1" *ngIf="esAdministrador()"><i class="fas fa-trash-alt"></i></button>
 
         </div>
     </div>
 
     <div class="page_footer">
 
-        <div class="botones">
+        <div class="botones" *ngIf="esAdministrador()">
             <button (click)="descargarPDF()" class="btn pdf m-1">Descargar PDF</button>
         </div>
 

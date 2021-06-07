@@ -15,6 +15,7 @@ import { ServiceService } from "src/app/Service/service.service";
 import swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
 import { Validators } from "@angular/forms";
+import { StorageService } from "src/app/Service/storage.service";
 
 @Component({
   selector: "CreateReserva",
@@ -26,6 +27,7 @@ export class CreateReserva implements OnInit{
     formCreateReserva!: FormGroup;
 
     reserva:Reserva=new Reserva();
+    usuario!:Usuario;
     pensiones!: Array<Pension>;
     habitaciones!: Array<Tipohabitacion>;
 
@@ -35,7 +37,7 @@ export class CreateReserva implements OnInit{
     Days!:number;
 
 
-    constructor(private service: ServiceService, private router:Router, private fomrBuilder:FormBuilder, private datePipe:DatePipe) {
+    constructor(private service: ServiceService, private storage:StorageService, private router:Router, private fomrBuilder:FormBuilder, private datePipe:DatePipe) {
 
       this.formCreateReserva = this.fomrBuilder.group({
         usuario:[],
@@ -52,19 +54,50 @@ export class CreateReserva implements OnInit{
 
     ngOnInit(){ 
 
-      this.service.getAllTipohabitacion().subscribe(data=> this.habitaciones=data);
-      this.service.getAllPension().subscribe(data=> this.pensiones=data);
-
-      //this.formCreateReserva.setValue({precio_final: this.Calculadora()});
+      this.service.getAllTipohabitacion().subscribe(data=> {this.habitaciones=data});
+      this.service.getAllPension().subscribe(data=> {this.pensiones=data});
 
 
      }
+
+     recuperarIdUsuario(){
+      return this.storage.getCurrentSession()?.id;
+    }
+
+      getCurrentUser(){
+
+        let id = String(this.recuperarIdUsuario());
+        this.service.getUsuario(id).subscribe(data =>{this.usuario=data});
+      }
+
+
+      activarComponente(){
+
+        swal.fire({
+          title: 'Precio total: ' + this.Calculadora() + '€',
+          text: '¿Estás de acuerdo? ¿Quieres guardar los cambios?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Sí, guardar cambios',
+          cancelButtonText: 'No, no quiero guardar'
+        }).then((result) => {
+          if(result.value){
+            
+            this.CrearReserva();
+            
+          }else if(result.dismiss === swal.DismissReason.cancel){
+            
+              this.Cancelar();
+          }
+        })
+        
+      }
 
   CrearReserva() {
 
     console.log("CrearReserva");
         
-        this.reserva.usuario.id = this.formCreateReserva.get('usuario')?.value;
+        this.reserva.usuario.id = Number(this.recuperarIdUsuario());
         this.reserva.pension.id = this.formCreateReserva.get('pension')?.value;
         this.reserva.habitacion.id = this.formCreateReserva.get('habitacion')?.value;
         this.reserva.cama_supletoria = this.formCreateReserva.get('cama_supletoria')?.value;
@@ -73,9 +106,6 @@ export class CreateReserva implements OnInit{
         this.reserva.fecha_final = new Date(this.formCreateReserva.get('fecha_final')?.value);
         
         this.reserva.precio_final = this.Calculadora();
-
-
-
 
      
      this.service.createReserva(this.reserva).subscribe(data => {
@@ -89,11 +119,24 @@ export class CreateReserva implements OnInit{
       });
       
     }, error => swal.fire({
-      title: 'Error al crear en reserva',
-      text: error,
+      title: '¡Error!',
+      text: 'Todos los campos son obligatorios excepto la cama supletoria.',
       icon: 'error'
     }));
     
+  }
+
+
+  Cancelar(){
+
+    swal.fire({
+
+      title: '¡Cancelado!',
+      text: 'Los cambios no han sido guardados.',
+      icon: 'error'
+    });
+    this.formCreateReserva?.reset();
+    this.router.navigate(["CreateReserva"]);
   }
 
 

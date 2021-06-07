@@ -9,7 +9,7 @@
 
   <div class="botones">
 
-    <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-arrow-left"></i></button>
+    <button (click)="Volver()" class="btn exit float-right"><i class="fas fa-times"></i></button>
 
   </div>
 
@@ -40,7 +40,7 @@
         <!-- apellidos -->
           <label class="ml-4 mr-3" for="apellidos">APELLIDOS</label>
           <input type="text" formControlName="apellidos" name="apellidos" autocomplete="off"
-            id="apellidos" class=" form-control-sm col-3" required="required" minlength="36" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"/>
+            id="apellidos" class=" form-control-sm col-3" required="required" minlength="2" maxlength="36" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"/>
             
             <div class="validaciones" *ngIf="formCreateUser.get('apellidos')?.errors && formCreateUser.get('apellidos')?.dirty">
               <p *ngIf="formCreateUser.get('apellidos')?.hasError('required')">Este campo es obligatorio</p>
@@ -93,7 +93,7 @@
           <label class="ml-4 mr-4" for="email">EMAIL</label>
             <input
               type="text" formControlName="email" name="email" autocomplete="off"
-              id="email" class="form-control-sm col-4 ml-5" required="required" minlength="6" minlength="30" pattern="^\S+@\S+\.\S+$"/>
+              id="email" class="form-control-sm col-4 ml-5" required="required" minlength="6" maxlength="30" pattern="^\S+@\S+\.\S+$"/>
 
               <div class="validaciones" *ngIf="formCreateUser.get('email')?.errors && formCreateUser.get('email')?.dirty">
                 <p *ngIf="formCreateUser.get('email')?.hasError('required')">Este campo es obligatorio</p>

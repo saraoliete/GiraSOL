@@ -1,3 +1,5 @@
+import { FileImg } from "./file";
+
 export class Tipohabitacion{
 
     id!:Number;
@@ -5,4 +7,5 @@ export class Tipohabitacion{
     numero_camas:number | undefined;
     descripcion:string | undefined;
     precio!:number;
+    id_file!:Number;
 }

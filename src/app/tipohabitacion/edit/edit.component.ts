@@ -39,7 +39,7 @@ export class EditTipohabitacion implements OnInit{
       console.log("editar:"+id);
 
       this.service.getTipohabitacion(id).subscribe(data=> {
-          this.tipohabitacion=data;
+        this.tipohabitacion=data;
         this.formEditTipohabitacion.get('id')?.setValue(this.tipohabitacion.id);
         this.formEditTipohabitacion.get('nombre')?.setValue(this.tipohabitacion.nombre);
         this.formEditTipohabitacion.get('numero_camas')?.setValue(this.tipohabitacion.numero_camas);
@@ -104,5 +104,21 @@ export class EditTipohabitacion implements OnInit{
 
     Volver(){        
         this.router.navigate(["app-getPageTipohabitacion"]);
+    }
+
+    getImagen(id:Number){
+      if (id != null) {
+        let imagen;
+        this.service.getImagen(id).subscribe(data => {
+          imagen = data;
+           console.log('data:'+data);
+           console.log('imagen:'+imagen);
+        }, error => console.log(error));
+        console.log('imagen 2:'+imagen);
+        return imagen;
+      } else {
+        console.log('id imagen: null');
+        return null;
+      }      
     }
 }

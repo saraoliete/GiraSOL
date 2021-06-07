@@ -39,6 +39,7 @@ import { CreateTipousuario } from './tipousuario/create/create.component';
 import {EditTipousuario} from './tipousuario/edit/edit.component';
 import { StorageService } from './Service/storage.service';
 import { PersonalView } from './usuario/personal view/view.component';
+import { GaleriaImagenes } from './file/upload/galeria/galeria.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { PersonalView } from './usuario/personal view/view.component';
     CreateTipohabitacion,
     getPageTipohabitacion,
     CreatePension,
-    UploadFile
+    UploadFile,
+    GaleriaImagenes
   ],
   imports: [
     BrowserModule,

@@ -86,6 +86,8 @@ export class ViewUsuario implements OnInit{
       }).then((result) => {
         if(result.value){
 
+          this.service.logout();
+
           localStorage.removeItem("token");
           localStorage.removeItem("idUsuario");
           localStorage.removeItem("nombreUsuario");

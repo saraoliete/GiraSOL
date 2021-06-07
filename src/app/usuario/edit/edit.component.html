@@ -41,7 +41,7 @@
   
         <!-- apellidos -->
           <label class="ml-4 mr-3" for="apellidos">APELLIDOS</label>
-          <input type="text" formControlName="apellidos" name="apellidos" autocomplete="off" minlength="2" minlength="36" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"
+          <input type="text" formControlName="apellidos" name="apellidos" autocomplete="off" minlength="2" maxlength="36" pattern="^[A-Z]([a-z]+)(\s?[A-Z]([a-z]+))*$"
             id="apellidos" class=" form-control-sm col-3" required="required" value="{{this.usuario.apellidos}}"/>
             
             <div class="validaciones" *ngIf="formEditUser.get('apellidos')?.errors && formEditUser.get('apellidos')?.dirty">
@@ -70,11 +70,11 @@
           <!-- genero -->
           <label class="ml-5" for="male">HOMBRE</label>
           <input type="radio" formControlName="sexo" name="sexo"
-          value="M" class="ml-3"  id="male" required="required"/>
+          value="M" [(ngModel)]="this.usuario.sexo" class="ml-3"  id="male" required="required"/>
           
           <label class="ml-4" for="female">MUJER</label>
           <input type="radio" formControlName="sexo" name="sexo"
-          value="F" class="ml-3"  id="female" required="required"/>
+          value="F" [(ngModel)]="this.usuario.sexo" class="ml-3"  id="female" required="required"/>
         
           <!-- edad -->
             <label class="ml-4 mr-3" for="edad">EDAD</label>
@@ -94,7 +94,7 @@
           <!-- email -->
           <label class="ml-4 mr-4" for="email">EMAIL</label>
             <input
-              type="text" formControlName="email" name="email" minlength="6" minlength="30" pattern="^\S+@\S+\.\S+$"
+              type="text" formControlName="email" name="email" minlength="6" maxlength="30" pattern="^\S+@\S+\.\S+$"
               id="email" class="form-control-sm col-4 ml-5" required="required" value="{{this.usuario.email}}"/>
 
               <div class="validaciones" *ngIf="formEditUser.get('email')?.errors && formEditUser.get('email')?.dirty">
@@ -107,7 +107,7 @@
             <!-- ttelefono -->
               <label class="ml-4" for="telefono">TELEFONO</label>
               <input type="text" formControlName="telefono" name="telefono" pattern="^(6|7|9)[0-9]{8}$"
-                id="telefono" class="form-control-sm col-3" required="required" value="{{this.usuario.telefono}}"/>
+                id="telefono" class="form-control-sm col-3" required="required" value="{{this.usuario.telefono}}">
 
                 <div class="validaciones" *ngIf="formEditUser.get('telefono')?.errors && formEditUser.get('telefono')?.dirty">
                   <p *ngIf="formEditUser.get('telefono')?.hasError('required')">Este campo es obligatorio</p>
@@ -181,7 +181,7 @@
               
             </div>
             
-            <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
+            <div class="form-group" style="display: flex; justify-content: center; align-items: center;" *ngIf="esAdministrador()">
 
               <label for="id" class="m-1 ml-5">Id</label>
               <input type="text" value="{{this.usuario.id}}" name="id" formControlName="id" class="form-control-sm ml-1 col-1" />

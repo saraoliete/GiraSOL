@@ -4,6 +4,7 @@ import { ServiceService } from "src/app/Service/service.service";
 import { Usuario } from '../../Modelo/usuario';
 import swal from 'sweetalert2';
 import { PdfMakeWrapper, Table, Txt } from "pdfmake-wrapper";
+import { StorageService } from "src/app/Service/storage.service";
 
 @Component({
   selector: "app-PersonalView",
@@ -15,7 +16,7 @@ export class PersonalView implements OnInit{
     pdfMakerWrapper = new PdfMakeWrapper();
 
     usuario:Usuario = new Usuario();
-    constructor(private service:ServiceService, private router:Router){}
+    constructor(private service:ServiceService, private storage:StorageService, private router:Router){}
 
     ngOnInit(){
       let id= localStorage.getItem("id");
@@ -86,9 +87,7 @@ export class PersonalView implements OnInit{
       }).then((result) => {
         if(result.value){
 
-          localStorage.removeItem("token");
-          localStorage.removeItem("idUsuario");
-          localStorage.removeItem("nombreUsuario");
+          this.storage.removeCurrentSession();
 
           swal.fire({
             title: '¡Correcto!',

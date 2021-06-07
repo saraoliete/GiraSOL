@@ -86,8 +86,8 @@ export class EditReserva implements OnInit{
      activarComponente(){
 
       swal.fire({
-        title: 'Confirme, por favor.',
-        text: '¿Quieres guardar los cambios?',
+        title: 'Precio total: ' + this.Calculadora() + '€',
+        text: '¿Estás de acuerdo? ¿Quieres guardar los cambios?',
         icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Sí, guardar cambios',
@@ -137,7 +137,11 @@ export class EditReserva implements OnInit{
         icon: 'success'
       });
       
-   }, error => console.log(error));
+   }, error => swal.fire({
+    title: '¡Error!',
+    text: 'Todos los campos son obligatorios excepto la cama supletoria.',
+    icon: 'error'
+  }));
      
    
  }
@@ -147,10 +151,11 @@ export class EditReserva implements OnInit{
     swal.fire({
 
       title: '¡Cancelado!',
-      text: 'Los cambios en la habitación ' +  this.reserva.id + ' no han sido guardados.',
+      text: 'Los cambios no han sido guardados.',
       icon: 'error'
     });
-    this.router.navigate(["getPageReserva"]);
+    this.formEditReserva?.reset();
+    this.router.navigate(["EditReserva"]);
   }
 
   Calculadora():number{

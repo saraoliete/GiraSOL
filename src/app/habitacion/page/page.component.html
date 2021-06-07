@@ -6,11 +6,9 @@
 
 <div class="container col-md-7">
     
-    <div class="botones">
+    <div class="botones" style="position: block; margin-bottom: 0px;" *ngIf="esAdministrador()">
         
         <button (click)="Create()" class="btn create m-1 float-right"><i class="fas fa-plus"></i></button>
-        <button (click)="UploadFile()" class="btn btn-sm btn-success m-1 float-right"><i class="fas fa-upload"></i></button>
-        <button (click)="Galeria()" class="btn btn-sm btn-success m-1 float-right"><i class="far fa-images"></i></button>
 
     </div>
 
@@ -38,7 +36,7 @@
 
         <div class="card-header">
             
-            <button (click)="SelectFile(habitacion)" class="btn btn-sm btn-success m-1"><i class="fas fa-plus"></i></button>
+            
         </div>
 
         <div class="card-body">
@@ -67,8 +65,8 @@
         <div class="card-footer">
 
             <button (click)="View(habitacion)" class="btn view m-1"><i class="fas fa-eye"></i></button>
-            <button (click)="Editar(habitacion)" class="btn edit m-1"><i class="fas fa-edit"></i></button>
-            <button (click)="Delete(habitacion)" class="btn m-1 delete1"><i class="fas fa-trash-alt"></i></button>
+            <button (click)="Editar(habitacion)" class="btn edit m-1" *ngIf="esAdministrador()"><i class="fas fa-edit"></i></button>
+            <button (click)="Delete(habitacion)" class="btn m-1 delete1" *ngIf="esAdministrador()"><i class="fas fa-trash-alt"></i></button>
 
         </div>
 
@@ -76,7 +74,7 @@
 
     <div class="page_footer">
 
-        <div class="botones">
+        <div class="botones" *ngIf="esAdministrador()">
             <button (click)="descargarPDF()" class="btn pdf m-1">Descargar PDF</button>
         </div>
 

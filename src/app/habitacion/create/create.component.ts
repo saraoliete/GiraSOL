@@ -31,7 +31,8 @@ export class CreateHabitacion implements OnInit{
     }
 
     ngOnInit(){ 
-      this.service.getAllTipohabitacion().subscribe(data=> this.lista=data)
+      this.service.getAllTipohabitacion().subscribe(data=> {this.lista=data});
+      this.service.checkUsuario().subscribe( data=>{ console.log("check:" + data)});
      }
 
 

@@ -4,6 +4,7 @@ import { ServiceService } from "src/app/Service/service.service";
 import { Pension } from '../../Modelo/pension';
 import swal from 'sweetalert2';
 import { PdfMakeWrapper, Table, Txt } from "pdfmake-wrapper";
+import { StorageService } from "src/app/Service/storage.service";
 
 @Component({
   selector: "app-getPagePension",
@@ -25,12 +26,16 @@ export class getPagePension implements OnInit{
     isFirst = false;
     isLast = false;
 
-    constructor(private service:ServiceService, private router:Router){}
+    constructor(private service:ServiceService, private storage:StorageService, private router:Router){}
 
     ngOnInit(){
       
       this.cargarPensiones();
          
+      }
+
+      esAdministrador():boolean {
+        return this.storage.getCurrentSession()?.tipousuario.id == 1;
       }
 
       cargarPensiones(){

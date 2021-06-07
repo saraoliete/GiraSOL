@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import * as pdfMake from 'pdfmake/build/pdfmake.js';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
+import { StorageService } from "src/app/Service/storage.service";
 
 PdfMakeWrapper.setFonts(pdfFonts);
 
@@ -17,13 +18,17 @@ PdfMakeWrapper.setFonts(pdfFonts);
 export class ViewReserva implements OnInit{
 
     reserva:Reserva = new Reserva();
-    constructor(private service:ServiceService, private router:Router, private pdfMakerWrapper:PdfMakeWrapper){
+    constructor(private service:ServiceService, private storage:StorageService, private router:Router, private pdfMakerWrapper:PdfMakeWrapper){
     }
 
     ngOnInit(){
       let id= localStorage.getItem("id");
       this.service.getReserva(id).subscribe(data=>{ this.reserva=data;});
      }
+
+     esAdministrador():boolean {
+      return this.storage.getCurrentSession()?.tipousuario.id == 1;
+    }
 
      descargarPDF(){
 

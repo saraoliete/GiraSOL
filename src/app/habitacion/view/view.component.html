@@ -28,7 +28,7 @@
                 </tr>
             </table>
         </div>
-        <div class="card-footer">
+        <div class="card-footer" *ngIf="esAdministrador()">
             <button (click)="descargarPDF()" class="btn float-right m-1 pdf">Descargar PDF</button>
             <button (click)="EditHabitacion(this.habitacion)" class="btn float-right m-1 edit"><i class="fas fa-edit"></i></button>
         </div>

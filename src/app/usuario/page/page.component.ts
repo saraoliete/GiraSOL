@@ -164,11 +164,6 @@ export class getPageUsuario implements OnInit{
 
     }
 
-    Editar(usuario:Usuario):void{
-      localStorage.setItem("id",usuario.id.toString());
-      this.router.navigate(["EditUsuario"]);
-    }
-
     Delete(usuario:Usuario):void{
 
       swal.fire({

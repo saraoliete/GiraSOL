@@ -30,7 +30,7 @@ export class ServiceService {
             headers: new HttpHeaders({
             "Content-Type": "application/json",
             "Accept": "application/json"
-        })
+        }), withCredentials: true
         });
     }
 
@@ -56,19 +56,7 @@ export class ServiceService {
             })
           );
     }
-
     
-    //servicio de cookies
-    setToken(token: string){
-        this.cookies.set("token", token);
-    }
-    
-    getToken(){
-        return this.cookies.get("token");
-    }
-    
-    
-
     //servicio de imagenes
 
     uploadImagenes(file:File): Observable<HttpEvent<any>>{
@@ -85,6 +73,14 @@ export class ServiceService {
           return this.http.request(req);
              
     }
+
+    getImagenes(){
+        return this.http.get<FileImg[]>(this.Url + 'files');
+    }
+
+    getImagen(id:Number):Observable<Blob>{
+        return this.http.get(this.Url + 'file/' + id, {responseType:'blob'});
+    }
     
     //Usuario
     getUsuario(id:String | null):Observable<Usuario>{
@@ -96,11 +92,11 @@ export class ServiceService {
     }
 
     updateUsuario(usuario:Usuario){
-        return this.http.put<Usuario>(this.Url + "usuario/" + usuario.id, usuario);
+        return this.http.put<Usuario>(this.Url + "usuario/" + usuario.id, usuario, {withCredentials: true});
     }
 
     deleteUser(usuario:Usuario){
-        return this.http.delete<Usuario>(this.Url + "usuario/" + usuario.id);
+        return this.http.delete<Usuario>(this.Url + "usuario/" + usuario.id, {withCredentials: true});
     }
 
     getPageUsuario(page: number, size: number, order: string, asc: boolean): Observable<any>{
@@ -117,13 +113,13 @@ export class ServiceService {
         return this.http.get<Tipousuario[]>(this.Url + "tipousuario/" + "all");
     }
     updateTipousuario(tipousuario:Tipousuario){
-        return this.http.put<Tipousuario>(this.Url + "tipousuario/" + tipousuario.id, tipousuario);
+        return this.http.put<Tipousuario>(this.Url + "tipousuario/" + tipousuario.id, tipousuario, {withCredentials: true});
     }
     createTipousuario(tipousuario:Tipousuario){
-        return this.http.post<Tipousuario>(this.Url + "tipousuario/", tipousuario);
+        return this.http.post<Tipousuario>(this.Url + "tipousuario/", tipousuario, {withCredentials: true});
     }
     deleteTipousuario(tipousuario:Tipousuario){
-        return this.http.delete<Tipousuario>(this.Url + "tipousuario/" + tipousuario.id);
+        return this.http.delete<Tipousuario>(this.Url + "tipousuario/" + tipousuario.id, {withCredentials: true});
     }
 
     getPageTipousuario(page: number, size: number, order: string, asc: boolean): Observable<any>{
@@ -136,15 +132,15 @@ export class ServiceService {
     }
 
     createHabitacion(habitacion:Habitacion): Observable<Habitacion>{
-        return this.http.post<Habitacion>(this.Url + "habitacion/",habitacion);
+        return this.http.post<Habitacion>(this.Url + "habitacion/",habitacion, {withCredentials: true});
     }
 
     updateHabitacion(habitacion:Habitacion){
-        return this.http.put<Habitacion>(this.Url + "habitacion/" + habitacion.id, habitacion);
+        return this.http.put<Habitacion>(this.Url + "habitacion/" + habitacion.id, habitacion, {withCredentials: true});
     }
 
     deleteHabitacion(habitacion:Habitacion){
-        return this.http.delete<Habitacion>(this.Url + "habitacion/" + habitacion.id);
+        return this.http.delete<Habitacion>(this.Url + "habitacion/" + habitacion.id, {withCredentials: true});
     }
 
     getPageHabitacion(page: number, size: number, order: string, asc: boolean): Observable<any>{
@@ -162,15 +158,15 @@ export class ServiceService {
     }
 
     updateTipohabitacion(tipohabitacion:Tipohabitacion){
-            return this.http.put<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion.id, tipohabitacion);
+            return this.http.put<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion.id, tipohabitacion, {withCredentials: true});
     }
 
     createTipohabitacion(tipohabitacion:Tipohabitacion){
-        return this.http.post<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion.id, tipohabitacion);
+        return this.http.post<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion.id, tipohabitacion, {withCredentials: true});
     }
 
     deleteTipohabitacion(tipohabitacion:Tipohabitacion){
-        return this.http.delete<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion.id);
+        return this.http.delete<Tipohabitacion>(this.Url + "tipohabitacion/" + tipohabitacion.id, {withCredentials: true});
     }
 
     getPageTipohabitacion(page: number, size: number, order: string, asc: boolean): Observable<any>{
@@ -187,15 +183,15 @@ export class ServiceService {
     }
 
     createPension(pension:Pension): Observable<Pension>{
-        return this.http.post<Pension>(this.Url + "pension/", pension);
+        return this.http.post<Pension>(this.Url + "pension/", pension, {withCredentials: true});
     }
 
     updatePension(pension:Pension){
-        return this.http.put<Pension>(this.Url + "pension/" + pension.id, pension);
+        return this.http.put<Pension>(this.Url + "pension/" + pension.id, pension, {withCredentials: true});
     }
 
     deletePension(pension:Pension){
-        return this.http.delete<Pension>(this.Url + "pension/" + pension.id);
+        return this.http.delete<Pension>(this.Url + "pension/" + pension.id, {withCredentials: true});
     }
 
     getPagePension(page: number, size: number, order: string, asc: boolean): Observable<any>{
@@ -215,15 +211,19 @@ export class ServiceService {
     }
 
     updateReserva(reserva:Reserva){
-        return this.http.put<Reserva>(this.Url + "reserva/" + reserva.id, reserva);
+        return this.http.put<Reserva>(this.Url + "reserva/" + reserva.id, reserva, {withCredentials: true});
     }
 
     deleteReserva(reserva:Reserva){
-        return this.http.delete<Reserva>(this.Url + "reserva/" + reserva.id);
+        return this.http.delete<Reserva>(this.Url + "reserva/" + reserva.id, {withCredentials: true});
     }
 
     getPageReserva(page: number, size: number, order: string, asc: boolean):Observable<any>{
         return this.http.get<any>(this.Url + "reserva/" + "page?" + `page=${page}&size=${size}&order=${order}&asc=${asc}`);
+    }
+
+    getPageReservaByUserId(page: number, size: number, order: string, asc: boolean, id:Number):Observable<any>{
+        return this.http.get<any>(this.Url + "reserva/" + "/pagexusuario/" + id + "?" + `page=${page}&size=${size}&order=${order}&asc=${asc}`);
     }
 
 }

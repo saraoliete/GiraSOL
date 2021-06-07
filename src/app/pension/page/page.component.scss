@@ -16,7 +16,7 @@
         background: linear-gradient(45deg, #d7a499, #f4c9b9);
         font-weight: bolder;
         color: white;
-        z-index: 9999;
+        z-index: 9998;
         
     }
 
@@ -62,7 +62,7 @@
 
 .size{
 
-    margin-top: -4%;
+    margin-top: 5%;
     margin-bottom: 1%;
     
 
@@ -198,7 +198,6 @@
         width: 100%;
         margin: 78px auto;
         font-weight: bolder;
-        box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
 
        .card-header{
         color: white;

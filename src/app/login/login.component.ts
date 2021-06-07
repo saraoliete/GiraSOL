@@ -33,22 +33,17 @@ export class LoginComponent{
   Check(){
 
     this.service.checkUsuario().subscribe(
-      data=>{ console.log("check:" + data)})
+      data=>{ console.log("check:" + data);})
   }
 
   Login(){
     let parameter = JSON.stringify(this.formLogin.value);
     this.service.login(parameter).subscribe(
     data=>{
-      this.service.setToken(data.token);
       console.log("login:" + data.token + ", nombreusuario:" + data.nombreusuario + ", password:" + data.password);
 
-      localStorage.setItem("token", data.token.toString());
-
       if(data.token!=null){
-        localStorage.setItem('idUsuario', data.id.toString());
-        localStorage.setItem('nombreUsuario', data.nombreusuario);
-        
+        this.storage.setCurrentSession(data);
       }
 
       swal.fire({
@@ -62,11 +57,24 @@ export class LoginComponent{
     error => {
 
       swal.fire({
-        title: '¡Ups!',
-        text: 'El nombre de usuario o la contraseña es incorrecto.',
-        icon: 'error'
-      });
-      console.log(error);
+        title: '¡Ups! ¡El nombre de usuario o contraseña no coincide!',
+        text: '¿No tienes cuenta? Regístrate.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Volver a intentar',
+        cancelButtonText: 'No, quiero registrarme'
+      }).then((result) => {
+        if(result.value){
+
+          this.formLogin?.reset();
+          this.router.navigate(["Login"]);
+
+          } else if (result.dismiss === swal.DismissReason.cancel){
+
+            this.router.navigate(["RegisterUsuario"]);
+
+          }
+      })
     });
   }
   

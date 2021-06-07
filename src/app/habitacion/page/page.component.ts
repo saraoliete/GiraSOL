@@ -4,6 +4,7 @@ import { ServiceService } from "src/app/Service/service.service";
 import { Habitacion } from '../../Modelo/habitacion';
 import swal from 'sweetalert2';
 import { PdfMakeWrapper, Table, Txt} from "pdfmake-wrapper";
+import { StorageService } from "src/app/Service/storage.service";
 
 @Component({
   selector: "getPageHabitacion",
@@ -25,13 +26,16 @@ export class getPageHabitacion implements OnInit{
     isFirst = false;
     isLast = false;
 
-    constructor(private service:ServiceService, private router:Router){
+    constructor(private service:ServiceService, private storage:StorageService, private router:Router){
     }
 
     ngOnInit(){
       this.cargarHabitaciones();
     }
     
+    esAdministrador():boolean {
+      return this.storage.getCurrentSession()?.tipousuario.id == 1;
+    }
 
     cargarHabitaciones(){
       this.service.getPageHabitacion(this.page, this.size, this.order, this.asc).subscribe
@@ -167,7 +171,9 @@ export class getPageHabitacion implements OnInit{
       
     }
 
-    SelectFile(habitacion:Habitacion){
+    SelectFile(){
+
+      this.router.navigate(['GaleriaImagenes'])
       
     }
 

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Tipousuario } from 'src/app/Modelo/tipousuario';
 import { Usuario } from 'src/app/Modelo/usuario';
 import { ServiceService } from 'src/app/Service/service.service';
+import { StorageService } from 'src/app/Service/storage.service';
 import swal from 'sweetalert2';
 
 @Component({
@@ -18,22 +19,22 @@ export class EditUsuario implements OnInit{
     usuario:Usuario=new Usuario();
     tipousuario!:Array<Tipousuario>;
     formEditUser!:FormGroup;
-    constructor(private service:ServiceService, private router:Router, private formBuilder:FormBuilder){
+    constructor(private service:ServiceService, private storage:StorageService, private router:Router, private formBuilder:FormBuilder){
 
       this.formEditUser = this.formBuilder.group({
-        id:[],
-        nombre:['', [Validators.required], [Validators.pattern], [Validators.maxLength], [Validators.minLength]],
-        apellidos:['', [Validators.required], [Validators.pattern], [Validators.maxLength], [Validators.minLength]],
-        dni:['', [Validators.required], [Validators.pattern]],
-        sexo:[],
-        email:['', [Validators.required], [Validators.pattern], [Validators.maxLength], [Validators.minLength]],
-        localidad:['', [Validators.required], [Validators.pattern]],
-        nacionalidad:['', [Validators.required], [Validators.pattern]],
-        telefono:['', [Validators.required], [Validators.pattern]],
-        edad:['', [Validators.required], [Validators.maxLength]],
-        nombreusuario:['', [Validators.required], [Validators.pattern], [Validators.maxLength], [Validators.minLength]],
-        password:['', [Validators.required], [Validators.pattern], [Validators.maxLength], [Validators.minLength]],
-        tipousuario:[]
+        id:[''],
+        nombre:['', [Validators.required, Validators.pattern, Validators.maxLength, Validators.minLength]],
+        apellidos:['', [Validators.required, Validators.pattern, Validators.maxLength, Validators.minLength]],
+        dni:['', [Validators.required, Validators.pattern]],
+        sexo:[''],
+        email:['', [Validators.required, Validators.pattern, Validators.maxLength, Validators.minLength]],
+        localidad:['', [Validators.required, Validators.pattern]],
+        nacionalidad:['', [Validators.required, Validators.pattern]],
+        telefono:['', [Validators.required, Validators.pattern]],
+        edad:['', [Validators.required, Validators.maxLength]],
+        nombreusuario:['', [Validators.required, Validators.pattern, Validators.maxLength, Validators.minLength]],
+        password:['', [Validators.required, Validators.pattern, Validators.maxLength, Validators.minLength]],
+        tipousuario:['']
   
       })
     }
@@ -48,7 +49,8 @@ export class EditUsuario implements OnInit{
 
       this.service.getAllTipousuario().subscribe(data=> this.tipousuario=data);
 
-      this.service.getUsuario(id).subscribe(data=>{ this.usuario=data;
+      this.service.getUsuario(id).subscribe(data=>{ 
+      this.usuario=data;
       this.formEditUser.get('nombre')?.setValue(this.usuario.nombre);
       this.formEditUser.get('apellidos')?.setValue(this.usuario.apellidos);
       this.formEditUser.get('dni')?.setValue(this.usuario.dni);
@@ -64,6 +66,10 @@ export class EditUsuario implements OnInit{
       this.formEditUser.get('id')?.setValue(this.usuario.id);
       });
 
+    }
+
+    esAdministrador():boolean {
+      return this.storage.getCurrentSession()?.tipousuario.id == 1;
     }
 
     activarComponente(){
@@ -104,7 +110,7 @@ export class EditUsuario implements OnInit{
         this.usuario.tipousuario.id = this.formEditUser.get('tipousuario')?.value;
 
         this.service.updateUsuario(this.usuario).subscribe(data=>{this.usuario=data;
-        this.router.navigate(["getPageUsuario"]);})
+        this.router.navigate(["app-PersonalView"]);})
 
         swal.fire({
           title: '¡Enhorabuena!',
@@ -124,10 +130,10 @@ export class EditUsuario implements OnInit{
         text: 'Los cambios en el usuario ' +  this.usuario.nombreusuario + ' no han sido guardados.',
         icon: 'error'
       });
-      this.router.navigate(["getPageUsuario"]);
+      this.router.navigate(["app-PersonalView"]);
     }
 
     Volver(){        
-        this.router.navigate(["getPageUsuario"]);
+        this.router.navigate(["app-PersonalView"]);
       }
 }

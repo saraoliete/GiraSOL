@@ -4,6 +4,7 @@ import { ServiceService } from "src/app/Service/service.service";
 import { Tipohabitacion } from '../../Modelo/tipohabitacion';
 import swal from 'sweetalert2';
 import { PdfMakeWrapper, Table, Txt } from "pdfmake-wrapper";
+import { daysInWeek } from "date-fns/esm";
 
 @Component({
   selector: "app-getPageTipohabitacion",
@@ -46,6 +47,10 @@ export class getPageTipohabitacion implements OnInit{
 
       })
       
+  }
+
+  getImagen(id:Number){
+    return this.service.getImagen(id).subscribe();
   }
 
   //ordenar asc o desc

@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import * as pdfMake from 'pdfmake/build/pdfmake.js';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
+import { StorageService } from "src/app/Service/storage.service";
 
 @Component({
   selector: "getPageReserva",
@@ -23,13 +24,15 @@ export class getPageReserva implements OnInit{
 
     page = 0;
     size = 4;
-    order ='id';
+    order_usuario ='idreserva';
+    order_administrador ='id';
     asc = true;
+    id=Number(this.recuperarIdUsuario());
 
     isFirst = false;
     isLast = false;
 
-    constructor(private service:ServiceService, private router:Router, private datePipe:DatePipe, private pdfMakerWrapper:PdfMakeWrapper){}
+    constructor(private service:ServiceService, private storage:StorageService, private router:Router, private datePipe:DatePipe, private pdfMakerWrapper:PdfMakeWrapper){}
 
     ngOnInit(){
 
@@ -37,8 +40,19 @@ export class getPageReserva implements OnInit{
 
     }
 
+    esAdministrador():boolean {
+      return this.storage.getCurrentSession()?.tipousuario.id == 1;
+    }
+
+    recuperarIdUsuario(){
+      return this.storage.getCurrentSession()?.id;
+    }
+
     cargarReservas(){
-      this.service.getPageReserva(this.page, this.size, this.order, this.asc).subscribe
+      
+      if (this.esAdministrador()) {
+      
+        this.service.getPageReserva(this.page, this.size, this.order_administrador, this.asc).subscribe
         (data=>{
 
           console.log(data);
@@ -50,6 +64,24 @@ export class getPageReserva implements OnInit{
 
         })
 
+      } else {
+        
+        this.id = Number(this.recuperarIdUsuario());
+      
+        this.service.getPageReservaByUserId(this.page, this.size, this.order_usuario, this.asc, this.id).subscribe
+        (data=>{
+
+          console.log(data);
+
+          this.reservas = data.content;
+          this.isFirst = data.first;
+          this.isLast = data.last;
+          this.totalPages = new Array(data.totalPages);
+
+        })
+
+
+      }
 
         
     }
@@ -97,7 +129,8 @@ export class getPageReserva implements OnInit{
 
     //ordenar por
     setOrder(order: string): string {
-      this.order = order;
+      this.order_usuario = order;
+      this.order_administrador = order;
       this.cargarReservas();
 
       return order;
@@ -105,7 +138,7 @@ export class getPageReserva implements OnInit{
 
     descargarPDF():void{
 
-      this.service.getPageReserva(this.page, this.size, this.order, this.asc).subscribe
+      this.service.getPageReserva(this.page, this.size, this.order_administrador, this.asc).subscribe
         (data=>{
 
           console.log(data);

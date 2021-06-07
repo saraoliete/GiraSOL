@@ -29,6 +29,7 @@ import { ViewTipousuario } from './tipousuario/view/view.component';
 import { CreateTipousuario } from './tipousuario/create/create.component';
 import { EditTipousuario } from './tipousuario/edit/edit.component';
 import { PersonalView } from './usuario/personal view/view.component';
+import { GaleriaImagenes } from './file/upload/galeria/galeria.component';
 
 const routes: Routes = [
   { path: "app-root", component: AppComponent, pathMatch: "full"},
@@ -59,7 +60,8 @@ const routes: Routes = [
   { path: "app-getPageTipohabitacion", component: getPageTipohabitacion, pathMatch: "full" },
   { path: "app-ViewTipohabitacion", component: ViewTipohabitacion, pathMatch: "full" },
   { path: "app-CreateTipohabitacion", component: CreateTipohabitacion, pathMatch: "full" },
-  { path: "UploadFile", component: UploadFile, pathMatch: "full" }
+  { path: "UploadFile", component: UploadFile, pathMatch: "full" },
+  { path: "GaleriaImagenes", component: GaleriaImagenes, pathMatch: "full" }
   
 ];
 

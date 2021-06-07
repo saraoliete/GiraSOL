@@ -62,7 +62,7 @@
     <div class="card-footer">
 
         <button (click)="descargarPDF()" class="btn float-right m-1 pdf">Descargar PDF</button>
-        <button (click)="Editar(this.reserva)"class="btn float-right edit m-1"><i class="fas fa-edit"></i></button>
+        <button (click)="Editar(this.reserva)"class="btn float-right edit m-1" *ngIf="esAdministrador()"><i class="fas fa-edit"></i></button>
 
     </div>
 </div>

@@ -23,7 +23,7 @@
             <div class="id_field ml-5 mt-3">
 
               <label for="id">Id reserva</label>
-              <input type="text" class="form-control-sm col-1" formControlName="id" name="id" readonly="readonly" value="{{this.reserva.id}}" style="margin-left: 8%;"/>
+              <input type="text" class="form-control-sm col-1" autocomplete="off" formControlName="id" name="id" readonly="readonly" value="{{this.reserva.id}}" style="margin-left: 8%;"/>
 
             </div>
 
@@ -63,7 +63,9 @@
 
 
             <!-- cama_supletoria -->
-              <label for="cama_supletoria" style="margin-left: 10%;">Cama supletoria (+5€)</label> <input type="checkbox" *ngIf="this.reserva.cama_supletoria==true" checked name="cama_supletoria" class="ml-2 mr-5" formControlName="cama_supletoria" id="cama_supletoria" value="1"><input type="checkbox" *ngIf="this.reserva.cama_supletoria==false" name="cama_supletoria" class="ml-2 mr-5" formControlName="cama_supletoria" id="cama_supletoria" value="1">
+              <label for="cama_supletoria" style="margin-left: 10%;">Cama supletoria (+5€)</label> 
+              <input type="checkbox" name="cama_supletoria" class="ml-2 mr-5" 
+               formControlName="cama_supletoria" id="cama_supletoria"  [(ngModel)]="this.reserva.cama_supletoria">
             
             </div>
     

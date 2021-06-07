@@ -85,6 +85,7 @@ export class RegisterUsuario implements OnInit{
         icon: 'success'
       });
 
+        this.formCreateUser.reset();
         this.router.navigate(["Login"]);
     },
     error => {
@@ -93,6 +94,6 @@ export class RegisterUsuario implements OnInit{
   }
 
   Volver(){        
-    this.router.navigate(["getPageUsuario"]);
+    this.router.navigate(["app-root"]);
   }
 }

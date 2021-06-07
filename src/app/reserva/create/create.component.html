@@ -20,10 +20,10 @@
           <div class="form-group" style="display: flex; flex-direction: column; align-items: stretch;">  
           
                 <!-- nombre -->
-                <div class="nombre_field ml-5 mt-3">
+                <div class="nombre_field ml-5 mt-3" style="display: none;">
                   
                   <label for="usuario" >Usuario:</label>
-                  <input class="form-control-sm col-3" type="usuario" formControlName="usuario" name="usuario" id="usuario" 
+                  <input class="form-control-sm col-3" type="usuario" autocomplete="off" formControlName="usuario" name="usuario" id="usuario" 
                     required="required" style="margin-left: 10%;"/>
 
                 </div>
@@ -87,7 +87,7 @@
                 </div>
           
 
-                <div class="precio_final_field" class="ml-5 mt-3" style="display: flex; justify-content: flex-end;">
+                <div class="precio_final_field" class="ml-5 mt-3" style="display: flex; justify-content: flex-end; visibility: hidden;">
 
 
                     <label for="precio_final" style="margin-right: 2.6%;">Precio final</label>
@@ -99,7 +99,7 @@
 
               <div class="btn-reservar mt-3" style="display: flex; justify-content: flex-end;">
                 
-                <button (click)="CrearReserva()" class="btn btn-primary reservar col-3">Reservar</button>
+                <button (click)="activarComponente()" class="btn btn-primary reservar col-3">Reservar</button>
 
               </div>
         </div>

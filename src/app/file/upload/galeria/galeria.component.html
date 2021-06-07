@@ -1,0 +1,18 @@
+<div class="title-header">
+
+    <h3 class="titulo">IMAGENES EN BASE DE DATOS</h3>
+    
+</div>
+
+<div class="container col-md-7">
+    
+    <div class="botones" *ngFor="let item of file">
+        
+        <button (click)="storageImagen(this.item)" class="btn btn-light m-1">{{this.item.id}}</button>
+
+    </div>
+
+    
+
+
+</div>

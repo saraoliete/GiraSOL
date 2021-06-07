@@ -1,10 +1,10 @@
 <div class="header fixed-top">
 
-  <a class="home" (click)="home();checkUncheck();"> <img src="../assets/home_icon.png" alt="home"> </a>
+  <a class="home" (click)="home()"> <img src="../assets/home_icon.png" alt="home"> </a>
 
   <div class="sesion" *ngIf="recuperarIdUsuario() != null">
 
-    <p>Has iniciado sesión como: <a class="perfil" (click)="ViewUser();checkUncheck();">{{mostrarUsuario()}}</a></p>
+    <p>Has iniciado sesión como: <a class="perfil" (click)="ViewUser()">{{mostrarUsuario()}}</a></p>
 
   </div>
 
@@ -32,17 +32,21 @@
   
         <ul id="trickMenu">
      
-           <li><a (click)="Habitacion();checkUncheck();"> HABITACIONES </a></li>
+           <li class="habitaciones"><a (click)="Habitacion();checkUncheck();"><i *ngIf="esAdministrador()" class="fas fa-chevron-left"></i> HABITACIONES </a></li>
+
+           <li class="tipoHabitaciones" *ngIf="esAdministrador()"><a (click)="Tipohabitacion();checkUncheck();"> TIPO DE HABITACIONES </a></li>
      
            <li><a (click)="Pension();checkUncheck();"> PENSIONES </a></li>
      
-           <li><a (click)="Reservas();checkUncheck();"> RESERVAS </a></li>
+           <li *ngIf="recuperarIdUsuario() != null"><a (click)="Reservas();checkUncheck();"> RESERVAS </a></li>
     
-           <li><a (click)="Usuarios();checkUncheck();"> USUARIOS </a></li>
-  
-           <li class="iniciar_sesion"><a (click)="Login();checkUncheck();">INICIAR SESIÓN</a></li>
+           <li class="usuarios" *ngIf="esAdministrador()"><a (click)="Usuarios();checkUncheck();"><i *ngIf="esAdministrador()" class="fas fa-chevron-left"></i> USUARIOS </a></li>
 
-           <li class="registro"><a (click)="Register();checkUncheck();">REGISTRARSE</a></li>
+           <li class="tipoUsuarios" *ngIf="esAdministrador()"><a (click)="Tipousuario();checkUncheck();"> TIPO DE USUARIOS </a></li>
+  
+           <li class="iniciar_sesion" *ngIf="recuperarIdUsuario() == null"><a (click)="Login();checkUncheck();">INICIAR SESIÓN</a></li>
+
+           <li class="registro"  *ngIf="recuperarIdUsuario() == null"><a (click)="Register();checkUncheck();">REGISTRARSE</a></li>
      
         </ul>
   
